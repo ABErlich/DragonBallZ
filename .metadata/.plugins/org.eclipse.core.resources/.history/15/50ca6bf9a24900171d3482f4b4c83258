@@ -1,0 +1,19 @@
+
+public class Juego {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	
+	
+	public void Comenzar(){
+		
+	}
+	
+	public void Terminar(){
+		
+	}
+
+}

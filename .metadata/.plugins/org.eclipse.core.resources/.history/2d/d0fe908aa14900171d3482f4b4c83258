@@ -1,0 +1,12 @@
+import java.util.ArrayList;
+
+public class Tablero {
+	
+	private ArrayList<Celda> celdas;
+	
+	public boolean PuedeUbicar(Coordenada pCoordenada){
+		return false;
+	}
+	
+	
+}

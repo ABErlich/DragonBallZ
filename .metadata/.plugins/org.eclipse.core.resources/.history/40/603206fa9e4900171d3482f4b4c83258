@@ -1,0 +1,11 @@
+
+public abstract class Personaje {
+
+	private String Nombre;
+	private int vida;
+	private int poder;
+	private int distanciaAtaque;
+	private int velocidadMov;
+	
+	
+}

@@ -1,0 +1,8 @@
+
+public abstract class Personaje {
+
+	private String Nombre;
+	private int Vida;
+	
+	
+}

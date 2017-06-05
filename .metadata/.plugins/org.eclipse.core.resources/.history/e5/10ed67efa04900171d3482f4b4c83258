@@ -1,0 +1,7 @@
+
+public class Celda {
+
+	private Coordenada coordenada;
+	private bool ocupada;
+	
+}

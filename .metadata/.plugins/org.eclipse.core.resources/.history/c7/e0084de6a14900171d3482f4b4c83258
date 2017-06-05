@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Tablero {
+	
+	public Tablero(){
+		this.celdas = new ArrayList<Celda>();
+	}
+	
+	private ArrayList<Celda> celdas;
+	private UbicablesExistentes(){
+		
+	}
+	
+	public boolean PuedeUbicar(Coordenada pCoordenada){
+		return false;
+	}
+	public void Ubicar(Ubicable pUbicable){
+		
+	}
+	
+}

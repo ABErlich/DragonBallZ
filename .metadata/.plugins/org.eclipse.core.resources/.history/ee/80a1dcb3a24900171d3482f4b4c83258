@@ -1,0 +1,8 @@
+
+public class Celda {
+
+	private Coordenada coordenada;
+	private boolean ocupada;
+	private Ubicable ubicable;
+	
+}

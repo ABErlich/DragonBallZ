@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class Juego {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	private ArrayList<Jugador> jugadores;
+	
+	public void AgregarJugador(Jugador pJugador){
+		jugadores.add(pJugador);
+	}
+	
+	public void Comenzar(){
+		
+	}
+	
+	public void Terminar(){
+		
+	}
+
+}

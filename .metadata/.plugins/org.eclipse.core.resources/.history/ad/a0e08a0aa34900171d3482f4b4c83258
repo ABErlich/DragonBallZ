@@ -1,0 +1,24 @@
+
+public class Juego {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	private Jugador jugador1;
+	private Jugador jugador2;
+	
+	public void CrearJugador(Jugador pJugador){
+		
+	}
+	
+	public void Comenzar(){
+		
+	}
+	
+	public void Terminar(){
+		
+	}
+
+}

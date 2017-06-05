@@ -1,0 +1,8 @@
+
+public interface Ubicable {
+	
+	void Ubicar(){
+		
+	}
+	
+}
