@@ -1,4 +1,4 @@
-# Dragon Ball Z
+# Dragon Ball Z [![Build Status](https://travis-ci.org/Axeluck/DragonBallZ.svg?branch=master)](https://travis-ci.org/Axeluck/DragonBallZ)
 ## Repositorio para TP Final de Algoritmos III
 
 Trabajo realizado por estudiantes de la Facultad de Ingenieria de la Universidad de Buenos Aires
