@@ -14,10 +14,11 @@ public abstract class Personaje implements Ubicable {
 	}
 
 	public void Mover(Coordenada pCoordenada){
-		if pCoordenada.estaVacia(){
-			//UBICAR PERSONAJE
-		}
+		if pCoordenada.estaVacia()
+			Ubicar (pCoordenada);
+		else throw new CoordenadaNoVaciaException();
 	}
+
 	public void RecibirAtaque(int danio){
 		vida = vida - danio;
 	}
