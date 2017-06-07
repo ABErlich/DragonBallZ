@@ -3,11 +3,11 @@ public abstract class Personaje implements Ubicable {
 
 	private String Nombre;
 	
-	private int vida;
-	private int poder;
-	private int distanciaAtaque;
-	private int velocidadMov;
-	private int ki;
+	protected int vida;
+	protected int poder;
+	protected int distanciaAtaque;
+	protected int velocidadMov;
+	protected int ki;
 	
 	public void Atacar(Personaje pPersonaje){
 		
