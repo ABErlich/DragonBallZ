@@ -1,0 +1,16 @@
+package fiuba.algo3.ejemplo1;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class Entrega1Tests {
+
+	@Test
+	public void testColocarYMoverAGoku() {
+		Goku goku = new Goku();
+		
+		goku.Ubicar
+	}
+
+}
