@@ -10,14 +10,18 @@ public abstract class Personaje implements Ubicable {
 	protected int ki;
 	
 	public void Atacar(Personaje pPersonaje){
-		
+		pPersonaje.RecibirAtaque(poder);
 	}
+
 	public void Mover(Coordenada pCoordenada){
-		
+		if pCoordenada.estaVacia(){
+			//UBICAR PERSONAJE
+		}
 	}
-	public void RecibirAtaque(Personaje pPersonaje){
-		
+	public void RecibirAtaque(int danio){
+		vida = vida - danio;
 	}
+
 	@Override
 	public void Ubicar(Coordenada pCoordenada) {
 		
