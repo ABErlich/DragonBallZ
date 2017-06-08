@@ -1,10 +1,21 @@
 package fiuba.algo3.modelo.personajes;
 
 import fiuba.algo3.modelo.personajes.Personaje;
+import fiuba.algo3.modelo.tablero.Tablero;
 
 public class Goku extends Personaje {
-
-    public Goku (){
+	
+    public Goku (Tablero ptablero){
+    	super(ptablero);
+    	this.estado = new EstadoNormal();
+        vida = 500;
+        poder = 20;
+        distanciaAtaque = 2;
+        velocidadMov = 2;
+        ki = 0;
+    }
+    
+    public Goku(){
         vida = 500;
         poder = 20;
         distanciaAtaque = 2;
@@ -30,5 +41,9 @@ public class Goku extends Personaje {
         ki = ki - 20;
         poder = 30;
     }
+
+	public void transformar(IEstadoGoku pEstado) {
+		this.estado = pEstado;
+	}
 }
 

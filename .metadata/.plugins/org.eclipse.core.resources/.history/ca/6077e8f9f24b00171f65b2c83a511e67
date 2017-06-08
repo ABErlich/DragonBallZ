@@ -1,0 +1,21 @@
+package personajes;
+
+import fiuba.algo3.modelo.tablero.Coordenada;
+
+public class EstadoNormal implements IEstadoGoku {
+	public void Atacar(Personaje pPersonaje){
+		pPersonaje.RecibirAtaque(poder);
+	}
+
+	public void Mover(Coordenada pCoordenada){
+		if (tablero.PuedeUbicar(pCoordenada)){
+			Ubicar (pCoordenada);
+		}else{
+			throw new CoordenadaNoVaciaException();
+		}
+	}
+
+	public void RecibirAtaque(int danio){
+		vida = vida - danio;
+	}
+}

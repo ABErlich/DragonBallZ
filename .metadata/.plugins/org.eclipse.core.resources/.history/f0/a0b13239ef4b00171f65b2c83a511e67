@@ -1,0 +1,43 @@
+package fiuba.algo3.modelo.tablero;
+
+import fiuba.algo3.modelo.personajes.Goku;
+import fiuba.algo3.modelo.tablero.Celda;
+import fiuba.algo3.modelo.tablero.Coordenada;
+import fiuba.algo3.modelo.tablero.Ubicable;
+
+
+
+import java.util.ArrayList;
+
+public class Tablero {
+	
+	public Tablero(int pTamanio){
+		this.celdas = new ArrayList<Celda>();
+		
+		for(int i = 0; i < pTamanio; i++){
+			for(int j = 0; j<pTamanio; j++){
+				Celda celda = new Celda(new Coordenada(i,j));
+				this.celdas.add(celda);
+			}
+		}
+	}
+	
+	private ArrayList<Celda> celdas;
+	private Map<Ubicable, Celda> celdasOcupadas;
+	
+	public boolean PuedeUbicar(Coordenada pCoordenada){
+		return false;
+	}
+	
+	public void Ubicar(Ubicable pUbicable, Coordenada pCoordenada){
+		
+	}
+
+	public Coordenada obtenerPosicionDe(Ubicable pUbicable) {
+		
+		if()
+		
+		return null;
+	}
+	
+}
