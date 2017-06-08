@@ -1,8 +1,6 @@
 package fiuba.algo3.modelo.personajes;
 
 import fiuba.algo3.modelo.personajes.Personaje;
-import fiuba.algo3.modelo.personajes.estados.EstadoNormal;
-import fiuba.algo3.modelo.personajes.estados.IEstadoGoku;
 import fiuba.algo3.modelo.tablero.Tablero;
 
 public class Goku extends Personaje {

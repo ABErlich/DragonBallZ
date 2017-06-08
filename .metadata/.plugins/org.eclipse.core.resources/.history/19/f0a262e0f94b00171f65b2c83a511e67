@@ -1,7 +1,6 @@
 package fiuba.algo3.modelo.personajes;
 
 import fiuba.algo3.modelo.excepciones.CeldaOcupadaException;
-import fiuba.algo3.modelo.personajes.estados.IEstado;
 import fiuba.algo3.modelo.tablero.IUbicable;
 import fiuba.algo3.modelo.tablero.Coordenada;
 import fiuba.algo3.modelo.tablero.Tablero;
