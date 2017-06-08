@@ -24,7 +24,7 @@ public class Goku extends Personaje {
         velocidadMov = 2;
         ki = 0;
     }
-
+    /*
     public void kaioKen(){
         ki = ki - 20;
         poder = 40;
@@ -43,7 +43,7 @@ public class Goku extends Personaje {
         ki = ki - 20;
         poder = 30;
     }
-
+     */
 	public void transformar(IEstadoGoku pEstado) {
 		this.estado = pEstado;
 	}

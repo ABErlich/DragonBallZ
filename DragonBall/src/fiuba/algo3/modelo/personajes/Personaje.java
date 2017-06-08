@@ -1,12 +1,13 @@
 package fiuba.algo3.modelo.personajes;
 
+import fiuba.algo3.modelo.excepciones.CeldaNoExisteException;
 import fiuba.algo3.modelo.excepciones.CeldaOcupadaException;
 import fiuba.algo3.modelo.personajes.estados.IEstado;
 import fiuba.algo3.modelo.tablero.IUbicable;
 import fiuba.algo3.modelo.tablero.Coordenada;
 import fiuba.algo3.modelo.tablero.Tablero;
 
-public abstract class Personaje implements IUbicable {
+public abstract class Personaje implements IUbicable, IEstado {
 
 	public Personaje(Tablero ptablero){
 		this.tablero = ptablero;
@@ -29,12 +30,8 @@ public abstract class Personaje implements IUbicable {
 		pPersonaje.RecibirAtaque(poder);
 	}
 
-	public void Mover(Coordenada pCoordenada){
-		if (tablero.PuedeUbicar(pCoordenada)){
-			this.tablero.Ubicar(this, pCoordenada);
-		}else{
-			throw new CeldaOcupadaException();
-		}
+	public void Mover(Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException{
+		this.tablero.Ubicar(this, pCoordenada);
 	}
 
 	public void RecibirAtaque(int danio){
@@ -42,8 +39,12 @@ public abstract class Personaje implements IUbicable {
 	}
 
 	@Override
-	public void Ubicar(Coordenada pCoordenada) {
+	public void Ubicar(Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException {
 		tablero.Ubicar(this, pCoordenada);
+	}
+	
+	public Coordenada obtenerUbicacion(){
+		return tablero.obtenerUbicacion(this);
 	}
 	
 	public String obtenerEstado(){

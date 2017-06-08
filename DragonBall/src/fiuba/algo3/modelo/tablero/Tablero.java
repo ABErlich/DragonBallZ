@@ -1,5 +1,7 @@
 package fiuba.algo3.modelo.tablero;
 
+import fiuba.algo3.modelo.excepciones.CeldaNoExisteException;
+import fiuba.algo3.modelo.excepciones.CeldaOcupadaException;
 import fiuba.algo3.modelo.tablero.Celda;
 import fiuba.algo3.modelo.tablero.Coordenada;
 import fiuba.algo3.modelo.tablero.IUbicable;
@@ -11,7 +13,7 @@ public class Tablero {
 	
 	public Tablero(int pTamanio){
 		this.celdas = new Hashtable<Coordenada, Celda>();
-		this.celdasOcupadas = new Hashtable<IUbicable, Celda>();
+		this.ubicables = new Hashtable<IUbicable, Coordenada>();
 		
 		for(int i = 0; i < pTamanio; i++){
 			for(int j = 0; j < pTamanio; j++){
@@ -22,22 +24,26 @@ public class Tablero {
 	}
 	
 	private Dictionary<Coordenada, Celda> celdas;
-	private Dictionary<IUbicable, Celda> celdasOcupadas;
+	private Dictionary<IUbicable, Coordenada> ubicables;
 	
-	public boolean PuedeUbicar(Coordenada pCoordenada){
-		if(celdasOcupadas.get(pCoordenada) != null){
-			return false;
+	public void Ubicar(IUbicable pUbicable, Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException{
+		Celda celda = celdas.get(pCoordenada);
+		if(celda != null){
+			if(!celda.estaOcupada()){
+				celda.Ocupar();
+				ubicables.put(pUbicable, pCoordenada);
+			}else{
+				throw new CeldaOcupadaException();
+			}
+			
 		}else{
-			return true;
+			throw new CeldaNoExisteException();
 		}
-	}
-	
-	public void Ubicar(IUbicable pUbicable, Coordenada pCoordenada){
-		celdasOcupadas.put(pUbicable, celdas.get(pCoordenada));
+		
 	}
 
-	public Coordenada obtenerPosicionDe(IUbicable pUbicable) {
-		return celdasOcupadas.get(pUbicable).getCoordenada();
+	public Coordenada obtenerUbicacion(IUbicable pUbicable) {
+		return ubicables.get(pUbicable);
 	}
 
 	
