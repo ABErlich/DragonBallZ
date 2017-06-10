@@ -1,13 +1,9 @@
-package modelo.personajes.estados;
+package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 
-public interface IEstadoGohan extends IEstado {
-	
+public interface IEquipoZ {
 	public void Atacar(Personaje pPersonaje);
 	public void Mover(Coordenada pCoordenada);
-	public void RecibirAtaque(int danio);
-
-	
 }

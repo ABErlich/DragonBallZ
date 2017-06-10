@@ -1,11 +1,12 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.personajes.estados.IEstado;
 import modelo.personajes.estados.EstadoNormal;
-import modelo.personajes.estados.IEstadoGoku;
 import modelo.tablero.Coordenada;
+import modelo.personajes.IEquipoZ;
 
-public class Goku extends Personaje {
+public class Goku extends Personaje implements IEquipoZ {
 	
     public Goku (Coordenada pCoordeanda){
     	super(pCoordeanda);
@@ -17,13 +18,6 @@ public class Goku extends Personaje {
         ki = 0;
     }
     
-    public Goku(){
-        vida = 500;
-        poder = 20;
-        distanciaAtaque = 2;
-        velocidadMov = 2;
-        ki = 0;
-    }
     /*
     public void kaioKen(){
         ki = ki - 20;
@@ -44,7 +38,7 @@ public class Goku extends Personaje {
         poder = 30;
     }
      */
-	public void transformar(IEstadoGoku pEstado) {
+	public void transformar(IEstado pEstado) {
 		this.estado = pEstado;
 	}
 }

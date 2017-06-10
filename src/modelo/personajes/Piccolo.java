@@ -1,10 +1,12 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.tablero.Coordenada;
+import modelo.personajes.IEquipoZ;
+public class Piccolo extends Personaje implements IEquipoZ {
 
-public class Piccolo extends Personaje {
-
-    public Piccolo (){
+    public Piccolo (Coordenada pCoordenada){
+        super(pCoordenada);
         vida = 500;
         poder = 20;
         distanciaAtaque = 2;
@@ -12,6 +14,7 @@ public class Piccolo extends Personaje {
         ki = 0;
     }
 
+    /*
     public void fortalecido(){
         ki = ki - 20;
         poder = 40;
@@ -29,5 +32,6 @@ public class Piccolo extends Personaje {
         ki = ki - 10;
         poder = 31; //Deberia ser 31.25, pero por ser int y no float se tomo el valor mas proximo.
     }
+    */
 }
 

@@ -6,13 +6,10 @@ import modelo.personajes.estados.IEstado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
 
-public abstract class Personaje implements IUbicable, IEstado {
+public abstract class Personaje implements IUbicable {
 
 	public Personaje(Coordenada pCoordenada){
 		this.ubicacion = pCoordenada;
-	}
-	
-	public Personaje(){
 	}
 	
 	private Coordenada ubicacion;
@@ -26,10 +23,11 @@ public abstract class Personaje implements IUbicable, IEstado {
 	protected int ki;
 	
 	public void Atacar(Personaje pPersonaje){
-		pPersonaje.RecibirAtaque(poder);
+		//this.estado.Atacar(pPersonaje);
 	}
 
 	public void Mover(Coordenada pCoordenada){
+		//this.estado.Mover(pCoordenada);
 		this.ubicacion = pCoordenada;
 	}
 

@@ -1,10 +1,13 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.tablero.Coordenada;
+import modelo.personajes.IEquipoVillano;
 
-public class Freezer extends Personaje {
+public class Freezer extends Personaje implements IEquipoVillano {
 
-    public Freezer (){
+    public Freezer (Coordenada pCoordenada){
+        super(pCoordenada);
         vida = 400;
         poder = 20;
         distanciaAtaque = 2;
@@ -12,6 +15,7 @@ public class Freezer extends Personaje {
         ki = 0;
     }
 
+    /*
     public void segundaForma(){
         ki = ki - 20;
         poder = 40;
@@ -30,5 +34,6 @@ public class Freezer extends Personaje {
         ki = ki - 20;
         poder = 30;
     }
+    */
 }
 

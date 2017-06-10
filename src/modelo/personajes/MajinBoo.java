@@ -1,10 +1,12 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.tablero.Coordenada;
+import modelo.personajes.IEquipoVillano;;
+public class MajinBoo extends Personaje implements IEquipoVillano {
 
-public class MajinBoo extends Personaje {
-
-    public MajinBoo (){
+    public MajinBoo (Coordenada pCoordenada){
+        super(pCoordenada);
         vida = 300;
         poder = 30;
         distanciaAtaque = 2;
@@ -12,6 +14,7 @@ public class MajinBoo extends Personaje {
         ki = 0;
     }
 
+    /*
     public void booMalo(){
         ki = ki - 20;
         poder = 50;
@@ -29,5 +32,6 @@ public class MajinBoo extends Personaje {
     public void convierteEnChocolate(){
         ki = ki - 30;
     }
+    */
 }
 

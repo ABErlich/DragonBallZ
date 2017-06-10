@@ -3,7 +3,7 @@ package modelo.personajes.estados;
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 
-public class EstadoNormal implements IEstadoGoku {
+public class EstadoNormal implements IEstado {
 	
 	public void Atacar(Personaje pPersonaje){
 

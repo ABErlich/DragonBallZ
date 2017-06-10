@@ -14,7 +14,6 @@ public class Entrega1Test {
 	@Test
 	public void test1UbicarYMoverAGoku() {
 
-		Tablero tablero = new Tablero(10);
 		Goku goku = new Goku(new Coordenada(1,1));
 		
 		goku.Ubicar(new Coordenada(1,1));
@@ -25,10 +24,8 @@ public class Entrega1Test {
 	@Test
 	public void test2MoverAGoku() {
 
-		Tablero tablero = new Tablero(10);
 		Goku goku = new Goku(new Coordenada(1,1));
-	
-		goku.Ubicar(new Coordenada(1,1));
+
 		goku.Mover(new Coordenada(3,3));
 		
 		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
@@ -36,11 +33,13 @@ public class Entrega1Test {
 
 	@Test(expected=CeldaOcupadaException.class)
 	public void test2Ubicar2PersonajesMismaCelda(){
+		// Crea un tablero de 10 x 10 celdas
 		Tablero tablero = new Tablero(10);
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		Gohan gohan = new Gohan(new Coordenada(1, 1));
 		
+		// Agrega ubicables al tablero
 		tablero.agregarUbicable(goku);
 		// aca salta la excepcion
 		tablero.agregarUbicable(gohan);
@@ -48,7 +47,7 @@ public class Entrega1Test {
 	
 	@Test
 	public void test4TransformaPersonaje(){
-		Goku goku = new Goku();
+		Goku goku = new Goku(new Coordenada(1,1));
 		goku.transformar(new EstadoKaioKen());
 		
 		org.junit.Assert.assertTrue(goku.obtenerEstado() == "KaioKen");
