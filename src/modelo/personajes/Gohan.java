@@ -1,13 +1,15 @@
 package modelo.personajes;
 
+import java.awt.ContainerOrderFocusTraversalPolicy;
+
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.IEstadoGohan;
-import modelo.tablero.Tablero;
+import modelo.tablero.Coordenada;
 
 public class Gohan extends Personaje{
 
-    public Gohan (Tablero ptablero){
-    	super(ptablero);
+    public Gohan (Coordenada pCoordeanda){
+    	super(pCoordeanda);
         vida = 300;
         poder = 15;
         distanciaAtaque = 2;

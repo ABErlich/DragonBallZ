@@ -1,6 +1,6 @@
 package modelo.excepciones;
 
-public class CeldaNoExisteException extends Exception {
+public class CeldaNoExisteException extends RuntimeException {
 
 	/**
 	 * 

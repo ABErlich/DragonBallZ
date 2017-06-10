@@ -5,18 +5,17 @@ import modelo.excepciones.CeldaOcupadaException;
 import modelo.personajes.estados.IEstado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
-import modelo.tablero.Tablero;
 
 public abstract class Personaje implements IUbicable, IEstado {
 
-	public Personaje(Tablero ptablero){
-		this.tablero = ptablero;
+	public Personaje(Coordenada pCoordenada){
+		this.ubicacion = pCoordenada;
 	}
 	
 	public Personaje(){
 	}
 	
-	private Tablero tablero;
+	private Coordenada ubicacion;
 	private String Nombre;
 	
     protected IEstado estado;
@@ -30,8 +29,8 @@ public abstract class Personaje implements IUbicable, IEstado {
 		pPersonaje.RecibirAtaque(poder);
 	}
 
-	public void Mover(Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException{
-		this.tablero.Ubicar(this, pCoordenada);
+	public void Mover(Coordenada pCoordenada){
+		this.ubicacion = pCoordenada;
 	}
 
 	public void RecibirAtaque(int danio){
@@ -39,12 +38,13 @@ public abstract class Personaje implements IUbicable, IEstado {
 	}
 
 	@Override
-	public void Ubicar(Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException {
-		tablero.Ubicar(this, pCoordenada);
+	public void Ubicar(Coordenada pCoordenada){
+		this.ubicacion = pCoordenada;
 	}
-	
+
+	@Override 
 	public Coordenada obtenerUbicacion(){
-		return tablero.obtenerUbicacion(this);
+		return this.ubicacion;
 	}
 	
 	public String obtenerEstado(){

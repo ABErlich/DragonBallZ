@@ -9,37 +9,41 @@ import modelo.excepciones.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
 
-public class Entrega1Tests {
+public class Entrega1Test {
 
 	@Test
-	public void test1ColocarYMoverAGoku() {
+	public void test1UbicarYMoverAGoku() {
 
 		Tablero tablero = new Tablero(10);
-		Goku goku = new Goku(tablero);
-		
-		try {
-			goku.Ubicar(new Coordenada(1,1));
-			goku.Mover(new Coordenada(3,3));
-		} catch (CeldaNoExisteException e) {
-
-		} catch (CeldaOcupadaException e){
-			
-		}
-		
-		Coordenada coord = tablero.obtenerUbicacion(goku);
-		
-		org.junit.Assert.assertEquals(3, coord.getCoordX());
-	}
-	
-	@Test(expected=CeldaOcupadaException.class)
-	public void test2Colocar2PersonajesMismaCelda() throws CeldaNoExisteException{
-		Tablero tablero = new Tablero(10);
-		Goku goku = new Goku(tablero);
-		Gohan gohan = new Gohan(tablero);
+		Goku goku = new Goku(new Coordenada(1,1));
 		
 		goku.Ubicar(new Coordenada(1,1));
-		gohan.Ubicar(new Coordenada(1,1));
 		
+		org.junit.Assert.assertEquals(new Coordenada(1,1), goku.obtenerUbicacion());
+	}
+
+	@Test
+	public void test2MoverAGoku() {
+
+		Tablero tablero = new Tablero(10);
+		Goku goku = new Goku(new Coordenada(1,1));
+	
+		goku.Ubicar(new Coordenada(1,1));
+		goku.Mover(new Coordenada(3,3));
+		
+		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
+	}
+
+	@Test(expected=CeldaOcupadaException.class)
+	public void test2Ubicar2PersonajesMismaCelda(){
+		Tablero tablero = new Tablero(10);
+
+		Goku goku = new Goku(new Coordenada(1,1));
+		Gohan gohan = new Gohan(new Coordenada(1, 1));
+		
+		tablero.agregarUbicable(goku);
+		// aca salta la excepcion
+		tablero.agregarUbicable(gohan);
 	}
 	
 	@Test
@@ -53,17 +57,13 @@ public class Entrega1Tests {
 	@Test
 	public void test5TransformaYMueve(){
 		Tablero tablero = new Tablero(10);
-		Goku goku = new Goku(tablero);
-		try {
-			goku.Ubicar(new Coordenada(1,1));
-			goku.Mover(new Coordenada(4,4));
-		} catch (CeldaNoExisteException e) {
-
-		}
+		Goku goku = new Goku(new Coordenada(1,1));
 		
-		Coordenada coord = tablero.obtenerUbicacion(goku);
+		tablero.agregarUbicable(goku);
+		goku.transformar(new EstadoKaioKen());
+		goku.Mover(new Coordenada(4,4));
 		
-		org.junit.Assert.assertEquals(4, coord.getCoordX());;
+		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;
 		
 	}
 	

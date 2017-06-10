@@ -13,7 +13,7 @@ public class Tablero {
 	
 	public Tablero(int pTamanio){
 		this.celdas = new Hashtable<Coordenada, Celda>();
-		this.ubicables = new Hashtable<IUbicable, Coordenada>();
+		this.ubicables = new Hashtable<IUbicable, Celda>();
 		
 		for(int i = 0; i < pTamanio; i++){
 			for(int j = 0; j < pTamanio; j++){
@@ -24,14 +24,17 @@ public class Tablero {
 	}
 	
 	private Dictionary<Coordenada, Celda> celdas;
-	private Dictionary<IUbicable, Coordenada> ubicables;
+	private Dictionary<IUbicable, Celda> ubicables;
 	
-	public void Ubicar(IUbicable pUbicable, Coordenada pCoordenada) throws CeldaNoExisteException, CeldaOcupadaException{
-		Celda celda = celdas.get(pCoordenada);
+	public void agregarUbicable(IUbicable pUbicable){
+		// obtengo la celda en la cual se pondra el ubicable
+		Celda celda = celdas.get(pUbicable.obtenerUbicacion());
+		// si la celda no existe lanzo la excepcion
+		// si esta ocupada lanzo otra excepcion
 		if(celda != null){
 			if(!celda.estaOcupada()){
 				celda.Ocupar();
-				ubicables.put(pUbicable, pCoordenada);
+				ubicables.put(pUbicable, celda);
 			}else{
 				throw new CeldaOcupadaException();
 			}
@@ -39,11 +42,10 @@ public class Tablero {
 		}else{
 			throw new CeldaNoExisteException();
 		}
-		
 	}
 
 	public Coordenada obtenerUbicacion(IUbicable pUbicable) {
-		return ubicables.get(pUbicable);
+		return ubicables.get(pUbicable).getCoordenada();
 	}
 
 	

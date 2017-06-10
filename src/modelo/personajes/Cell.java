@@ -1,12 +1,12 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
-import modelo.tablero.Tablero;
+import modelo.tablero.Coordenada;
 
 public class Cell extends Personaje{
 	
-    public Cell (Tablero pTablero){
-    	super(pTablero);
+    public Cell (Coordenada pCoordenada){
+    	super(pCoordenada);
         vida = 500;
         poder = 20;
         distanciaAtaque = 3;

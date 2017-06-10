@@ -3,12 +3,12 @@ package modelo.personajes;
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.EstadoNormal;
 import modelo.personajes.estados.IEstadoGoku;
-import modelo.tablero.Tablero;
+import modelo.tablero.Coordenada;
 
 public class Goku extends Personaje {
 	
-    public Goku (Tablero ptablero){
-    	super(ptablero);
+    public Goku (Coordenada pCoordeanda){
+    	super(pCoordeanda);
     	this.estado = new EstadoNormal();
         vida = 500;
         poder = 20;
