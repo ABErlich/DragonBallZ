@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import modelo.tablero.*;
 import modelo.personajes.*;
-import modelo.personajes.estados.EstadoKaioKen;
+import modelo.personajes.estados.GokuEstadoKaioKen;
 import modelo.excepciones.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -48,7 +48,7 @@ public class Entrega1Test {
 	@Test
 	public void test4TransformaPersonaje(){
 		Goku goku = new Goku(new Coordenada(1,1));
-		goku.transformar(new EstadoKaioKen());
+		goku.transformar(new GokuEstadoKaioKen());
 		
 		org.junit.Assert.assertTrue(goku.obtenerEstado() == "KaioKen");
 	}
@@ -59,7 +59,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		
 		tablero.agregarUbicable(goku);
-		goku.transformar(new EstadoKaioKen());
+		goku.transformar(new GokuEstadoKaioKen());
 		goku.Mover(new Coordenada(4,4));
 		
 		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;
