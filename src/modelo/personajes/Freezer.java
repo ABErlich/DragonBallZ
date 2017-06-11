@@ -8,11 +8,11 @@ public class Freezer extends Personaje implements IEquipoVillano {
 
     public Freezer (Coordenada pCoordenada){
         super(pCoordenada);
-        vida = 400;
+        /*vida = 400;
         poder = 20;
         distanciaAtaque = 2;
         velocidadMov = 4;
-        ki = 0;
+        ki = 0;*/
     }
 
     /*

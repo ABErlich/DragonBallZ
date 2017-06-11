@@ -2,7 +2,7 @@ package modelo.personajes;
 
 import modelo.excepciones.CeldaNoExisteException;
 import modelo.excepciones.CeldaOcupadaException;
-import modelo.personajes.estados.IEstado;
+import modelo.personajes.estados.Estado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
 
@@ -15,20 +15,15 @@ public abstract class Personaje implements IUbicable {
 	private Coordenada ubicacion;
 	private String Nombre;
 	
-    protected IEstado estado;
-	protected int vida;
-	protected int poder;
-	protected int distanciaAtaque;
-	protected int velocidadMov;
-	protected int ki;
-	
+    protected Estado estado;
+
 	public void Atacar(Personaje pPersonaje){
 		//this.estado.Atacar(pPersonaje);
 	}
 
-	public void Mover(Coordenada pCoordenada){
-		//this.estado.Mover(pCoordenada);
-		this.ubicacion = pCoordenada;
+	public void Mover(Coordenada pDestino){
+		this.estado.Mover(pDestino, this.ubicacion);
+		//this.ubicacion = pDestino;
 	}
 
 	public void RecibirAtaque(int danio){

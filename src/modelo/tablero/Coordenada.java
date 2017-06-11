@@ -35,5 +35,10 @@ public class Coordenada {
 	public int getCoordY() {
 		return CoordY;
 	}
+
+	public void setCoordenadas(Coordenada otra){
+		this.CoordX = otra.getCoordX();
+		this.CoordY = otra.getCoordY();
+	}
 	
 }

@@ -7,11 +7,11 @@ public class MajinBoo extends Personaje implements IEquipoVillano {
 
     public MajinBoo (Coordenada pCoordenada){
         super(pCoordenada);
-        vida = 300;
+        /*vida = 300;
         poder = 30;
         distanciaAtaque = 2;
         velocidadMov = 2;
-        ki = 0;
+        ki = 0;*/
     }
 
     /*

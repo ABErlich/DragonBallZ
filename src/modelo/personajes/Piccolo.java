@@ -7,11 +7,11 @@ public class Piccolo extends Personaje implements IEquipoZ {
 
     public Piccolo (Coordenada pCoordenada){
         super(pCoordenada);
-        vida = 500;
+        /*vida = 500;
         poder = 20;
         distanciaAtaque = 2;
         velocidadMov = 2;
-        ki = 0;
+        ki = 0;*/
     }
 
     /*

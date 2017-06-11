@@ -8,11 +8,11 @@ public class Gohan extends Personaje implements IEquipoZ{
 
     public Gohan (Coordenada pCoordeanda){
     	super(pCoordeanda);
-        vida = 300;
+        /*vida = 300;
         poder = 15;
         distanciaAtaque = 2;
         velocidadMov = 2;
-        ki = 0;
+        ki = 0;*/
     }
     /*
     public void superSayajinFase1(){

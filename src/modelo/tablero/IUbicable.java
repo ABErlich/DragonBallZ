@@ -1,6 +1,5 @@
 package modelo.tablero;
 
-import modelo.excepciones.CeldaNoExisteException;
 import modelo.tablero.Coordenada;
 
 public interface IUbicable {

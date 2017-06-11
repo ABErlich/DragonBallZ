@@ -12,7 +12,7 @@ import modelo.juego.Jugador;
 public class Entrega1Test {
 
 	@Test
-	public void test1UbicarYMoverAGoku() {
+	public void test1UbicarAGoku() {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		
@@ -22,7 +22,7 @@ public class Entrega1Test {
 	}
 
 	@Test
-	public void test2MoverAGoku() {
+	public void test1MoverAGoku() {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 

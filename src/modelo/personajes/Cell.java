@@ -8,11 +8,7 @@ public class Cell extends Personaje implements IEquipoVillano{
 	
     public Cell (Coordenada pCoordenada){
     	super(pCoordenada);
-        vida = 500;
-        poder = 20;
-        distanciaAtaque = 3;
-        velocidadMov = 2;
-        ki = 0;
+        
     }
     
 
