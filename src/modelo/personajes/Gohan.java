@@ -2,9 +2,9 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IEquipoZ;
+import modelo.personajes.IPersonajeEquipoZ;
 
-public class Gohan extends Personaje implements IEquipoZ{
+public class Gohan extends Personaje implements IPersonajeEquipoZ{
 
     public Gohan (Coordenada pCoordeanda){
     	super(pCoordeanda);

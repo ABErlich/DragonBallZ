@@ -2,8 +2,8 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IEquipoVillano;;
-public class MajinBoo extends Personaje implements IEquipoVillano {
+import modelo.personajes.IPersonajeEquipoVillano;;
+public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
 
     public MajinBoo (Coordenada pCoordenada){
         super(pCoordenada);

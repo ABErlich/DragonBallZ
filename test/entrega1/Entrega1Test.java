@@ -31,6 +31,16 @@ public class Entrega1Test {
 		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
 	}
 
+	@Test(expected=MovimientoFueraRangoException.class)
+	public void test1MoverAGokuRangoInalcanzable() {
+
+		Goku goku = new Goku(new Coordenada(1,1));
+
+		goku.Mover(new Coordenada(5,5));
+		
+		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
+	}
+
 	@Test(expected=CeldaOcupadaException.class)
 	public void test2Ubicar2PersonajesMismaCelda(){
 		// Crea un tablero de 10 x 10 celdas
@@ -66,23 +76,24 @@ public class Entrega1Test {
 		
 	}
 	
-	/*
+	
 	@Test
 	public void test6CrearJuego(){
 		Juego juego = new Juego();
-		Jugador jugador1 = new Jugador();
-		Jugador jugador2 = new Jugador();
+		Jugador jugador1 = new Jugador("Jose");
+		Jugador jugador2 = new Jugador("Pepe");
 		
 		juego.AgregarJugador(jugador1);
 		juego.AgregarJugador(jugador2);
 		
-		jugador1.asignarEquipo("GuerrerosZ");
-		jugador2.asignarEquipo("Enemigos");
+		jugador1.asignarEquipoZ();
+		jugador2.asignarEquipoVillano();
 		
 		org.junit.Assert.assertEquals(3, jugador1.cantidadPersonajesVivos());
 		org.junit.Assert.assertEquals(3, jugador2.cantidadPersonajesVivos());
 	}
 	
+	/*
 	@Test(expected=AtaqueFueraDeRangoException.class)
 	public void test7Ataque(){
 		Tablero tablero = new Tablero(10);

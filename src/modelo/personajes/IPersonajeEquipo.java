@@ -2,6 +2,7 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-public interface IEquipoVillano {
 
+public interface IPersonajeEquipo {
+    
 }

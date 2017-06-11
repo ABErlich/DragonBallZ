@@ -15,10 +15,20 @@ public class Tablero {
 		this.celdas = new Hashtable<Coordenada, Celda>();
 		this.ubicables = new Hashtable<IUbicable, Celda>();
 		
-		for(int i = 0; i < pTamanio; i++){
-			for(int j = 0; j < pTamanio; j++){
-				Coordenada coord = new Coordenada(i,j);
-				this.celdas.put(coord, new Celda(coord));
+		if(pTamanio < 6){
+			for(int i = 0; i < 6; i++){
+				for(int j = 0; j < 6; j++){
+					Coordenada coord = new Coordenada(i,j);
+					this.celdas.put(coord, new Celda(coord));
+				}
+			}
+		}else{
+			
+			for(int i = 0; i < pTamanio; i++){
+				for(int j = 0; j < pTamanio; j++){
+					Coordenada coord = new Coordenada(i,j);
+					this.celdas.put(coord, new Celda(coord));
+				}
 			}
 		}
 	}

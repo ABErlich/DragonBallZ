@@ -2,8 +2,8 @@ package modelo.personajes.estados;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IEquipoVillano;
-import modelo.personajes.IEquipoZ;
+import modelo.personajes.IPersonajeEquipoVillano;
+import modelo.personajes.IPersonajeEquipoZ;
 import modelo.excepciones.MovimientoFueraRangoException;
 
 public abstract class Estado {
@@ -17,8 +17,8 @@ public abstract class Estado {
 	public String obtenerEstado(){
 		return "Sin estado";
 	}
-	public void Atacar(IEquipoZ pPersonaje){}
-	public void Atacar(IEquipoVillano pPersonaje){}
+	public void Atacar(IPersonajeEquipoZ pPersonaje){}
+	public void Atacar(IPersonajeEquipoVillano pPersonaje){}
 	public void Mover(Coordenada pDestino, Coordenada pOrigen){
 		if(this.calcularDistancia(pDestino, pOrigen) <= this.velocidadMov){
 			// Si se puede mover esa distancia, lo muevo

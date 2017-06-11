@@ -2,8 +2,8 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IEquipoZ;
-public class Piccolo extends Personaje implements IEquipoZ {
+import modelo.personajes.IPersonajeEquipoZ;
+public class Piccolo extends Personaje implements IPersonajeEquipoZ {
 
     public Piccolo (Coordenada pCoordenada){
         super(pCoordenada);
