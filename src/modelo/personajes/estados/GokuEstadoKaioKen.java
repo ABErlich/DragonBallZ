@@ -22,10 +22,4 @@ public class GokuEstadoKaioKen extends Estado {
 	}
 
 
-	@Override
-	public String obtenerEstado() {
-		return "KaioKen";
-	}
-
-
 }

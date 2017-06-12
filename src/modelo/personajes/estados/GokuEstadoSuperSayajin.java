@@ -16,14 +16,8 @@ public class GokuEstadoSuperSayajin extends Estado {
         velocidadMov = 5;
 	}
 
-
-
 	public void Atacar(PersonajeEquipoZ pPersonaje){
 		throw new AtaqueMismoEquipoException();
 	}
 
-	@Override
-	public String obtenerEstado() {
-		return "Super Sayajin";
-	}
 }

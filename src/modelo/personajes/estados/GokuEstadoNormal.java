@@ -23,8 +23,4 @@ public class GokuEstadoNormal extends Estado {
 		throw new AtaqueMismoEquipoException();
 	}
 
-	@Override
-	public String obtenerEstado() {
-		return "Normal";
-	}
 }

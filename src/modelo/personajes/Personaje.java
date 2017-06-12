@@ -44,8 +44,8 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 		return this.ubicacion;
 	}
 	
-	public String obtenerEstado(){
-		return this.estado.obtenerEstado();
+	public Estado obtenerEstado(){
+		return this.estado;
 	}
 	
 	public String getNombre() {

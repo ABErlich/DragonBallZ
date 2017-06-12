@@ -60,7 +60,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		goku.transformar(new GokuEstadoKaioKen(goku.obtenerUbicacion()));
 		
-		org.junit.Assert.assertTrue(goku.obtenerEstado() == "KaioKen");
+		org.junit.Assert.assertEquals(goku.obtenerEstado().getClass(), GokuEstadoKaioKen.class);
 	}
 	
 	@Test
