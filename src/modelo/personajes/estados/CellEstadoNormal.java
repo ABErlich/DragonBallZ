@@ -7,19 +7,19 @@ import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
-public class GokuEstadoNormal extends Estado {
+public class CellEstadoNormal extends Estado {
 
-	public GokuEstadoNormal(Coordenada pUbicacion){
+	public CellEstadoNormal(Coordenada pUbicacion){
 		super(pUbicacion);
 		vida = 500;
         poder = 20;
-        distanciaAtaque = 2;
+        distanciaAtaque = 3;
         velocidadMov = 2;
         ki = 0;
 	}
 	
 	@Override
-	public void Atacar(PersonajeEquipoZ pPersonaje){
+	public void Atacar(PersonajeEquipoVillano pPersonaje){
 		throw new AtaqueMismoEquipoException();
 	}
 

@@ -2,9 +2,11 @@ package modelo.personajes.estados;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IPersonajeEquipoVillano;
+import modelo.personajes.PersonajeEquipoVillano;
+import modelo.personajes.PersonajeEquipoZ;
 import modelo.personajes.IPersonajeEquipoZ;
 import modelo.excepciones.MovimientoFueraRangoException;
+import modelo.excepciones.AtaqueFueraDeRangoException;
 
 public abstract class Estado {
 
@@ -13,22 +15,40 @@ public abstract class Estado {
 	protected int distanciaAtaque;
 	protected int velocidadMov;
 	protected int ki;
+	protected Coordenada ubicacion;
 	
+	public Estado(Coordenada pCoordenada){
+		this.ubicacion = pCoordenada;
+	}
+
 	public String obtenerEstado(){
 		return "Sin estado";
 	}
-	public void Atacar(IPersonajeEquipoZ pPersonaje){}
-	public void Atacar(IPersonajeEquipoVillano pPersonaje){}
-	public void Mover(Coordenada pDestino, Coordenada pOrigen){
-		if(this.calcularDistancia(pDestino, pOrigen) <= this.velocidadMov){
+
+	public void Atacar(PersonajeEquipoZ pPersonaje){
+		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
+			throw new AtaqueFueraDeRangoException();
+		}else{
+			pPersonaje.setVida(pPersonaje.getVida() - this.poder); 
+		}
+	}
+	public void Atacar(PersonajeEquipoVillano pPersonaje){
+		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
+			throw new AtaqueFueraDeRangoException();
+		}else{
+			pPersonaje.setVida(pPersonaje.getVida() - this.poder); 
+		}
+	}
+	public void Mover(Coordenada pDestino){
+		if(this.calcularDistancia(pDestino, ubicacion) <= this.velocidadMov){
 			// Si se puede mover esa distancia, lo muevo
-			pOrigen.setCoordenadas(pDestino);
+			this.ubicacion.setCoordenadas(pDestino);
 		}else{
 			throw new MovimientoFueraRangoException();
 		}
 	}
 
-	private int calcularDistancia(Coordenada destino, Coordenada origen){
+	protected int calcularDistancia(Coordenada destino, Coordenada origen){
 		int origenX = origen.getCoordX();
 		int origenY = origen.getCoordY();
 		int destinoX = destino.getCoordX();
@@ -45,5 +65,13 @@ public abstract class Estado {
 		}
 		
 		return distanciaTotal;
+	}
+
+	public int getVida(){
+		return this.vida;
+	}
+
+	public void setVida(int pVida){
+		this.vida = pVida;
 	}
 }

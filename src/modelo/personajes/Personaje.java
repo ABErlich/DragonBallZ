@@ -6,23 +6,27 @@ import modelo.personajes.estados.Estado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
 
-public abstract class Personaje implements IUbicable {
+public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 
 	public Personaje(Coordenada pCoordenada){
 		this.ubicacion = pCoordenada;
 	}
 	
-	private Coordenada ubicacion;
+	protected Coordenada ubicacion;
 	private String Nombre;
 	
     protected Estado estado;
 
-	public void Atacar(Personaje pPersonaje){
-		//this.estado.Atacar(pPersonaje);
+	public void Atacar(PersonajeEquipoZ pPersonaje){
+		this.estado.Atacar(pPersonaje);
+	}
+
+	public void Atacar(PersonajeEquipoVillano pPersonaje){
+		this.estado.Atacar(pPersonaje);
 	}
 
 	public void Mover(Coordenada pDestino){
-		this.estado.Mover(pDestino, this.ubicacion);
+		this.estado.Mover(pDestino);
 		//this.ubicacion = pDestino;
 	}
 
@@ -49,6 +53,14 @@ public abstract class Personaje implements IUbicable {
 	}
 	public void setNombre(String nombre) {
 		Nombre = nombre;
+	}
+
+	public int getVida(){
+		return this.estado.getVida();
+	}
+
+	public void setVida(int pVida){
+		this.estado.setVida(pVida);
 	}
 	
 }

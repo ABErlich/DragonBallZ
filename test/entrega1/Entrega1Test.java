@@ -58,7 +58,7 @@ public class Entrega1Test {
 	@Test
 	public void test4TransformaPersonaje(){
 		Goku goku = new Goku(new Coordenada(1,1));
-		goku.transformar(new GokuEstadoKaioKen());
+		goku.transformar(new GokuEstadoKaioKen(goku.obtenerUbicacion()));
 		
 		org.junit.Assert.assertTrue(goku.obtenerEstado() == "KaioKen");
 	}
@@ -69,7 +69,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		
 		tablero.agregarUbicable(goku);
-		goku.transformar(new GokuEstadoKaioKen());
+		goku.transformar(new GokuEstadoKaioKen(goku.obtenerUbicacion()));
 		goku.Mover(new Coordenada(4,4));
 		
 		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;
@@ -93,27 +93,38 @@ public class Entrega1Test {
 		org.junit.Assert.assertEquals(3, jugador2.cantidadPersonajesVivos());
 	}
 	
-	/*
+	
 	@Test(expected=AtaqueFueraDeRangoException.class)
-	public void test7Ataque(){
+	public void test7AtaqueFueraRango(){
 		Tablero tablero = new Tablero(10);
-		Goku goku = new Goku(tablero);
-		Cell cell = new Cell(tablero);
-		try{
-			goku.Ubicar(new Coordenada(1,1));
-			cell.Ubicar(new Coordenada(2,2));
-			goku.Atacar(cell);
-		} catch(Exception ex){
-			
-		}
+		Goku goku = new Goku(new Coordenada(1,1));
+		Cell cell = new Cell(new Coordenada(5,5));
 		
-		org.junit.Assert.assertEquals(480, cell.getVida());
-
-		cell.Ubicar(new Coordenada(7,7));
+		goku.Atacar(cell);
+	}
+	
+	@Test
+	public void test7AtaqueValido(){
+		Tablero tablero = new Tablero(10);
+		Goku goku = new Goku(new Coordenada(1,1));
+		Cell cell = new Cell(new Coordenada(1,1));
+		
 		goku.Atacar(cell);
 
+		org.junit.Assert.assertEquals(480, cell.getVida());
+
 	}
-	*/
 	
+	@Test(expected=AtaqueMismoEquipoException.class)
+	public void test7AtaqueMismoEquipo(){
+		Tablero tablero = new Tablero(10);
+		Goku goku = new Goku(new Coordenada(1,1));
+		Gohan gohan = new Gohan(new Coordenada(1,1));
+		
+		goku.Atacar(gohan);
+
+		org.junit.Assert.assertEquals(480, gohan.getVida());
+
+	}
 
 }

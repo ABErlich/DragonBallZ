@@ -3,12 +3,13 @@ package modelo.personajes;
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.personajes.IPersonajeEquipoVillano;
+import modelo.personajes.estados.CellEstadoNormal;
 
-public class Cell extends Personaje implements IPersonajeEquipoVillano{
+public class Cell extends PersonajeEquipoVillano{
 	
     public Cell (Coordenada pCoordenada){
     	super(pCoordenada);
-        
+        this.estado = new CellEstadoNormal(ubicacion);
     }
     
 

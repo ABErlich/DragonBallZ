@@ -2,9 +2,9 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IPersonajeEquipoVillano;
+import modelo.personajes.PersonajeEquipoVillano;
 
-public class Freezer extends Personaje implements IPersonajeEquipoVillano {
+public class Freezer extends PersonajeEquipoVillano {
 
     public Freezer (Coordenada pCoordenada){
         super(pCoordenada);
