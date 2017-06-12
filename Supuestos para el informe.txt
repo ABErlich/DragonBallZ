@@ -1,0 +1,1 @@
+El personaje va a poder pasar por encima de otro, pero no ocupar la misma celda.
