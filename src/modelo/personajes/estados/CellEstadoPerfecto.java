@@ -7,13 +7,13 @@ import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
-public class CellEstadoSemiPerfecto extends Estado {
+public class CellEstadoPerfecto extends Estado {
 
-    public CellEstadoSemiPerfecto(Coordenada pUbicacion) {
+    public CellEstadoPerfecto(Coordenada pUbicacion) {
         super(pUbicacion);
-        poder = 40;
+        poder = 80;
         distanciaAtaque = 4;
-        velocidadMov = 3;
+        velocidadMov = 4;
     }
 
     @Override
