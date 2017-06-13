@@ -9,9 +9,10 @@ import modelo.excepciones.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
 
+/*
 public class Entrega2Test {
 
-	/*
+	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test1TransformarGohanFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
@@ -125,7 +126,8 @@ public class Entrega2Test {
 
 		org.junit.Assert.assertEquals(majinBoo.getVida(), 276);
 	}
-	*/
+	
 	
 
 }
+*/
