@@ -1,7 +1,6 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.IPersonajeEquipoVillano;
-import modelo.personajes.PersonajeEquipoZ;
+import modelo.personajes.IPersonajeEquipoZ;
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.excepciones.AtaqueMismoEquipoException;
@@ -15,7 +14,7 @@ public class PiccoloEstadoProtector extends Estado {
         velocidadMov = 4;
     }
 
-    public void Atacar(PersonajeEquipoZ pPersonaje){
+    public void Atacar(IPersonajeEquipoZ pPersonaje){
         throw new AtaqueMismoEquipoException();
     }
 

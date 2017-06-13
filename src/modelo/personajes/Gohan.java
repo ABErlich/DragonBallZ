@@ -4,7 +4,7 @@ import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.personajes.IPersonajeEquipo;
 
-public class Gohan extends PersonajeEquipoZ{
+public class Gohan extends Personaje implements IPersonajeEquipoZ{
 
     public Gohan (Coordenada pCoordeanda){
     	super(pCoordeanda);

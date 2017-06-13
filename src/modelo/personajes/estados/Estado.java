@@ -2,8 +2,7 @@ package modelo.personajes.estados;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.PersonajeEquipoVillano;
-import modelo.personajes.PersonajeEquipoZ;
+import modelo.personajes.IPersonajeEquipoVillano;
 import modelo.personajes.IPersonajeEquipoZ;
 import modelo.excepciones.MovimientoFueraRangoException;
 import modelo.excepciones.AtaqueFueraDeRangoException;
@@ -25,14 +24,14 @@ public abstract class Estado {
 		return "Sin estado";
 	}
 
-	public void Atacar(PersonajeEquipoZ pPersonaje){
+	public void Atacar(IPersonajeEquipoZ pPersonaje){
 		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
 			pPersonaje.setVida(pPersonaje.getVida() - this.poder); 
 		}
 	}
-	public void Atacar(PersonajeEquipoVillano pPersonaje){
+	public void Atacar(IPersonajeEquipoVillano pPersonaje){
 		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{

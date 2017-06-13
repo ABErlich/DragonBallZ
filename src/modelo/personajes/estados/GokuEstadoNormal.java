@@ -1,8 +1,6 @@
 package modelo.personajes.estados;
 
-
-import modelo.personajes.PersonajeEquipoVillano;
-import modelo.personajes.PersonajeEquipoZ;
+import modelo.personajes.IPersonajeEquipoZ;
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.excepciones.AtaqueMismoEquipoException;
@@ -19,7 +17,7 @@ public class GokuEstadoNormal extends Estado {
 	}
 	
 	@Override
-	public void Atacar(PersonajeEquipoZ pPersonaje){
+	public void Atacar(IPersonajeEquipoZ pPersonaje){
 		throw new AtaqueMismoEquipoException();
 	}
 

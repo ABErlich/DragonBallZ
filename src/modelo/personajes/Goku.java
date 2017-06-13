@@ -4,9 +4,8 @@ import modelo.personajes.Personaje;
 import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.GokuEstadoNormal;
 import modelo.tablero.Coordenada;
-import modelo.personajes.PersonajeEquipoZ;
 
-public class Goku extends PersonajeEquipoZ {
+public class Goku extends Personaje implements IPersonajeEquipoZ {
 	
     public Goku (Coordenada pCoordeanda){
     	super(pCoordeanda);

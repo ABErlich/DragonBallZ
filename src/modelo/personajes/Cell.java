@@ -5,7 +5,7 @@ import modelo.tablero.Coordenada;
 import modelo.personajes.IPersonajeEquipoVillano;
 import modelo.personajes.estados.CellEstadoNormal;
 
-public class Cell extends PersonajeEquipoVillano{
+public class Cell extends Personaje implements IPersonajeEquipoVillano{
 	
     public Cell (Coordenada pCoordenada){
     	super(pCoordenada);
