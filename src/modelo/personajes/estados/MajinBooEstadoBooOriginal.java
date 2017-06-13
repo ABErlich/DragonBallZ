@@ -1,23 +1,22 @@
 package modelo.personajes.estados;
 
 
-import modelo.personajes.IPersonajeEquipoVillano;
-import modelo.personajes.Personaje;
-import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
+import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
 public class MajinBooEstadoBooOriginal extends Estado {
 
-    public MajinBooEstadoBooOriginal(Coordenada pUbicacion) {
-        super(pUbicacion);
-        ki = ki - 50;
-        poder = 60;
-        distanciaAtaque = 3;
-        velocidadMov = 4;
+    public MajinBooEstadoBooOriginal(Stats stats) {
+
+		stats.setPoder(60);
+		stats.setDistanciaAtaque(3);
+		stats.setVelocidadMov(4);
+		stats.setKi(stats.getKi() - 50);
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje) {
+    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats) {
         throw new AtaqueMismoEquipoException();
     }
 }

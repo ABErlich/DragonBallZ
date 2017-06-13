@@ -1,18 +1,17 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.IPersonajeEquipoZ;
-import modelo.personajes.Personaje;
-import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
+import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
 public class PiccoloEstadoFortalecido extends Estado {
 
-    public PiccoloEstadoFortalecido(Coordenada pUbicacion){
-        super(pUbicacion);
-        ki = ki - 20;
-        poder = 40;
-        distanciaAtaque  = 4;
-        velocidadMov = 3;
+    public PiccoloEstadoFortalecido(Stats stats){
+		stats.setPoder(40);
+		stats.setDistanciaAtaque(4);
+		stats.setVelocidadMov(3);
+		stats.setKi(stats.getKi() - 20);
+
     }
 
     public void Atacar(IPersonajeEquipoZ pPersonaje){

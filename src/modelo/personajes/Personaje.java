@@ -1,32 +1,31 @@
 package modelo.personajes;
 
-import modelo.excepciones.CeldaNoExisteException;
-import modelo.excepciones.CeldaOcupadaException;
 import modelo.personajes.estados.Estado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.*;
+import modelo.personajes.Stats;
 
 public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 
-	public Personaje(Coordenada pCoordenada){
-		this.ubicacion = pCoordenada;
+	public Personaje(){
+		stats = new Stats();
 	}
 	
-	protected Coordenada ubicacion;
+	protected Stats stats;
 	private String Nombre;
-	
     protected Estado estado;
 
-	public void Atacar(IPersonajeEquipoZ pPersonaje){
-		this.estado.Atacar(pPersonaje);
+	public void Atacar(modelo.personajes.interfaces.IPersonajeEquipoZ pPersonaje){
+		this.estado.Atacar(pPersonaje, this.stats);
 	}
 
-	public void Atacar(IPersonajeEquipoVillano pPersonaje){
-		this.estado.Atacar(pPersonaje);
+	public void Atacar(modelo.personajes.interfaces.IPersonajeEquipoVillano pPersonaje){
+		this.estado.Atacar(pPersonaje, this.stats);
 	}
 
 	public void Mover(Coordenada pDestino){
-		this.estado.Mover(pDestino);
+		this.estado.Mover(pDestino, this.stats);
 		//this.ubicacion = pDestino;
 	}
 
@@ -36,12 +35,12 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 
 	@Override
 	public void Ubicar(Coordenada pCoordenada){
-		this.ubicacion = pCoordenada;
+		this.stats.setUbicacion(pCoordenada);
 	}
 
 	@Override 
 	public Coordenada obtenerUbicacion(){
-		return this.ubicacion;
+		return this.stats.getUbicacion();
 	}
 	
 	public Estado obtenerEstado(){
@@ -54,13 +53,17 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
+	
+	public Stats getStats(){
+		return this.stats;
+	}
 
 	public int getVida(){
-		return this.estado.getVida();
+		return this.stats.getVida();
 	}
 
 	public void setVida(int pVida){
-		this.estado.setVida(pVida);
+		this.stats.setVida(pVida);
 	}
 	
 }

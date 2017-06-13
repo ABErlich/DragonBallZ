@@ -2,14 +2,14 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IPersonajeEquipoVillano;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.estados.CellEstadoNormal;
 
 public class Cell extends Personaje implements IPersonajeEquipoVillano{
 	
     public Cell (Coordenada pCoordenada){
-    	super(pCoordenada);
-        this.estado = new CellEstadoNormal(ubicacion);
+    	stats.setUbicacion(pCoordenada);
+    	this.estado = new CellEstadoNormal(stats);
     }
     
 

@@ -1,47 +1,36 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.Personaje;
+import modelo.personajes.Stats;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IPersonajeEquipoVillano;
-import modelo.personajes.IPersonajeEquipoZ;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.MovimientoFueraRangoException;
 import modelo.excepciones.AtaqueFueraDeRangoException;
 
 public abstract class Estado {
 
-	protected int vida;
-	protected int poder;
-	protected int distanciaAtaque;
-	protected int velocidadMov;
-	protected int ki;
-	protected Coordenada ubicacion;
-	
-	public Estado(Coordenada pCoordenada){
-		this.ubicacion = pCoordenada;
+	public Estado(){
+
 	}
 
-	public String obtenerEstado(){
-		return "Sin estado";
-	}
-
-	public void Atacar(IPersonajeEquipoZ pPersonaje){
-		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
+	public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats){
+		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			pPersonaje.setVida(pPersonaje.getVida() - this.poder); 
+			pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder()); 
 		}
 	}
-	public void Atacar(IPersonajeEquipoVillano pPersonaje){
-		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), this.ubicacion) > distanciaAtaque){
+	public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats){
+		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			pPersonaje.setVida(pPersonaje.getVida() - this.poder); 
+			pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder()); 
 		}
 	}
-	public void Mover(Coordenada pDestino){
-		if(this.calcularDistancia(pDestino, ubicacion) <= this.velocidadMov){
+	public void Mover(Coordenada pDestino, Stats stats){
+		if(this.calcularDistancia(pDestino, stats.getUbicacion()) <= stats.getVelocidadMov()){
 			// Si se puede mover esa distancia, lo muevo
-			this.ubicacion.setCoordenadas(pDestino);
+			stats.setUbicacion(pDestino);
 		}else{
 			throw new MovimientoFueraRangoException();
 		}
@@ -66,11 +55,4 @@ public abstract class Estado {
 		return distanciaTotal;
 	}
 
-	public int getVida(){
-		return this.vida;
-	}
-
-	public void setVida(int pVida){
-		this.vida = pVida;
-	}
 }

@@ -1,22 +1,20 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.IPersonajeEquipoZ;
-import modelo.personajes.Personaje;
-import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
+import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
 public class GokuEstadoKaioKen extends Estado {
 
-	public GokuEstadoKaioKen(Coordenada pUbicacion){
-		super(pUbicacion);
-		ki = ki - 20;
-        poder = 40;
-        distanciaAtaque = 4;
-        velocidadMov = 3;
+	public GokuEstadoKaioKen(Stats stats){
+		stats.setPoder(40);
+		stats.setDistanciaAtaque(4);
+		stats.setVelocidadMov(3);
+		stats.setKi(stats.getKi() - 20);
 	}
 
 	@Override
-	public void Atacar(IPersonajeEquipoZ pPersonaje) {
+	public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats) {
 		throw new AtaqueMismoEquipoException();
 	}
 

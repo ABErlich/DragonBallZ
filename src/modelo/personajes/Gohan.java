@@ -1,13 +1,15 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.personajes.estados.GohanEstadoNormal;
 import modelo.tablero.Coordenada;
-import modelo.personajes.IPersonajeEquipo;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
 public class Gohan extends Personaje implements IPersonajeEquipoZ{
 
     public Gohan (Coordenada pCoordeanda){
-    	super(pCoordeanda);
+    	stats.setUbicacion(pCoordeanda);
+    	this.estado = new GohanEstadoNormal(stats);
         /*vida = 300;
         poder = 15;
         distanciaAtaque = 2;

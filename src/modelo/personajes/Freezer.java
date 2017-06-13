@@ -1,33 +1,19 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.personajes.estados.FreezerEstadoNormal;
 import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 
 public class Freezer extends Personaje implements IPersonajeEquipoVillano {
 
     public Freezer (Coordenada pCoordenada){
-        super(pCoordenada);
-        /*vida = 400;
-        poder = 20;
-        distanciaAtaque = 2;
-        velocidadMov = 4;
-        ki = 0;*/
+    	stats.setUbicacion(pCoordenada);
+    	this.estado = new FreezerEstadoNormal(stats);
+
     }
 
     /*
-    public void segundaForma(){
-        ki = ki - 20;
-        poder = 40;
-        distanciaAtaque = 3;
-        velocidadMov = 4;
-    }
-
-    public void definitivo(){
-        ki = ki - 50;
-        poder = 50;
-        distanciaAtaque  = 3;
-        velocidadMov = 6;
-    }
 
     public void rayoMortal(){
         ki = ki - 20;

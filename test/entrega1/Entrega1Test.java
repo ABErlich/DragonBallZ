@@ -58,7 +58,7 @@ public class Entrega1Test {
 	@Test
 	public void test4TransformaPersonaje(){
 		Goku goku = new Goku(new Coordenada(1,1));
-		goku.transformar(new GokuEstadoKaioKen(goku.obtenerUbicacion()));
+		goku.transformar(new GokuEstadoKaioKen(goku.getStats()));
 		
 		org.junit.Assert.assertEquals(goku.obtenerEstado().getClass(), GokuEstadoKaioKen.class);
 	}
@@ -69,7 +69,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		
 		tablero.agregarUbicable(goku);
-		goku.transformar(new GokuEstadoKaioKen(goku.obtenerUbicacion()));
+		goku.transformar(new GokuEstadoKaioKen(goku.getStats()));
 		goku.Mover(new Coordenada(4,4));
 		
 		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;

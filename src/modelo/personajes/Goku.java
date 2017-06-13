@@ -4,12 +4,13 @@ import modelo.personajes.Personaje;
 import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.GokuEstadoNormal;
 import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
 public class Goku extends Personaje implements IPersonajeEquipoZ {
 	
     public Goku (Coordenada pCoordeanda){
-    	super(pCoordeanda);
-    	this.estado = new GokuEstadoNormal(ubicacion);
+    	stats.setUbicacion(pCoordeanda);
+    	this.estado = new GokuEstadoNormal(stats);
     }
 
     /*
