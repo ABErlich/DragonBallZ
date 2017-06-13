@@ -16,4 +16,14 @@ public class JugadorEquipo implements IJugadorEquipo{
 	public int cantidadPersonajesVivos(){
 		return personajes.size();
 	}
+	/*
+	public Personaje getPersonaje(String pNombrePersonaje){
+		Personaje pj = this.personajes.get(pNombrePersonaje);
+		if(pj == null){
+			throw new NoExisteElPersonajeException();
+		}else{
+			return pj;
+		}
+	}
+	*/
 }

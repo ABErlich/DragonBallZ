@@ -65,5 +65,19 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 	public void setVida(int pVida){
 		this.stats.setVida(pVida);
 	}
-	
+
+	public void setKi(int pKi){
+		this.stats.setKi(pKi);
+	}
+	/*
+	public void transformar(Estado pEstado){
+		this.estado = pEstado;
+	}
+
+	// este metodo es el que sobreescribo en cada personaje para hacer la logica
+	// de transformacion
+	public void transformar(){
+		
+	}
+	*/
 }

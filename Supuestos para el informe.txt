@@ -1,1 +1,2 @@
 El personaje va a poder pasar por encima de otro, pero no ocupar la misma celda.
+La vida de cell puede aumentar mas alla de lo establecido al comienzo.
