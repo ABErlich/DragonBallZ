@@ -1,8 +1,9 @@
 package modelo.juego.interfaces;
 
+import modelo.personajes.IPersonajeEquipo;
 import modelo.personajes.Personaje;
 
 public interface IJugadorEquipo {
 	int cantidadPersonajesVivos();
-	Personaje getPersonaje(String pNombrePersonaje);
+	IPersonajeEquipo getPersonaje(String pNombrePersonaje);
 }

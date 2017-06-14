@@ -19,7 +19,7 @@ public class Entrega2Test {
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test1TransformarGohanFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
-		Personaje gohan = equipo.getPersonaje("Gohan");
+		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
 		gohan.transformar(new GohanEstadoSuperSayajinFase1(gohan.getStats()));
 		gohan.transformar(equipo);
 	}
@@ -29,9 +29,9 @@ public class Entrega2Test {
 	public void test1TransformarGohan(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
 
-		Personaje gohan = equipo.getPersonaje("Gohan");
-		Personaje goku = equipo.getPersonaje("Goku");
-		Personaje piccolo = equipo.getPersonaje("Piccolo");
+		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
+		Goku goku = (Goku) equipo.getPersonaje("Goku");
+		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
 
 		goku.setVida(10);
 		piccolo.setVida(10);
@@ -46,18 +46,17 @@ public class Entrega2Test {
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test2TransformarPiccoloFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
-		Personaje piccolo = equipo.getPersonaje("Piccolo");
+		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
 		piccolo.transformar(new PiccoloEstadoFortalecido(piccolo.getStats()));
 		piccolo.transformar();
 	}
-	
 	
 	@Test
 	public void test2TransformarPiccolo(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
 
-		Personaje gohan = equipo.getPersonaje("Gohan");
-		Personaje piccolo = equipo.getPersonaje("Piccolo");
+		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
+		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
 
 		gohan.setVida(10);
 
@@ -70,17 +69,17 @@ public class Entrega2Test {
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test3TransformarCellFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoVillano();
-		Personaje cell = equipo.getPersonaje("Cell");
+		Cell cell = (Cell) equipo.getPersonaje("Cell");
 
 		cell.transformar();
 	}
-	/*
+	
 	@Test
 	public void test3CellAbsorberVida() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
-		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Personaje cell = equipoV.getPersonaje("Cell");
-		Personaje goku = equipoZ.getPersonaje("Goku");
+		IJugadorEquipo equipoZ = new JugadorEquipoZ();
+		Cell cell = (Cell) equipoV.getPersonaje("Cell");
+		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
 		cell.setKi(50);
 		cell.absorber(goku);
@@ -89,7 +88,7 @@ public class Entrega2Test {
 		org.junit.Assert.assertEquals(goku.getVida(), 480);
 		
 	}
-
+	/*
 	@Test
 	public void test3TransformarCell() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();

@@ -7,6 +7,7 @@ import modelo.personajes.estados.GohanEstadoNormal;
 import modelo.personajes.estados.GohanEstadoSuperSayajinFase1;
 import modelo.personajes.estados.GohanEstadoSuperSayajinFase2;
 import modelo.tablero.Coordenada;
+import modelo.personajes.interfaces.IPersonajeEquipo;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.NoPuedeTransformarException;
 
