@@ -24,60 +24,63 @@ public class Entrega2Test {
 		gohan.transformar(equipo);
 	}
 
-	/*
+	
 	@Test
 	public void test1TransformarGohan(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
 
-		Gohan gohan = equipo.getPersonaje("Gohan");
-		Goku goku = equipo.getPersonaje("Goku");
-		Piccolo piccolo = equipo.getPersonaje("Piccolo");
+		Personaje gohan = equipo.getPersonaje("Gohan");
+		Personaje goku = equipo.getPersonaje("Goku");
+		Personaje piccolo = equipo.getPersonaje("Piccolo");
 
 		goku.setVida(10);
 		piccolo.setVida(10);
 
-		gohan.transformar(new GohanEstadoSuperSayajinFase1());
-		gohan.transformar();
+		gohan.transformar(new GohanEstadoSuperSayajinFase1(gohan.getStats()));
+		gohan.setKi(50);
+		gohan.transformar(equipo);
+		org.junit.Assert.assertEquals(gohan.obtenerEstado().getClass(), GohanEstadoSuperSayajinFase2.class);
 	}
 
+	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test2TransformarPiccoloFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
-		Piccolo piccolo = equipo.getPersonaje("Piccolo");
-		piccolo.transformar(new PiccoloEstadoFortalecido());
+		Personaje piccolo = equipo.getPersonaje("Piccolo");
+		piccolo.transformar(new PiccoloEstadoFortalecido(piccolo.getStats()));
 		piccolo.transformar();
 	}
+	
 	
 	@Test
 	public void test2TransformarPiccolo(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
 
-		Gohan gohan = equipo.getPersonaje("Gohan");
-		Piccolo piccolo = equipo.getPersonaje("Piccolo");
+		Personaje gohan = equipo.getPersonaje("Gohan");
+		Personaje piccolo = equipo.getPersonaje("Piccolo");
 
 		gohan.setVida(10);
 
-		piccolo.transformar(new PiccoloEstadoFortalecido());
-		piccolo.transformar();
+		piccolo.transformar(new PiccoloEstadoFortalecido(piccolo.getStats()));
+		piccolo.transformar(equipo);
 		org.junit.Assert.assertEquals(piccolo.obtenerEstado().getClass(), PiccoloEstadoProtector.class);
 
 	}
-
+	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test3TransformarCellFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoVillano();
-		Cell cell = equipo.getPersonaje("Cell");
+		Personaje cell = equipo.getPersonaje("Cell");
 
 		cell.transformar();
-		
 	}
-
+	/*
 	@Test
 	public void test3CellAbsorberVida() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Cell cell = equipoV.getPersonaje("Cell");
-		Goku goku = equipoZ.getPersonaje("Goku");
+		Personaje cell = equipoV.getPersonaje("Cell");
+		Personaje goku = equipoZ.getPersonaje("Goku");
 
 		cell.setKi(50);
 		cell.absorber(goku);
@@ -91,8 +94,8 @@ public class Entrega2Test {
 	public void test3TransformarCell() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Cell cell = equipoV.getPersonaje("Cell");
-		Goku goku = equipoZ.getPersonaje("Goku");
+		Personaje cell = equipoV.getPersonaje("Cell");
+		Personaje goku = equipoZ.getPersonaje("Goku");
 
 		cell.setKi(50);
 		cell.absorber(goku);
@@ -109,8 +112,8 @@ public class Entrega2Test {
 	public void test4MajinBooChocolate() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		MajinBoo majinBoo = equipoV.getPersonaje("MajinBoo");
-		Goku goku = equipoZ.getPersonaje("Goku");
+		Personaje majinBoo = equipoV.getPersonaje("MajinBoo");
+		Personaje goku = equipoZ.getPersonaje("Goku");
 
 		majinBoo.convierteEnChocolate(goku);
 
@@ -121,8 +124,8 @@ public class Entrega2Test {
 	public void test5EspecialGoku() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		MajinBoo majinBoo = equipoV.getPersonaje("MajinBoo");
-		Goku goku = equipoZ.getPersonaje("Goku");
+		Personaje majinBoo = equipoV.getPersonaje("MajinBoo");
+		Personaje goku = equipoZ.getPersonaje("Goku");
 
 		goku.setVida(10);
 		goku.atacar(majinBoo);

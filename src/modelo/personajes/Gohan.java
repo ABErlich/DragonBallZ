@@ -32,7 +32,6 @@ public class Gohan extends Personaje implements IPersonajeEquipoZ{
         }
     }
 
-    
     // VER CON TOMAS COMO HACER ESTO DE UNA MANERA MEJOR
     @Override
     public void transformar(IJugadorEquipo equipo) {
