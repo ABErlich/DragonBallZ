@@ -11,7 +11,6 @@ public class GohanEstadoSuperSayajinFase1 extends Estado {
 		stats.setDistanciaAtaque(2);
 		stats.setVelocidadMov(2);
 		stats.setKi(stats.getKi() - 10);
-
     }
 
     public void Atacar(IPersonajeEquipoZ pPersonaje){

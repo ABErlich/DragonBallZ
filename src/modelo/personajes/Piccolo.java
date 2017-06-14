@@ -13,6 +13,7 @@ public class Piccolo extends Personaje implements IPersonajeEquipoVillano {
 
     }
 
+    public void transformar(){}
     /*
 
     public void makankosappo(){

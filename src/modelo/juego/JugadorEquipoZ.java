@@ -1,6 +1,6 @@
 package modelo.juego;
 
-import modelo.juego.IJugadorEquipoZ;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 import modelo.juego.JugadorEquipo;
 import modelo.tablero.Coordenada;
 import modelo.personajes.Goku;

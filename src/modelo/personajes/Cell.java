@@ -12,7 +12,7 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
     	this.estado = new CellEstadoNormal(stats);
     }
     
-
+    public void transformar(){}
     /*
     public void semiPerfecto(){
         poder = 40;

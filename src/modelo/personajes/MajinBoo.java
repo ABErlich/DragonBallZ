@@ -13,6 +13,7 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
 
     }
 
+    public void transformar(){}
     /*
 
     public void convierteEnChocolate(){

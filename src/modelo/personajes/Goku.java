@@ -20,8 +20,6 @@ public class Goku extends Personaje implements IPersonajeEquipoZ {
         poder = 30;
     }
      */
-	public void transformar(Estado pEstado) {
-		this.estado = pEstado;
-	}
+	public void transformar(){}
 }
 

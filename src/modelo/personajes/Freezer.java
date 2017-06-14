@@ -12,7 +12,7 @@ public class Freezer extends Personaje implements IPersonajeEquipoVillano {
     	this.estado = new FreezerEstadoNormal(stats);
 
     }
-
+    public void transformar(){}
     /*
 
     public void rayoMortal(){

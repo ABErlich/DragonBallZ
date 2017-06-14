@@ -4,24 +4,27 @@ import org.junit.Test;
 
 import modelo.tablero.*;
 import modelo.personajes.*;
-import modelo.personajes.estados.GokuEstadoKaioKen;
 import modelo.excepciones.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
+import modelo.juego.interfaces.IJugadorEquipo;
+import modelo.juego.JugadorEquipoZ;
+import modelo.juego.JugadorEquipoVillano;
+import modelo.personajes.estados.*;
 
-/*
+
 public class Entrega2Test {
 
 	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test1TransformarGohanFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
-		Gohan gohan = equipo.getPersonaje("Gohan");
-		gohan.transformar(new GohanEstadoSuperSayajinFase1());
-		gohan.transformar();
-		org.junit.Assert.assertEquals(gohan.obtenerEstado().getClass(), GohanEstadoSuperSayajinFase2.class);
+		Personaje gohan = equipo.getPersonaje("Gohan");
+		gohan.transformar(new GohanEstadoSuperSayajinFase1(gohan.getStats()));
+		gohan.transformar(equipo);
 	}
-	
+
+	/*
 	@Test
 	public void test1TransformarGohan(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
@@ -128,6 +131,5 @@ public class Entrega2Test {
 	}
 	
 	
-
+	*/
 }
-*/

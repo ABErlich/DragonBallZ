@@ -1,6 +1,6 @@
 package modelo.juego;
 
-import modelo.juego.IJugadorEquipoVillano;
+import modelo.juego.interfaces.IJugadorEquipoVillano;
 import modelo.juego.JugadorEquipo;
 import modelo.tablero.Coordenada;
 import modelo.personajes.Cell;

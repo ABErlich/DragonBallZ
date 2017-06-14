@@ -4,6 +4,7 @@ import modelo.personajes.estados.Estado;
 import modelo.tablero.IUbicable;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.*;
+import modelo.juego.interfaces.IJugadorEquipo;
 import modelo.personajes.Stats;
 
 public abstract class Personaje implements IUbicable, IPersonajeEquipo {
@@ -69,15 +70,13 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 	public void setKi(int pKi){
 		this.stats.setKi(pKi);
 	}
-	/*
+		
 	public void transformar(Estado pEstado){
 		this.estado = pEstado;
 	}
-
+	public void transformar(IJugadorEquipo equipo){}
 	// este metodo es el que sobreescribo en cada personaje para hacer la logica
 	// de transformacion
-	public void transformar(){
-		
-	}
-	*/
+	abstract public void transformar();
+	
 }

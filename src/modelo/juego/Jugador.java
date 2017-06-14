@@ -2,7 +2,7 @@ package modelo.juego;
 
 import modelo.juego.JugadorEquipoVillano;
 import modelo.juego.JugadorEquipoZ;
-
+import modelo.juego.interfaces.IJugadorEquipo;
 import modelo.excepciones.JugadorPoseeEquipoException;
 import modelo.excepciones.JugadorNoPoseeEquipoException;
 

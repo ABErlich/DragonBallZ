@@ -1,7 +1,8 @@
 package modelo.juego;
 
-import modelo.juego.IJugadorEquipo;
+import modelo.juego.interfaces.IJugadorEquipo;
 import modelo.personajes.Personaje;
+import modelo.excepciones.NoExisteElPersonajeException;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -16,7 +17,7 @@ public class JugadorEquipo implements IJugadorEquipo{
 	public int cantidadPersonajesVivos(){
 		return personajes.size();
 	}
-	/*
+	
 	public Personaje getPersonaje(String pNombrePersonaje){
 		Personaje pj = this.personajes.get(pNombrePersonaje);
 		if(pj == null){
@@ -25,5 +26,5 @@ public class JugadorEquipo implements IJugadorEquipo{
 			return pj;
 		}
 	}
-	*/
+	
 }
