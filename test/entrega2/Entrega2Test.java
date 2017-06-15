@@ -13,7 +13,6 @@ import modelo.personajes.estados.*;
 
 public class Entrega2Test {
 
-	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test1TransformarGohanFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();
@@ -22,7 +21,6 @@ public class Entrega2Test {
 		gohan.transformar(equipo);
 	}
 
-	
 	@Test
 	public void test1TransformarGohan(){
 		IJugadorEquipo equipo = new JugadorEquipoZ();
@@ -40,7 +38,6 @@ public class Entrega2Test {
 		org.junit.Assert.assertEquals(gohan.obtenerEstado().getClass(), GohanEstadoSuperSayajinFase2.class);
 	}
 
-	
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test2TransformarPiccoloFalla() {
 		IJugadorEquipo equipo = new JugadorEquipoZ();

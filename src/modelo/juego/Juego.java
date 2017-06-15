@@ -2,23 +2,32 @@ package modelo.juego;
 
 import java.util.ArrayList;
 import modelo.tablero.Tablero;
+import modelo.excepciones.JugadorYaExisteException;
 
 public class Juego {
 
-	/*public static void main(String[] args) {
-		
-
-	}*/
 	public Juego(){
 		this.setTablero(new Tablero(10));
-		jugadores = new ArrayList<Jugador>();
 	}
 	
-	private ArrayList<Jugador> jugadores;
+	private Jugador jugador1;
+	private Jugador jugador2;
 	private Tablero tablero;
 	
-	public void AgregarJugador(Jugador pJugador){
-		jugadores.add(pJugador);
+	public void AgregarJugador1(Jugador pJugador){
+		if(jugador1 == null){
+			jugador1 = pJugador;
+		}else{
+			throw new JugadorYaExisteException();
+		}
+	}
+
+	public void AgregarJugador2(Jugador pJugador){
+		if(jugador2 == null){
+			jugador2 = pJugador;
+		}else{
+			throw new JugadorYaExisteException();
+		}
 	}
 	
 	public void Comenzar(){

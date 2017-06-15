@@ -28,7 +28,9 @@ public class Entrega3Test {
 		tablero.agregarUbicable(semilla);
 		
 		goku.Mover(new Coordenada(3,3));
+		tablero.actualizarPosiciones();
+
 		org.junit.Assert.assertEquals(semilla, null);
-	}
-	*/
+	}*/
+	
 }

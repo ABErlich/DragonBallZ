@@ -82,8 +82,8 @@ public class Entrega1Test {
 		Jugador jugador1 = new Jugador("Jose");
 		Jugador jugador2 = new Jugador("Pepe");
 		
-		juego.AgregarJugador(jugador1);
-		juego.AgregarJugador(jugador2);
+		juego.AgregarJugador1(jugador1);
+		juego.AgregarJugador2(jugador2);
 		
 		jugador1.asignarEquipoZ();
 		jugador2.asignarEquipoVillano();
