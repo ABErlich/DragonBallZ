@@ -88,13 +88,13 @@ public class Entrega2Test {
 		org.junit.Assert.assertEquals(goku.getVida(), 480);
 		
 	}
-	/*
+	
 	@Test
 	public void test3TransformarCell() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Personaje cell = equipoV.getPersonaje("Cell");
-		Personaje goku = equipoZ.getPersonaje("Goku");
+		Cell cell = (Cell) equipoV.getPersonaje("Cell");
+		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
 		cell.setKi(50);
 		cell.absorber(goku);
@@ -104,15 +104,14 @@ public class Entrega2Test {
 		cell.transformar();
 
 		org.junit.Assert.assertEquals(cell.obtenerEstado().getClass(), CellEstadoSemiPerfecto.class);
-		
 	}
-
+	/*
 	@Test(expected=PersonajeInhabilitadoException.class)
 	public void test4MajinBooChocolate() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Personaje majinBoo = equipoV.getPersonaje("MajinBoo");
-		Personaje goku = equipoZ.getPersonaje("Goku");
+		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
+		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
 		majinBoo.convierteEnChocolate(goku);
 
@@ -131,7 +130,6 @@ public class Entrega2Test {
 
 		org.junit.Assert.assertEquals(majinBoo.getVida(), 276);
 	}
-	
 	
 	*/
 }

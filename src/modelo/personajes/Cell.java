@@ -36,30 +36,13 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
     @Override
     public void transformar(){
         if(this.estado instanceof CellEstadoNormal && cantAbsorciones >= 4){
-
+            this.estado = new CellEstadoSemiPerfecto(this.stats);
         }else if(this.estado instanceof CellEstadoSemiPerfecto && cantAbsorciones >= 8){
-            
+            this.estado = new CellEstadoPerfecto(this.stats);
         }else{
             throw new NoPuedeTransformarException();
         }
     }
 
-
-
-    /*
-    public void semiPerfecto(){
-        poder = 40;
-        distanciaAtaque = 4;
-        velocidadMov = 3;
-    }
-
-    public void perfecto(){
-        poder = 80;
-        distanciaAtaque  = 4;
-        velocidadMov = 4;
-    }
-
-    
-    */
 }
 
