@@ -20,6 +20,7 @@ public abstract class Estado {
 			pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder()); 
 		}
 	}
+	
 	public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats){
 		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
 			throw new AtaqueFueraDeRangoException();
@@ -36,7 +37,7 @@ public abstract class Estado {
 		}
 	}
 
-	protected int calcularDistancia(Coordenada destino, Coordenada origen){
+	public int calcularDistancia(Coordenada destino, Coordenada origen){
 		int origenX = origen.getCoordX();
 		int origenY = origen.getCoordY();
 		int destinoX = destino.getCoordX();

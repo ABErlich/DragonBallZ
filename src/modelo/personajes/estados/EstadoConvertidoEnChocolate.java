@@ -5,16 +5,16 @@ import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.tablero.Coordenada;
 import modelo.personajes.Stats;
-import modelo.excepciones.AtaqueMismoEquipoException;
 import modelo.excepciones.PersonajeInhabilitadoException;
 
 public class EstadoConvertidoEnChocolate extends Estado {
 
     private int cantidadTurnos;
     private Estado estadoAnterior;
+    
     public EstadoConvertidoEnChocolate(Estado pEstadoAnterior) {
-		estadoAnterior = pEstadoAnterior;
-        cantidadTurnos = 3;
+		setEstadoAnterior(pEstadoAnterior);
+        setCantidadTurnos(3);
     }
 
     @Override
@@ -30,5 +30,21 @@ public class EstadoConvertidoEnChocolate extends Estado {
     @Override
     public void Mover(Coordenada pDestino, Stats stats){
 		throw new PersonajeInhabilitadoException();
+	}
+
+	public int getCantidadTurnos() {
+		return cantidadTurnos;
+	}
+
+	public void setCantidadTurnos(int cantidadTurnos) {
+		this.cantidadTurnos = cantidadTurnos;
+	}
+
+	public Estado getEstadoAnterior() {
+		return estadoAnterior;
+	}
+
+	public void setEstadoAnterior(Estado estadoAnterior) {
+		this.estadoAnterior = estadoAnterior;
 	}
 }

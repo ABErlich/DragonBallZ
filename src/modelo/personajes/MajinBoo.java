@@ -1,11 +1,14 @@
 package modelo.personajes;
 
 import modelo.excepciones.NoPuedeRealizarAtaqueException;
+import modelo.excepciones.NoPuedeTransformarException;
 import modelo.excepciones.AtaqueMismoEquipoException;
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.MajinBooEstadoNormal;
 import modelo.tablero.Coordenada;
 import modelo.personajes.estados.EstadoConvertidoEnChocolate;
+import modelo.personajes.estados.MajinBooEstadoBooMalo;
+import modelo.personajes.estados.MajinBooEstadoBooOriginal;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
@@ -16,8 +19,6 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
     	this.estado = new MajinBooEstadoNormal(stats);
 
     }
-
-    public void transformar(){}
 
     public void convierteEnChocolate(IPersonajeEquipoZ pPersonaje){
         if(this.stats.getKi() < 30){
@@ -32,7 +33,18 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
         throw new AtaqueMismoEquipoException();
     }
     
-    
+    @Override
+    public void transformar(){
+        if(this.estado instanceof MajinBooEstadoNormal && this.stats.getKi() > 20){
+        	this.stats.setKi(this.stats.getKi() - 20);
+            this.estado = new MajinBooEstadoBooMalo(this.stats);
+        }else if(this.estado instanceof MajinBooEstadoBooMalo && this.stats.getKi() > 50){
+        	this.stats.setKi(this.stats.getKi() - 50);
+            this.estado = new MajinBooEstadoBooOriginal(this.stats);
+        }else{
+            throw new NoPuedeTransformarException();
+        }
+    }
     
 }
 

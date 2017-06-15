@@ -1,10 +1,8 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.personajes.Stats;
-import modelo.excepciones.AtaqueMismoEquipoException;
 
-public class GokuEstadoSuperSayajin extends Estado {
+public class GokuEstadoSuperSayajin extends GokuEstado {
 
 	public GokuEstadoSuperSayajin(Stats stats){
 		stats.setPoder(60);
@@ -12,10 +10,6 @@ public class GokuEstadoSuperSayajin extends Estado {
 		stats.setVelocidadMov(5);
 		stats.setKi(stats.getKi() - 50);
 
-	}
-
-	public void Atacar(IPersonajeEquipoZ pPersonaje){
-		throw new AtaqueMismoEquipoException();
 	}
 
 }

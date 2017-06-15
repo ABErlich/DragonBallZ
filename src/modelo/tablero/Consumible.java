@@ -5,7 +5,7 @@ import modelo.tablero.Coordenada;
 
 public abstract class Consumible implements IUbicable {
 
-	private Coordenada ubicacion;
+	protected Coordenada ubicacion;
 
 	public void Ubicar(Coordenada pCoordenada) {
 		this.ubicacion = pCoordenada;

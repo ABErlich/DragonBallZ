@@ -5,7 +5,7 @@ import modelo.tablero.Tablero;
 public class Mapa {
 	
 	public Mapa(String pNombre, int pTamanio){
-		this.tablero = new Tablero(pTamanio);
+		this.setTablero(new Tablero(pTamanio));
 		this.Nombre = pNombre;
 	}
 	
@@ -18,6 +18,14 @@ public class Mapa {
 
 	public void setNombre(String nombre) {
 		Nombre = nombre;
+	}
+
+	public Tablero getTablero() {
+		return tablero;
+	}
+
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 	
 }

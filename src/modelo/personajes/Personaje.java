@@ -17,11 +17,11 @@ public abstract class Personaje implements IUbicable, IPersonajeEquipo {
 	private String Nombre;
     protected Estado estado;
 
-	public void Atacar(modelo.personajes.interfaces.IPersonajeEquipoZ pPersonaje){
+	public void Atacar(IPersonajeEquipoZ pPersonaje){
 		this.estado.Atacar(pPersonaje, this.stats);
 	}
 
-	public void Atacar(modelo.personajes.interfaces.IPersonajeEquipoVillano pPersonaje){
+	public void Atacar(IPersonajeEquipoVillano pPersonaje){
 		this.estado.Atacar(pPersonaje, this.stats);
 	}
 

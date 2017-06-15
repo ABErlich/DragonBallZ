@@ -10,7 +10,7 @@ public class Juego {
 
 	}*/
 	public Juego(){
-		this.tablero = new Tablero(10);
+		this.setTablero(new Tablero(10));
 		jugadores = new ArrayList<Jugador>();
 	}
 	
@@ -20,9 +20,6 @@ public class Juego {
 	public void AgregarJugador(Jugador pJugador){
 		jugadores.add(pJugador);
 	}
-	public void setMapa(Mapa pMapa){
-		//this.mapa = pMapa;
-	}
 	
 	public void Comenzar(){
 		
@@ -30,6 +27,14 @@ public class Juego {
 	
 	public void Terminar(){
 		
+	}
+	
+	public Tablero getTablero() {
+		return tablero;
+	}
+	
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 
 }

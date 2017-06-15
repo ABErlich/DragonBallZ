@@ -1,14 +1,15 @@
 package modelo.personajes;
 
 import modelo.juego.interfaces.IJugadorEquipo;
-import modelo.juego.JugadorEquipoZ;
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.GohanEstadoNormal;
 import modelo.personajes.estados.GohanEstadoSuperSayajinFase1;
 import modelo.personajes.estados.GohanEstadoSuperSayajinFase2;
 import modelo.tablero.Coordenada;
-import modelo.personajes.interfaces.IPersonajeEquipo;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
+import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeRealizarAtaqueException;
 import modelo.excepciones.NoPuedeTransformarException;
 
 public class Gohan extends Personaje implements IPersonajeEquipoZ{
@@ -18,11 +19,20 @@ public class Gohan extends Personaje implements IPersonajeEquipoZ{
     	this.estado = new GohanEstadoNormal(stats);
 
     }
-    /*
-    public void masenko(){
-        ki = ki - 10;
-        poder = 19; //El poder deberia ser 18.75, pero estamos usando int, no float.
-    }*/
+    
+    public void masenko(IPersonajeEquipoZ pPersonaje){
+    	throw new AtaqueMismoEquipoException();
+    }
+    
+    public void masenko(IPersonajeEquipoVillano pPersonaje){
+    	if(this.stats.getKi() < 10){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}else{
+    		this.stats.setKi(this.stats.getKi() - 10);
+    		pPersonaje.setVida( (int) (pPersonaje.getVida() - this.stats.getPoder()*1.25) );
+    	}
+    }
+    
     @Override
     public void transformar(){
         if(this.stats.getKi() >= 10){

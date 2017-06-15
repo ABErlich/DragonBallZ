@@ -1,7 +1,5 @@
 package modelo.personajes;
 
-import javax.swing.plaf.basic.BasicTreeUI.TreeHomeAction;
-
 import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
@@ -29,8 +27,8 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
         }else{
             this.cantAbsorciones += 1;
             this.stats.setKi(this.stats.getKi() - 5);
-            this.stats.setVida(this.stats.getVida() + 20);
-            pPersonaje.setVida(pPersonaje.getVida() - 20);
+            this.stats.setVida(this.stats.getVida() + this.stats.getPoder());
+            pPersonaje.setVida(pPersonaje.getVida() - this.stats.getPoder());
         }
     }
     

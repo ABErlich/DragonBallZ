@@ -1,11 +1,12 @@
 package modelo.tablero;
 
-import modelo.tablero.IUbicable;
 import modelo.tablero.Consumible;
-import modelo.tablero.Coordenada;
 
 public class SemilladelHermitano extends Consumible {
-
+	
+	public SemilladelHermitano(Coordenada pCoordenada){
+		this.ubicacion = pCoordenada;
+	}
 
 
 }

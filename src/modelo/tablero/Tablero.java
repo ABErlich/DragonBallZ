@@ -57,6 +57,10 @@ public class Tablero {
 	public Coordenada obtenerUbicacion(IUbicable pUbicable) {
 		return ubicables.get(pUbicable).getCoordenada();
 	}
+	
+	public void actualizarPosiciones(){
+		
+	}
 
 	
 }

@@ -76,7 +76,6 @@ public class Entrega1Test {
 		
 	}
 	
-	
 	@Test
 	public void test6CrearJuego(){
 		Juego juego = new Juego();
@@ -93,10 +92,9 @@ public class Entrega1Test {
 		org.junit.Assert.assertEquals(3, jugador2.cantidadPersonajesVivos());
 	}
 	
-	
 	@Test(expected=AtaqueFueraDeRangoException.class)
 	public void test7AtaqueFueraRango(){
-		Tablero tablero = new Tablero(10);
+
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(5,5));
 		
@@ -105,7 +103,7 @@ public class Entrega1Test {
 	
 	@Test
 	public void test7AtaqueValido(){
-		Tablero tablero = new Tablero(10);
+
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(1,1));
 		
@@ -117,7 +115,7 @@ public class Entrega1Test {
 	
 	@Test(expected=AtaqueMismoEquipoException.class)
 	public void test7AtaqueMismoEquipo(){
-		Tablero tablero = new Tablero(10);
+
 		Goku goku = new Goku(new Coordenada(1,1));
 		Gohan gohan = new Gohan(new Coordenada(1,1));
 		

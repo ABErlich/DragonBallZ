@@ -1,6 +1,5 @@
 package modelo.personajes.interfaces;
 
-import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.personajes.estados.Estado;
 
