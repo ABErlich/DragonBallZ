@@ -11,6 +11,7 @@ import modelo.personajes.estados.CellEstadoSemiPerfecto;
 import modelo.personajes.estados.CellEstadoPerfecto;
 import modelo.excepciones.NoPuedeRealizarAtaqueException;
 import modelo.excepciones.NoPuedeTransformarException;
+import modelo.excepciones.AtaqueMismoEquipoException;
 
 public class Cell extends Personaje implements IPersonajeEquipoVillano{
 	
@@ -31,6 +32,10 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
             this.stats.setVida(this.stats.getVida() + 20);
             pPersonaje.setVida(pPersonaje.getVida() - 20);
         }
+    }
+    
+    public void absorber(IPersonajeEquipoVillano pPersonaje){
+        throw new AtaqueMismoEquipoException();
     }
     
     @Override

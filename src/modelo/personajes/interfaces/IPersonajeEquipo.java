@@ -9,4 +9,5 @@ public interface IPersonajeEquipo {
     Estado obtenerEstado();
     int getVida();
     void setVida(int pVida);
+    void transformar(Estado pEstado);
 }

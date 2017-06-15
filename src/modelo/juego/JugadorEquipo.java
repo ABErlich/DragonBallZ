@@ -2,7 +2,7 @@ package modelo.juego;
 
 import modelo.excepciones.NoExisteElPersonajeException;
 import modelo.juego.interfaces.IJugadorEquipo;
-import modelo.personajes.IPersonajeEquipo;
+import modelo.personajes.interfaces.IPersonajeEquipo;
 import modelo.personajes.Personaje;
 
 import java.util.Dictionary;

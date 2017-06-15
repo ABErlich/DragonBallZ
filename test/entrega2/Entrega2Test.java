@@ -105,20 +105,21 @@ public class Entrega2Test {
 
 		org.junit.Assert.assertEquals(cell.obtenerEstado().getClass(), CellEstadoSemiPerfecto.class);
 	}
-	/*
+	
 	@Test(expected=PersonajeInhabilitadoException.class)
 	public void test4MajinBooChocolate() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
 		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
 		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
-
+		
+		majinBoo.setKi(50);
 		majinBoo.convierteEnChocolate(goku);
 
-		goku.atacar(majinBoo);
+		goku.Atacar(majinBoo);
 		
 	}
-
+	/*
 	public void test5EspecialGoku() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();

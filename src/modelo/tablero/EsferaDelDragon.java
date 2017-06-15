@@ -1,3 +1,4 @@
+package modelo.tablero;
 
 import modelo.tablero.IUbicable;
 import modelo.tablero.Consumible;
