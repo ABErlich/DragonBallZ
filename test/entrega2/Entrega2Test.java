@@ -1,5 +1,6 @@
 package entrega2;
 
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import org.junit.Test;
 
 import modelo.tablero.*;
@@ -119,18 +120,18 @@ public class Entrega2Test {
 		goku.Atacar(majinBoo);
 		
 	}
-	/*
+
 	public void test5EspecialGoku() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
-		Personaje majinBoo = equipoV.getPersonaje("MajinBoo");
-		Personaje goku = equipoZ.getPersonaje("Goku");
+		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
+		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
 		goku.setVida(10);
-		goku.atacar(majinBoo);
+		goku.Atacar(majinBoo);
 
 		org.junit.Assert.assertEquals(majinBoo.getVida(), 276);
 	}
 	
-	*/
+
 }
