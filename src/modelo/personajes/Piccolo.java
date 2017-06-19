@@ -2,56 +2,74 @@ package modelo.personajes;
 
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.PiccoloEstadoNormal;
-import modelo.personajes.estados.PiccoloEstadoFortalecido;
-import modelo.personajes.estados.PiccoloEstadoProtector;
-import modelo.juego.interfaces.IJugadorEquipo;
+import modelo.personajes.estados.Estado;
+import modelo.personajes.estados.PiccoloEstado;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.excepciones.NoPuedeRealizarAtaqueException;
-import modelo.excepciones.NoPuedeTransformarException;
 
 public class Piccolo extends Personaje implements IPersonajeEquipoVillano {
 
-    public Piccolo (Coordenada pCoordenada){
-    	stats.setUbicacion(pCoordenada);
-    	this.estado = new PiccoloEstadoNormal(stats);
-
+	Estado estado;
+	
+    public Piccolo (Coordenada coordenada){
+    	this.estado = new PiccoloEstadoNormal();
+    	this.estado.setUbicacion(coordenada);
     }
+    
+    public void atacar(IPersonajeEquipoZ personaje){
+		this.estado.atacar(personaje);
+	}
 
-    @Override
-    public void transformar(){
-        if(this.stats.getKi() >= 20){
-            this.stats.setKi(this.stats.getKi() - 20);
-            this.estado = new PiccoloEstadoFortalecido(this.stats);
-        }else{
-            throw new NoPuedeTransformarException();
-        }
-    }
+	public void atacar(IPersonajeEquipoVillano personaje){
+		this.estado.atacar(personaje);
+	}
 
-    // VER CON TOMAS COMO HACER ESTO DE UNA MANERA MEJOR
-    @Override
-    public void transformar(IJugadorEquipo equipo) {
-        if(equipo.getPersonaje("Gohan").getVida() < 60){
-            this.estado = new PiccoloEstadoProtector(this.stats);
-        }else{
-            throw new NoPuedeTransformarException();
-        }
+	public void mover(Coordenada destino){
+		this.estado.mover(destino);
+		//this.ubicacion = pDestino;
+	}
+
+	public void recibirAtaque(int danio){
+		this.estado.recibirAtaque(danio);
+	}
+
+	public void ubicar(Coordenada coordenada){
+		this.estado.setUbicacion(coordenada);
+	}
+
+	public Coordenada obtenerUbicacion(){
+		return this.estado.getUbicacion();
+	}
+	
+	public int getVida() {
+		return this.estado.getVida();
+	}
+	
+	public boolean vidaMenor30porc(){
+		return this.estado.vidaMenor30porc();
+	}
+
+    public void transformar(IJugadorEquipoZ equipo) {
+    	PiccoloEstado nuevoEstado = ((PiccoloEstado) this.estado).transformar(equipo);
+    	estado = nuevoEstado;
 	}
     
-    public void makankosappo(IPersonajeEquipoZ pPersonaje){
+    public void makankosappo(IPersonajeEquipoZ personaje){
     	throw new AtaqueMismoEquipoException();
     }
     
-    public void makankosappo(IPersonajeEquipoVillano pPersonaje){
-    	if(this.stats.getKi() < 10){
-    		throw new NoPuedeRealizarAtaqueException();
-    	}else{
-    		this.stats.setKi(this.stats.getKi() - 10);
-    		pPersonaje.setVida( (int) (pPersonaje.getVida() - this.stats.getPoder()*1.25) );
-    	}
+    public void makankosappo(IPersonajeEquipoVillano personaje){
+    	((PiccoloEstado) this.estado).makankosappo(personaje);
+
     }
+
+	@Override
+	public void terminoTurno() {
+		this.estado.terminoTurno();
+	}
 
 }
 

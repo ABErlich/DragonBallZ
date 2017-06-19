@@ -1,23 +1,32 @@
 package modelo.personajes.estados;
 
 
-import modelo.personajes.interfaces.IPersonajeEquipoZ;
-import modelo.personajes.Stats;
-import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeTransformarException;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 
-public class GohanEstadoNormal extends Estado {
 
-    public GohanEstadoNormal(Stats stats){
-    	stats.setVida(300);
-		stats.setPoder(15);
-		stats.setDistanciaAtaque(2);
-		stats.setVelocidadMov(2);
-		stats.setKi(0);
+public class GohanEstadoNormal extends GohanEstado {
+
+    public GohanEstadoNormal(){
+    	super();
+		vida = 300;
+		poder = 15;
+		distanciaAtaque = 2;
+		velocidadMov = 2;
+		ki = 0;
     }
 
-    @Override
-    public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats){
-        throw new AtaqueMismoEquipoException();
-    }
+	@Override
+	public GohanEstado transformar(IJugadorEquipoZ equipo) {
+		if(ki > 10){
+            ki = ki - 10;
+			GohanEstado nuevoestado = new GohanEstadoSuperSayajinFase1();
+			nuevoestado.vida = vida;
+			nuevoestado.ki = ki;
+			nuevoestado.ubicacion = ubicacion;
+			return nuevoestado;
+        }
+        throw new NoPuedeTransformarException();
+	}
 
 }

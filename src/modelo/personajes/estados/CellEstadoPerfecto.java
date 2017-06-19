@@ -1,21 +1,20 @@
 package modelo.personajes.estados;
 
 
-import modelo.personajes.Stats;
-import modelo.personajes.interfaces.IPersonajeEquipoVillano;
-import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.UltimoEstadoException;
 
-public class CellEstadoPerfecto extends Estado {
+public class CellEstadoPerfecto extends CellEstado {
 
-    public CellEstadoPerfecto(Stats stats) {
-		stats.setPoder(80);
-		stats.setDistanciaAtaque(4);
-		stats.setVelocidadMov(4);
+    public CellEstadoPerfecto() {
 
+		poder = 80;
+		distanciaAtaque = 4;
+		velocidadMov = 4;
     }
 
-    @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats) {
-        throw new AtaqueMismoEquipoException();
-    }
+
+	@Override
+	public CellEstado transformar() {
+		throw new UltimoEstadoException();
+	}
 }

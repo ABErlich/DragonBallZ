@@ -7,7 +7,7 @@ public abstract class Consumible implements IUbicable {
 
 	protected Coordenada ubicacion;
 
-	public void Ubicar(Coordenada pCoordenada) {
+	public void ubicar(Coordenada pCoordenada) {
 		this.ubicacion = pCoordenada;
 	}
 

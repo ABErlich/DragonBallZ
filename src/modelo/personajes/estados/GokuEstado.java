@@ -2,29 +2,48 @@ package modelo.personajes.estados;
 
 import modelo.excepciones.AtaqueFueraDeRangoException;
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.personajes.Stats;
+import modelo.excepciones.NoPuedeRealizarAtaqueException;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
-public class GokuEstado extends Estado {
+public abstract class GokuEstado extends Estado {
 
+    public GokuEstado() {
+    	vidaMaxima = 500;
+	}
+	
 	@Override
-	public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats){
+	public void atacar(IPersonajeEquipoZ pPersonaje){
 		throw new AtaqueMismoEquipoException();
 	}
 	
 	@Override
-	public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats){
-		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
+	public void atacar(IPersonajeEquipoVillano personaje){
+		if(personaje.obtenerUbicacion().calcularDistancia(ubicacion) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			if(stats.getVida() < 150){
-				pPersonaje.setVida((int)(pPersonaje.getVida() - stats.getPoder()*1.2));
+			if(vida < 150){
+				personaje.recibirAtaque((int)(poder*1.2));
 			}else{
-				pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder());
+				personaje.recibirAtaque(poder);
 			}
-			 
 		}
 	}
+	
+	public void kamehameha(IPersonajeEquipoVillano personaje){
+    	if(ki < 20){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}else{
+    		ki = ki - 20;
+    		if(vida < 150){
+    			personaje.recibirAtaque((int) ((poder*1.5)*1.2));
+    		}else{
+    			personaje.recibirAtaque((int) (poder*1.5));
+    		}
+    		
+    	}
+    }
+
+	public abstract GokuEstado transformar();
 	
 }

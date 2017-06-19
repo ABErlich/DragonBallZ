@@ -1,21 +1,27 @@
 package modelo.personajes.estados;
 
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
-import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.UltimoEstadoException;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 
-public class PiccoloEstadoProtector extends Estado {
+public class PiccoloEstadoProtector extends PiccoloEstado {
 
-    public PiccoloEstadoProtector(Stats stats){
+    public PiccoloEstadoProtector(){
 
-		stats.setPoder(60);
-		stats.setDistanciaAtaque(6);
-		stats.setVelocidadMov(4);
+		poder = 60;
+		distanciaAtaque = 6;
+		velocidadMov = 4;
 
     }
 
     public void Atacar(IPersonajeEquipoZ pPersonaje){
         throw new AtaqueMismoEquipoException();
     }
+
+	@Override
+	public PiccoloEstado transformar(IJugadorEquipoZ equipo) {
+		throw new UltimoEstadoException();
+	}
 
 }

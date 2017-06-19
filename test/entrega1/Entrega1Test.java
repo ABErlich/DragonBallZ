@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import modelo.tablero.*;
 import modelo.personajes.*;
-import modelo.personajes.estados.GokuEstadoKaioKen;
 import modelo.excepciones.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -16,7 +15,7 @@ public class Entrega1Test {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		
-		goku.Ubicar(new Coordenada(1,1));
+		goku.ubicar(new Coordenada(1,1));
 		
 		org.junit.Assert.assertEquals(new Coordenada(1,1), goku.obtenerUbicacion());
 	}
@@ -26,7 +25,7 @@ public class Entrega1Test {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 
-		goku.Mover(new Coordenada(3,3));
+		goku.mover(new Coordenada(3,3));
 		
 		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
 	}
@@ -36,31 +35,37 @@ public class Entrega1Test {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 
-		goku.Mover(new Coordenada(5,5));
+		goku.mover(new Coordenada(5,5));
 		
 		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
 	}
 
 	@Test(expected=CeldaOcupadaException.class)
 	public void test2Ubicar2PersonajesMismaCelda(){
-		// Crea un tablero de 10 x 10 celdas
+
 		Tablero tablero = new Tablero(10);
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		Gohan gohan = new Gohan(new Coordenada(1, 1));
 		
-		// Agrega ubicables al tablero
 		tablero.agregarUbicable(goku);
-		// aca salta la excepcion
 		tablero.agregarUbicable(gohan);
 	}
 	
 	@Test
 	public void test4TransformaPersonaje(){
 		Goku goku = new Goku(new Coordenada(1,1));
-		goku.transformar(new GokuEstadoKaioKen(goku.getStats()));
+		Cell cell = new Cell(new Coordenada(2,2));
 		
-		org.junit.Assert.assertEquals(goku.obtenerEstado().getClass(), GokuEstadoKaioKen.class);
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.transformar();
+		
+		goku.atacar(cell);
+		org.junit.Assert.assertEquals(cell.getVida(), 460);
+
 	}
 	
 	@Test
@@ -69,8 +74,13 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		
 		tablero.agregarUbicable(goku);
-		goku.transformar(new GokuEstadoKaioKen(goku.getStats()));
-		goku.Mover(new Coordenada(4,4));
+		
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.transformar();
+		goku.mover(new Coordenada(4,4));
 		
 		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;
 		
@@ -82,8 +92,8 @@ public class Entrega1Test {
 		Jugador jugador1 = new Jugador("Jose");
 		Jugador jugador2 = new Jugador("Pepe");
 		
-		juego.AgregarJugador1(jugador1);
-		juego.AgregarJugador2(jugador2);
+		juego.agregarJugador1(jugador1);
+		juego.agregarJugador2(jugador2);
 		
 		jugador1.asignarEquipoZ();
 		jugador2.asignarEquipoVillano();
@@ -98,7 +108,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(5,5));
 		
-		goku.Atacar(cell);
+		goku.atacar(cell);
 	}
 	
 	@Test
@@ -107,7 +117,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(1,1));
 		
-		goku.Atacar(cell);
+		goku.atacar(cell);
 
 		org.junit.Assert.assertEquals(480, cell.getVida());
 
@@ -119,7 +129,7 @@ public class Entrega1Test {
 		Goku goku = new Goku(new Coordenada(1,1));
 		Gohan gohan = new Gohan(new Coordenada(1,1));
 		
-		goku.Atacar(gohan);
+		goku.atacar(gohan);
 
 		org.junit.Assert.assertEquals(480, gohan.getVida());
 

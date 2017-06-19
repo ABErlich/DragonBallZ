@@ -1,6 +1,5 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.Stats;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
@@ -9,51 +8,63 @@ import modelo.excepciones.AtaqueFueraDeRangoException;
 
 public abstract class Estado {
 
-	public Estado(){
-
-	}
-
-	public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats){
-		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
+	protected int vidaMaxima;
+	protected int vida;
+	protected int poder;
+	protected int distanciaAtaque;
+	protected int velocidadMov;
+	protected int ki;
+	protected Coordenada ubicacion;
+	
+	public void atacar(IPersonajeEquipoZ personaje){
+		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder()); 
+			personaje.recibirAtaque(poder); 
 		}
 	}
 	
-	public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats){
-		if(this.calcularDistancia(pPersonaje.obtenerUbicacion(), stats.getUbicacion()) > stats.getDistanciaAtaque()){
+	public void atacar(IPersonajeEquipoVillano personaje){
+		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			pPersonaje.setVida(pPersonaje.getVida() - stats.getPoder()); 
+			personaje.recibirAtaque(poder); 
 		}
 	}
-	public void Mover(Coordenada pDestino, Stats stats){
-		if(this.calcularDistancia(pDestino, stats.getUbicacion()) <= stats.getVelocidadMov()){
-			// Si se puede mover esa distancia, lo muevo
-			stats.setUbicacion(pDestino);
+	
+	public void mover(Coordenada destino){
+		if(ubicacion.calcularDistancia(destino) <= velocidadMov){
+			ubicacion = destino;
 		}else{
 			throw new MovimientoFueraRangoException();
 		}
 	}
 
-	public int calcularDistancia(Coordenada destino, Coordenada origen){
-		int origenX = origen.getCoordX();
-		int origenY = origen.getCoordY();
-		int destinoX = destino.getCoordX();
-		int destinoY = destino.getCoordY();
+	public void recibirAtaque(int danio) {
+		vida = vida - danio;
+	}
 
-		int distanciaX = Math.abs(origenX - destinoX);
-		int distanciaY = Math.abs(origenY - destinoY);
+	public void setUbicacion(Coordenada coordeanda) {
+		ubicacion = coordeanda;
+	}
+	public Coordenada getUbicacion(){
+		return this.ubicacion;
+	}
 
-		int distanciaTotal = 0;
-		if( distanciaX == distanciaY){
-			distanciaTotal = distanciaX;
+	public boolean vidaMenor30porc() {
+		if(vida < 0.3*vidaMaxima){
+			return true;
 		}else{
-			distanciaTotal = distanciaX + distanciaY;
+			return false;
 		}
-		
-		return distanciaTotal;
+	}
+
+	public int getVida() {
+		return vida;
+	}
+	
+	public void terminoTurno(){
+		ki = ki + 5;
 	}
 
 }

@@ -4,7 +4,6 @@ package modelo.personajes.estados;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.tablero.Coordenada;
-import modelo.personajes.Stats;
 import modelo.excepciones.PersonajeInhabilitadoException;
 
 public class EstadoConvertidoEnChocolate extends Estado {
@@ -12,23 +11,23 @@ public class EstadoConvertidoEnChocolate extends Estado {
     private int cantidadTurnos;
     private Estado estadoAnterior;
     
-    public EstadoConvertidoEnChocolate(Estado pEstadoAnterior) {
-		setEstadoAnterior(pEstadoAnterior);
+    public EstadoConvertidoEnChocolate(Estado estadoAnterior) {
+		setEstadoAnterior(estadoAnterior);
         setCantidadTurnos(3);
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats) {
+    public void atacar(IPersonajeEquipoVillano personaje) {
         throw new PersonajeInhabilitadoException();
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats) {
+    public void atacar(IPersonajeEquipoZ personaje) {
         throw new PersonajeInhabilitadoException();
     }
 
     @Override
-    public void Mover(Coordenada pDestino, Stats stats){
+    public void mover(Coordenada destino){
 		throw new PersonajeInhabilitadoException();
 	}
 

@@ -1,63 +1,81 @@
 package entrega2;
 
-import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import org.junit.Test;
 
 import modelo.personajes.*;
 import modelo.excepciones.*;
 import modelo.juego.interfaces.IJugadorEquipo;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 import modelo.juego.JugadorEquipoZ;
 import modelo.juego.JugadorEquipoVillano;
-import modelo.personajes.estados.*;
+import modelo.tablero.Coordenada;
 
 
 public class Entrega2Test {
 
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test1TransformarGohanFalla() {
-		IJugadorEquipo equipo = new JugadorEquipoZ();
+		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
-		gohan.transformar(new GohanEstadoSuperSayajinFase1(gohan.getStats()));
+		gohan.transformar(equipo);
 		gohan.transformar(equipo);
 	}
 
 	@Test
-	public void test1TransformarGohan(){
-		IJugadorEquipo equipo = new JugadorEquipoZ();
+	public void test1TransformarGohanASayajin2(){
+		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
 		Goku goku = (Goku) equipo.getPersonaje("Goku");
 		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
+		Cell cell = new Cell(new Coordenada(1,1));
 
-		goku.setVida(10);
-		piccolo.setVida(10);
-
-		gohan.transformar(new GohanEstadoSuperSayajinFase1(gohan.getStats()));
-		gohan.setKi(50);
+		// PONER A GOKU Y PICCOLO CON POCA VIDA
+		for(int i = 0; i < 20 ; i++){
+			cell.atacar(goku);
+			cell.atacar(piccolo);
+		}
+	
+		
+		for(int i = 0; i < 20; i ++){
+			gohan.terminoTurno();
+		}
+		// transformo en Ssj1
 		gohan.transformar(equipo);
-		org.junit.Assert.assertEquals(gohan.obtenerEstado().getClass(), GohanEstadoSuperSayajinFase2.class);
+		// transformo en Ssj1
+		gohan.transformar(equipo);
+		gohan.atacar(cell);
+		
+		org.junit.Assert.assertEquals(cell.getVida(), 400);
 	}
 
 	@Test(expected=NoPuedeTransformarException.class)
 	public void test2TransformarPiccoloFalla() {
-		IJugadorEquipo equipo = new JugadorEquipoZ();
+		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
-		piccolo.transformar(new PiccoloEstadoFortalecido(piccolo.getStats()));
-		piccolo.transformar();
+		piccolo.transformar(equipo);
 	}
 	
 	@Test
 	public void test2TransformarPiccolo(){
-		IJugadorEquipo equipo = new JugadorEquipoZ();
+		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
 		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
+		Cell cell = new Cell(new Coordenada(1,1));
 
-		gohan.setVida(10);
-
-		piccolo.transformar(new PiccoloEstadoFortalecido(piccolo.getStats()));
+		for(int i = 0; i < 20 ; i++){
+			cell.atacar(gohan);
+		}
+		for(int i = 0; i < 20; i ++){
+			piccolo.terminoTurno();
+		}
+		
 		piccolo.transformar(equipo);
-		org.junit.Assert.assertEquals(piccolo.obtenerEstado().getClass(), PiccoloEstadoProtector.class);
+		piccolo.transformar(equipo);
+		piccolo.atacar(cell);
+		
+		org.junit.Assert.assertEquals(cell.getVida(), 440);
 
 	}
 	
@@ -76,7 +94,9 @@ public class Entrega2Test {
 		Cell cell = (Cell) equipoV.getPersonaje("Cell");
 		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
-		cell.setKi(50);
+		for(int i = 0; i < 20; i ++){
+			cell.terminoTurno();
+		}
 		cell.absorber(goku);
 
 		org.junit.Assert.assertEquals(cell.getVida(), 520);
@@ -90,15 +110,20 @@ public class Entrega2Test {
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
 		Cell cell = (Cell) equipoV.getPersonaje("Cell");
 		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
+		Gohan gohan = new Gohan(new Coordenada(1,4));
 
-		cell.setKi(50);
+		for(int i = 0; i < 20; i ++){
+			cell.terminoTurno();
+		}
+		
 		cell.absorber(goku);
 		cell.absorber(goku);
 		cell.absorber(goku);
 		cell.absorber(goku);
 		cell.transformar();
+		cell.atacar(gohan);
 
-		org.junit.Assert.assertEquals(cell.obtenerEstado().getClass(), CellEstadoSemiPerfecto.class);
+		org.junit.Assert.assertEquals(gohan.getVida(), 260);
 	}
 	
 	@Test(expected=PersonajeInhabilitadoException.class)
@@ -108,10 +133,12 @@ public class Entrega2Test {
 		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
 		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 		
-		majinBoo.setKi(50);
+		for(int i = 0; i < 20; i ++){
+			majinBoo.terminoTurno();
+		}
 		majinBoo.convierteEnChocolate(goku);
 
-		goku.Atacar(majinBoo);
+		goku.atacar(majinBoo);
 		
 	}
 
@@ -121,8 +148,11 @@ public class Entrega2Test {
 		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
 		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
 
-		goku.setVida(10);
-		goku.Atacar(majinBoo);
+		for(int i = 0; i < 15; i ++){
+			majinBoo.atacar(goku);
+		}
+
+		goku.atacar(majinBoo);
 
 		org.junit.Assert.assertEquals(majinBoo.getVida(), 276);
 	}

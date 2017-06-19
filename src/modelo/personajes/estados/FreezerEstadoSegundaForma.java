@@ -2,21 +2,35 @@ package modelo.personajes.estados;
 
 
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
-import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeTransformarException;
 
-public class FreezerEstadoSegundaForma extends Estado {
+public class FreezerEstadoSegundaForma extends FreezerEstado {
 
-    public FreezerEstadoSegundaForma(Stats stats) {
-		stats.setPoder(40);
-		stats.setDistanciaAtaque(3);
-		stats.setVelocidadMov(4);
-		stats.setKi(stats.getKi() - 20);
+    public FreezerEstadoSegundaForma() {
+
+		poder = 40;
+		distanciaAtaque = 3;
+		velocidadMov = 4;
 
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats) {
+    public void atacar(IPersonajeEquipoVillano pPersonaje) {
         throw new AtaqueMismoEquipoException();
     }
+
+	@Override
+	public FreezerEstado transformar() {
+		if(ki > 50){
+			 ki = ki - 50;
+			 FreezerEstado nuevoestado = new FreezerEstadoDefinitivo();
+			 nuevoestado.vida = vida;
+			 nuevoestado.ki = ki;
+			 nuevoestado.ubicacion = ubicacion;
+			 return nuevoestado;
+
+		}
+		throw new NoPuedeTransformarException();
+	}
 }

@@ -2,8 +2,6 @@ package entrega3;
 
 import org.junit.Test;
 
-import modelo.personajes.Goku;
-import modelo.personajes.estados.GohanEstadoSuperSayajinFase2;
 import modelo.tablero.*;
 
 

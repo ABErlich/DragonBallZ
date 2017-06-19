@@ -1,15 +1,31 @@
 package modelo.personajes.estados;
 
-import modelo.personajes.Stats;
+import modelo.excepciones.NoPuedeTransformarException;
 
 public class GokuEstadoNormal extends GokuEstado {
 
-	public GokuEstadoNormal(Stats stats){
-		stats.setVida(500);
-		stats.setPoder(20);
-		stats.setDistanciaAtaque(2);
-		stats.setVelocidadMov(2);
-		stats.setKi(0);
+	public GokuEstadoNormal(){
+		super();
+		vida = 500;
+		poder = 20;
+		distanciaAtaque = 2;
+		velocidadMov = 2;
+		ki = 0;
+
+	}
+
+	@Override
+	public GokuEstado transformar() {
+		if(ki < 20){
+			throw new NoPuedeTransformarException();
+		}else{
+			ki = ki - 20;
+			GokuEstado nuevoestado = new GokuEstadoKaioKen();
+			nuevoestado.vida = vida;
+			nuevoestado.ki = ki;
+			nuevoestado.ubicacion = ubicacion;
+			return nuevoestado;
+		}
 	}
 
 }

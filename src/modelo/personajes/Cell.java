@@ -4,48 +4,71 @@ import modelo.personajes.Personaje;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
+import modelo.personajes.estados.CellEstado;
 import modelo.personajes.estados.CellEstadoNormal;
-import modelo.personajes.estados.CellEstadoSemiPerfecto;
-import modelo.personajes.estados.CellEstadoPerfecto;
-import modelo.excepciones.NoPuedeRealizarAtaqueException;
-import modelo.excepciones.NoPuedeTransformarException;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
 public class Cell extends Personaje implements IPersonajeEquipoVillano{
 	
-    private int cantAbsorciones;
+	private CellEstado estado;
 
-    public Cell (Coordenada pCoordenada){
-    	stats.setUbicacion(pCoordenada);
-    	this.estado = new CellEstadoNormal(stats);
-        this.cantAbsorciones = 0;
-    }
-
-    public void absorber(IPersonajeEquipoZ pPersonaje){
-        if(this.stats.getKi() < 5){
-            throw new NoPuedeRealizarAtaqueException();
-        }else{
-            this.cantAbsorciones += 1;
-            this.stats.setKi(this.stats.getKi() - 5);
-            this.stats.setVida(this.stats.getVida() + this.stats.getPoder());
-            pPersonaje.setVida(pPersonaje.getVida() - this.stats.getPoder());
-        }
+    public Cell (Coordenada coordenada){
+    	this.estado = new CellEstadoNormal();
+    	estado.setUbicacion(coordenada);
     }
     
-    public void absorber(IPersonajeEquipoVillano pPersonaje){
+    public void atacar(IPersonajeEquipoZ personaje){
+		this.estado.atacar(personaje);
+	}
+
+	public void atacar(IPersonajeEquipoVillano personaje){
+		this.estado.atacar(personaje);
+	}
+
+	public void mover(Coordenada destino){
+		this.estado.mover(destino);
+		//this.ubicacion = pDestino;
+	}
+
+	public void recibirAtaque(int danio){
+		this.estado.recibirAtaque(danio);
+	}
+
+	public void ubicar(Coordenada coordenada){
+		this.estado.setUbicacion(coordenada);
+	}
+
+	public Coordenada obtenerUbicacion(){
+		return this.estado.getUbicacion();
+	}
+	
+	public int getVida() {
+		return this.estado.getVida();
+	}
+	
+	public boolean vidaMenor30porc(){
+		return this.estado.vidaMenor30porc();
+	}
+
+    public void absorber(IPersonajeEquipoZ personaje){
+    	this.estado.absorber(personaje);
+    }
+    
+    public void absorber(IPersonajeEquipoVillano personaje){
         throw new AtaqueMismoEquipoException();
     }
     
-    @Override
     public void transformar(){
-        if(this.estado instanceof CellEstadoNormal && cantAbsorciones >= 4){
-            this.estado = new CellEstadoSemiPerfecto(this.stats);
-        }else if(this.estado instanceof CellEstadoSemiPerfecto && cantAbsorciones >= 8){
-            this.estado = new CellEstadoPerfecto(this.stats);
-        }else{
-            throw new NoPuedeTransformarException();
-        }
+    	CellEstado nuevoEstado = this.estado.transformar();
+        this.estado = nuevoEstado;
     }
+
+	@Override
+	public void terminoTurno() {
+		this.estado.terminoTurno();
+	}
+
+	
 
 }
 

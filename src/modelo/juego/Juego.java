@@ -1,6 +1,5 @@
 package modelo.juego;
 
-import java.util.ArrayList;
 import modelo.tablero.Tablero;
 import modelo.excepciones.JugadorYaExisteException;
 
@@ -12,30 +11,35 @@ public class Juego {
 	
 	private Jugador jugador1;
 	private Jugador jugador2;
+	private Jugador jugadorActual;
 	private Tablero tablero;
 	
-	public void AgregarJugador1(Jugador pJugador){
+	public void agregarJugador1(Jugador jugador){
 		if(jugador1 == null){
-			jugador1 = pJugador;
+			jugador1 = jugador;
 		}else{
 			throw new JugadorYaExisteException();
 		}
 	}
-
-	public void AgregarJugador2(Jugador pJugador){
+	
+	public void agregarJugador2(Jugador jugador){
 		if(jugador2 == null){
-			jugador2 = pJugador;
+			jugador2 = jugador;
 		}else{
 			throw new JugadorYaExisteException();
 		}
 	}
 	
-	public void Comenzar(){
-		
+	public void comenzarJuego(){
+		jugador1.agregarRival(jugador2);
+		jugador2.agregarRival(jugador1);
+		jugadorActual = jugador1;
+		jugador1.comenzarTurno();
 	}
 	
-	public void Terminar(){
-		
+	public void terminarTurno(){
+		jugadorActual = jugadorActual.terminarTurno();
+		jugadorActual.comenzarTurno();
 	}
 	
 	public Tablero getTablero() {

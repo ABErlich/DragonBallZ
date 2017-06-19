@@ -1,21 +1,27 @@
 package modelo.personajes.estados;
 
 
-import modelo.personajes.Stats;
-import modelo.personajes.interfaces.IPersonajeEquipoVillano;
-import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeTransformarException;
 
-public class CellEstadoSemiPerfecto extends Estado {
+public class CellEstadoSemiPerfecto extends CellEstado {
 
-    public CellEstadoSemiPerfecto(Stats stats) {
-		stats.setPoder(40);
-		stats.setDistanciaAtaque(4);
-		stats.setVelocidadMov(3);
+    public CellEstadoSemiPerfecto() {
+		poder = 40;
+		distanciaAtaque = 4;
+		velocidadMov = 3;
 
     }
 
-    @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats) {
-        throw new AtaqueMismoEquipoException();
-    }
+	@Override
+	public CellEstado transformar() {
+		if(this.cantAbsorciones >= 8){
+			CellEstado nuevoestado = new CellEstadoPerfecto();
+			nuevoestado.vida = vida;
+			nuevoestado.ki = ki;
+			nuevoestado.ubicacion = ubicacion;
+			return nuevoestado;
+		}else{
+			throw new NoPuedeTransformarException();
+		}
+	}
 }

@@ -2,24 +2,39 @@ package modelo.personajes.estados;
 
 
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
-import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeTransformarException;
 
-public class MajinBooEstadoNormal extends Estado {
+public class MajinBooEstadoNormal extends MajinBooEstado {
 
-    public MajinBooEstadoNormal(Stats stats){
-    	stats.setVida(300);
-		stats.setPoder(30);
-		stats.setDistanciaAtaque(2);
-		stats.setVelocidadMov(2);
-		stats.setKi(0);
+    public MajinBooEstadoNormal(){
+    	super();
+		vida = 300;
+		poder = 30;
+		distanciaAtaque = 2;
+		velocidadMov = 2;
+		ki = 0;
 
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoVillano pPersonaje, Stats stats){
+    public void atacar(IPersonajeEquipoVillano pPersonaje){
         throw new AtaqueMismoEquipoException();
     }
+
+	@Override
+	public MajinBooEstado transformar() {
+		if(ki > 20){
+        	ki = ki - 20;
+			MajinBooEstado nuevoestado = new MajinBooEstadoBooMalo();
+			nuevoestado.vida = vida;
+			nuevoestado.ki = ki;
+			nuevoestado.ubicacion = ubicacion;
+			return nuevoestado;
+		}
+        throw new NoPuedeTransformarException();
+        
+	}
 
 
 }

@@ -2,22 +2,38 @@ package modelo.personajes.estados;
 
 
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
-import modelo.personajes.Stats;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.NoPuedeTransformarException;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 
-public class PiccoloEstadoNormal extends Estado {
+public class PiccoloEstadoNormal extends PiccoloEstado {
 
-    public PiccoloEstadoNormal(Stats stats){
-    	stats.setVida(500);
-		stats.setPoder(20);
-		stats.setDistanciaAtaque(2);
-		stats.setVelocidadMov(2);
-		stats.setKi(0);
+    public PiccoloEstadoNormal(){
+    	super();
+		vida = 500;
+		poder = 20;
+		distanciaAtaque = 2;
+		velocidadMov = 2;
+		ki = 0;
     }
 
     @Override
-    public void Atacar(IPersonajeEquipoZ pPersonaje, Stats stats){
+    public void atacar(IPersonajeEquipoZ pPersonaje){
         throw new AtaqueMismoEquipoException();
     }
+
+	@Override
+	public PiccoloEstado transformar(IJugadorEquipoZ equipo) {
+        if(ki > 20){
+        	ki = ki - 20;
+			PiccoloEstado nuevoestado = new PiccoloEstadoFortalecido();
+			nuevoestado.vida = vida;
+			nuevoestado.ki = ki;
+			nuevoestado.ubicacion = ubicacion;
+			return nuevoestado;
+        }
+        throw new NoPuedeTransformarException();
+        
+	}
 
 }

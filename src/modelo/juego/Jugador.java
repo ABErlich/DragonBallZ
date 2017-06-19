@@ -9,6 +9,7 @@ import modelo.excepciones.JugadorNoPoseeEquipoException;
 public class Jugador {
 	
 	private String Nombre;
+	private Jugador rival;
 	private IJugadorEquipo equipo;
 
 	public Jugador(String pNombre){
@@ -48,5 +49,19 @@ public class Jugador {
 		}
 		
 	}
+	
+	public void agregarRival(Jugador rival){
+		this.rival = rival;
+	}
+	
+	public void comenzarTurno() {
+		this.equipo.terminoTurno();
+	}
+
+	public Jugador terminarTurno() {
+		return rival;
+	}
+
+	
 	
 }

@@ -2,9 +2,9 @@ package modelo.tablero;
 
 public class Coordenada {
 	
-	public Coordenada(int pCoordX, int pCoordY){
-		this.CoordX = pCoordX;
-		this.CoordY = pCoordY;
+	public Coordenada(int CoordX, int CoordY){
+		this.CoordX = CoordX;
+		this.CoordY = CoordY;
 	}
 	
 	private int CoordX;
@@ -36,9 +36,22 @@ public class Coordenada {
 		return CoordY;
 	}
 
-	public void setCoordenadas(Coordenada otra){
-		this.CoordX = otra.getCoordX();
-		this.CoordY = otra.getCoordY();
+	public int calcularDistancia(Coordenada destino){
+
+		int destinoX = destino.getCoordX();
+		int destinoY = destino.getCoordY();
+
+		int distanciaX = Math.abs(CoordX - destinoX);
+		int distanciaY = Math.abs(CoordY - destinoY);
+
+		int distanciaTotal = 0;
+		if( distanciaX == distanciaY){
+			distanciaTotal = distanciaX;
+		}else{
+			distanciaTotal = distanciaX + distanciaY;
+		}
+		
+		return distanciaTotal;
 	}
 	
 }

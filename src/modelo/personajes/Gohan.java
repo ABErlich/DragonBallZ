@@ -1,57 +1,79 @@
 package modelo.personajes;
 
-import modelo.juego.interfaces.IJugadorEquipo;
+import modelo.juego.interfaces.IJugadorEquipoZ;
 import modelo.personajes.Personaje;
+import modelo.personajes.estados.Estado;
+import modelo.personajes.estados.EstadoConvertidoEnChocolate;
+import modelo.personajes.estados.GohanEstado;
 import modelo.personajes.estados.GohanEstadoNormal;
-import modelo.personajes.estados.GohanEstadoSuperSayajinFase1;
-import modelo.personajes.estados.GohanEstadoSuperSayajinFase2;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.excepciones.NoPuedeRealizarAtaqueException;
-import modelo.excepciones.NoPuedeTransformarException;
 
 public class Gohan extends Personaje implements IPersonajeEquipoZ{
 
-    public Gohan (Coordenada pCoordeanda){
-    	stats.setUbicacion(pCoordeanda);
-    	this.estado = new GohanEstadoNormal(stats);
-
+	Estado estado;
+	
+    public Gohan (Coordenada coordeanda){
+    	this.estado = new GohanEstadoNormal();
+    	estado.setUbicacion(coordeanda);
     }
     
-    public void masenko(IPersonajeEquipoZ pPersonaje){
+    public void atacar(IPersonajeEquipoZ personaje){
+		this.estado.atacar(personaje);
+	}
+
+	public void atacar(IPersonajeEquipoVillano personaje){
+		this.estado.atacar(personaje);
+	}
+
+	public void mover(Coordenada destino){
+		this.estado.mover(destino);
+	}
+
+	public void recibirAtaque(int danio){
+		this.estado.recibirAtaque(danio);
+	}
+
+	public void ubicar(Coordenada coordenada){
+		this.estado.setUbicacion(coordenada);
+	}
+
+	public Coordenada obtenerUbicacion(){
+		return this.estado.getUbicacion();
+	}
+	
+	public int getVida() {
+		return this.estado.getVida();
+	}
+	
+	public boolean vidaMenor30porc(){
+		return this.estado.vidaMenor30porc();
+	}
+    
+    public void masenko(IPersonajeEquipoZ personaje){
     	throw new AtaqueMismoEquipoException();
     }
     
-    public void masenko(IPersonajeEquipoVillano pPersonaje){
-    	if(this.stats.getKi() < 10){
-    		throw new NoPuedeRealizarAtaqueException();
-    	}else{
-    		this.stats.setKi(this.stats.getKi() - 10);
-    		pPersonaje.setVida( (int) (pPersonaje.getVida() - this.stats.getPoder()*1.25) );
-    	}
+    public void masenko(IPersonajeEquipoVillano personaje){
+    	((GohanEstado) this.estado).masenko(personaje);
     }
     
-    @Override
-    public void transformar(){
-        if(this.stats.getKi() >= 10){
-            this.stats.setKi(this.stats.getKi() - 10);
-            this.estado = new GohanEstadoSuperSayajinFase1(this.stats);
-        }else{
-            throw new NoPuedeTransformarException();
-        }
+    public void transformar(IJugadorEquipoZ equipo){
+    	GohanEstado nuevoEstado = ((GohanEstado) this.estado).transformar(equipo);
+    	estado = nuevoEstado;
     }
 
-    // VER CON TOMAS COMO HACER ESTO DE UNA MANERA MEJOR
-    @Override
-    public void transformar(IJugadorEquipo equipo) {
-        if((this.stats.getKi() >= 30) && (equipo.getPersonaje("Goku").getVida() < 150) && (equipo.getPersonaje("Piccolo").getVida() < 150)){
-             this.stats.setKi(this.stats.getKi() - 30);
-            this.estado = new GohanEstadoSuperSayajinFase2(this.stats);
-        }else{
-            throw new NoPuedeTransformarException();
-        }
+	@Override
+	public void convertirEnChocolate() {
+		this.estado = (Estado) (new EstadoConvertidoEnChocolate(estado));
 	}
+
+	@Override
+	public void terminoTurno() {
+		this.estado.terminoTurno();
+	}
+
 }
 
