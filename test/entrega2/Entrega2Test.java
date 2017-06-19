@@ -14,15 +14,14 @@ import modelo.tablero.Coordenada;
 public class Entrega2Test {
 
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test1TransformarGohanFalla() {
+	public void transformarGohanFallaPorFaltaDeKi() {
 		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
-		gohan.transformar(equipo);
 		gohan.transformar(equipo);
 	}
 
 	@Test
-	public void test1TransformarGohanASayajin2(){
+	public void transformarGohanASayajin2LuegoAtacaCon100Danio(){
 		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
@@ -50,14 +49,14 @@ public class Entrega2Test {
 	}
 
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test2TransformarPiccoloFalla() {
+	public void transformarPiccoloFallaGohanConMasDel30PorcDeVida() {
 		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
 		piccolo.transformar(equipo);
 	}
 	
 	@Test
-	public void test2TransformarPiccolo(){
+	public void transformarPiccoloLuegoAtacaCon60Danio(){
 		IJugadorEquipoZ equipo = new JugadorEquipoZ();
 
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
@@ -80,7 +79,7 @@ public class Entrega2Test {
 	}
 	
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test3TransformarCellFalla() {
+	public void transformarCellFallaFaltanAbsorciones() {
 		IJugadorEquipo equipo = new JugadorEquipoVillano();
 		Cell cell = (Cell) equipo.getPersonaje("Cell");
 
@@ -88,7 +87,7 @@ public class Entrega2Test {
 	}
 	
 	@Test
-	public void test3CellAbsorberVida() {
+	public void cellAbsorberVida() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ = new JugadorEquipoZ();
 		Cell cell = (Cell) equipoV.getPersonaje("Cell");
@@ -105,7 +104,7 @@ public class Entrega2Test {
 	}
 	
 	@Test
-	public void test3TransformarCell() {
+	public void transformarCellLuegoDeAbsorberAtacaCon40Danio() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
 		Cell cell = (Cell) equipoV.getPersonaje("Cell");
@@ -127,7 +126,7 @@ public class Entrega2Test {
 	}
 	
 	@Test(expected=PersonajeInhabilitadoException.class)
-	public void test4MajinBooChocolate() {
+	public void majinBooConvierteChocolateAGokuInhabilitadoExcepcion() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
 		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
@@ -142,7 +141,7 @@ public class Entrega2Test {
 		
 	}
 
-	public void test5EspecialGoku() {
+	public void estadoEspecialDeGokuConMenosDel30porcDeVida() {
 		IJugadorEquipo equipoV = new JugadorEquipoVillano();
 		IJugadorEquipo equipoZ= new JugadorEquipoZ();
 		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");

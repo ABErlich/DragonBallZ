@@ -11,7 +11,7 @@ import modelo.juego.Jugador;
 public class Entrega1Test {
 
 	@Test
-	public void test1UbicarAGoku() {
+	public void ubicarAGokuEnCoordenada() {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		
@@ -21,7 +21,7 @@ public class Entrega1Test {
 	}
 
 	@Test
-	public void test1MoverAGoku() {
+	public void mueveAGokuDeUnaCoordAOtra() {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 
@@ -31,7 +31,7 @@ public class Entrega1Test {
 	}
 
 	@Test(expected=MovimientoFueraRangoException.class)
-	public void test1MoverAGokuRangoInalcanzable() {
+	public void mueveAGokuRangoInalcanzableYLanzaExcepcion() {
 
 		Goku goku = new Goku(new Coordenada(1,1));
 
@@ -41,7 +41,7 @@ public class Entrega1Test {
 	}
 
 	@Test(expected=CeldaOcupadaException.class)
-	public void test2Ubicar2PersonajesMismaCelda(){
+	public void ubicar2PersonajesMismaCeldaLanzaExcepcion(){
 
 		Tablero tablero = new Tablero(10);
 
@@ -53,7 +53,7 @@ public class Entrega1Test {
 	}
 	
 	@Test
-	public void test4TransformaPersonaje(){
+	public void transformaAGokuLuegoAtacaCon40Danio(){
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(2,2));
 		
@@ -69,7 +69,7 @@ public class Entrega1Test {
 	}
 	
 	@Test
-	public void test5TransformaYMueve(){
+	public void transformaAGokuYLuegoMueveConNuevoRango(){
 		Tablero tablero = new Tablero(10);
 		Goku goku = new Goku(new Coordenada(1,1));
 		
@@ -87,7 +87,7 @@ public class Entrega1Test {
 	}
 	
 	@Test
-	public void test6CrearJuego(){
+	public void creaJuegoConDosJugadores(){
 		Juego juego = new Juego();
 		Jugador jugador1 = new Jugador("Jose");
 		Jugador jugador2 = new Jugador("Pepe");
@@ -103,7 +103,7 @@ public class Entrega1Test {
 	}
 	
 	@Test(expected=AtaqueFueraDeRangoException.class)
-	public void test7AtaqueFueraRango(){
+	public void ataqueDeGokuFueraDeRangoLanzaExcepcion(){
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(5,5));
@@ -112,7 +112,7 @@ public class Entrega1Test {
 	}
 	
 	@Test
-	public void test7AtaqueValido(){
+	public void ataqueValidoDeGoku(){
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		Cell cell = new Cell(new Coordenada(1,1));
@@ -124,7 +124,7 @@ public class Entrega1Test {
 	}
 	
 	@Test(expected=AtaqueMismoEquipoException.class)
-	public void test7AtaqueMismoEquipo(){
+	public void ataqueMismoEquipoLanzaExcepcion(){
 
 		Goku goku = new Goku(new Coordenada(1,1));
 		Gohan gohan = new Gohan(new Coordenada(1,1));
