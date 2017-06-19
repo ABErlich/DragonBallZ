@@ -1,5 +1,6 @@
 package modelo.personajes.estados;
 
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
@@ -15,12 +16,15 @@ public abstract class Estado {
 	protected int velocidadMov;
 	protected int ki;
 	protected Coordenada ubicacion;
+	protected double bonificacionEsfera;
+	protected int turnosEsferaActiva;
+	protected int turnosNubeActiva;
 	
 	public void atacar(IPersonajeEquipoZ personaje){
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(poder); 
+			personaje.recibirAtaque(calcularDanio()); 
 		}
 	}
 	
@@ -28,12 +32,12 @@ public abstract class Estado {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(poder); 
+			personaje.recibirAtaque(calcularDanio()); 
 		}
 	}
 	
 	public void mover(Coordenada destino){
-		if(ubicacion.calcularDistancia(destino) <= velocidadMov){
+		if(ubicacion.calcularDistancia(destino) <= calcularVelocidadMov()){
 			ubicacion = destino;
 		}else{
 			throw new MovimientoFueraRangoException();
@@ -65,6 +69,40 @@ public abstract class Estado {
 	
 	public void terminoTurno(){
 		ki = ki + 5;
+		turnosEsferaActiva--;
+		turnosNubeActiva--;
+	}
+
+	public void consumir(Consumible consumible) {
+		this.consumir(consumible);
+	}
+
+	public void sumarVida(int vidaExtra) {
+		this.vida = vida + vidaExtra;
+	}
+	
+	protected int calcularDanio(){
+		if(turnosEsferaActiva > 0){
+			return (int)(poder*bonificacionEsfera);
+		}else{
+			return poder;
+		}
+	}
+	
+	protected int calcularVelocidadMov() {
+		if(turnosNubeActiva > 0){
+			return this.velocidadMov*2;
+		}else{
+			return this.velocidadMov;
+		}
+	}
+
+	public void setBonificacionEsfera(double bonificacionAtaque, int turnosBonificacion) {
+		this.turnosEsferaActiva = turnosBonificacion;
+		this.bonificacionEsfera = bonificacionAtaque;
+	}
+	public void setBonificacionNube(int turnosBonificacion) {
+		this.turnosNubeActiva = turnosBonificacion;
 	}
 
 }

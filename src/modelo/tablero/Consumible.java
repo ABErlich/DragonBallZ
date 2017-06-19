@@ -1,18 +1,16 @@
 package modelo.tablero;
 
-import modelo.tablero.IUbicable;
-import modelo.tablero.Coordenada;
+import modelo.personajes.estados.Estado;
 
-public abstract class Consumible implements IUbicable {
+public abstract class Consumible {
 
-	protected Coordenada ubicacion;
 
-	public void ubicar(Coordenada pCoordenada) {
-		this.ubicacion = pCoordenada;
-	}
+	protected boolean consumido;
+	
+	public abstract void consumir(Estado estado);
 
-	public Coordenada obtenerUbicacion(){
-		return this.ubicacion;
+	public boolean estaConsumido(){
+		return this.consumido;
 	}
 
 }

@@ -6,6 +6,7 @@ import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import modelo.personajes.estados.GokuEstado;
 import modelo.personajes.estados.GokuEstadoNormal;
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
@@ -29,7 +30,6 @@ public class Goku extends Personaje implements IPersonajeEquipoZ {
 
 	public void mover(Coordenada destino){
 		this.estado.mover(destino);
-		//this.ubicacion = pDestino;
 	}
 
 	public void recibirAtaque(int danio){
@@ -76,6 +76,11 @@ public class Goku extends Personaje implements IPersonajeEquipoZ {
 	public void terminoTurno() {
 		this.estado.terminoTurno();
 		
+	}
+
+	@Override
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
 }
 

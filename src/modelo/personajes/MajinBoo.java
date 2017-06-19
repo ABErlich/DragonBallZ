@@ -3,6 +3,7 @@ package modelo.personajes;
 import modelo.excepciones.AtaqueMismoEquipoException;
 import modelo.personajes.Personaje;
 import modelo.personajes.estados.MajinBooEstadoNormal;
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.estados.MajinBooEstado;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
@@ -65,6 +66,11 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
 
 	public void terminoTurno() {
 		this.estado.terminoTurno();
+	}
+
+	@Override
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
     
 }

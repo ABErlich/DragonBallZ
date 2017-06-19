@@ -23,9 +23,9 @@ public abstract class GokuEstado extends Estado {
 			throw new AtaqueFueraDeRangoException();
 		}else{
 			if(vida < 150){
-				personaje.recibirAtaque((int)(poder*1.2));
+				personaje.recibirAtaque((int)(calcularDanio()*1.2));
 			}else{
-				personaje.recibirAtaque(poder);
+				personaje.recibirAtaque(calcularDanio());
 			}
 		}
 	}
@@ -35,10 +35,10 @@ public abstract class GokuEstado extends Estado {
     		throw new NoPuedeRealizarAtaqueException();
     	}else{
     		ki = ki - 20;
-    		if(vida < 150){
-    			personaje.recibirAtaque((int) ((poder*1.5)*1.2));
+    		if(this.vidaMenor30porc()){
+    			personaje.recibirAtaque((int) ((calcularDanio()*1.5)*1.2));
     		}else{
-    			personaje.recibirAtaque((int) (poder*1.5));
+    			personaje.recibirAtaque((int) (calcularDanio()*1.5));
     		}
     		
     	}

@@ -4,8 +4,8 @@ import modelo.tablero.Coordenada;
 
 public class Celda {
 	
-	public Celda(Coordenada pCoordenada){
-		this.coordenada = pCoordenada;
+	public Celda(Coordenada coordenada){
+		this.coordenada = coordenada;
 		this.ocupada = false;
 	}
 	
@@ -16,10 +16,10 @@ public class Celda {
 	private Coordenada coordenada;
 	private boolean ocupada;
 
-	public void Ocupar() {
+	public void ocupar() {
 		this.ocupada = true;
 	}
-	public void Desocupar(){
+	public void desocupar(){
 		this.ocupada = false;
 	}
 	public boolean estaOcupada(){

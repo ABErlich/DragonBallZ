@@ -1,6 +1,7 @@
 package modelo.personajes;
 
 import modelo.personajes.Personaje;
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
@@ -66,6 +67,11 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
 	@Override
 	public void terminoTurno() {
 		this.estado.terminoTurno();
+	}
+
+	@Override
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
 
 	

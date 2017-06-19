@@ -2,20 +2,22 @@ package modelo.tablero;
 
 import modelo.excepciones.CeldaNoExisteException;
 import modelo.excepciones.CeldaOcupadaException;
+import modelo.excepciones.PersonajeNoExisteException;
+import modelo.personajes.Personaje;
 import modelo.tablero.Celda;
 import modelo.tablero.Coordenada;
-import modelo.tablero.IUbicable;
-
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class Tablero {
-	
-	public Tablero(int pTamanio){
+
+	public Tablero(int tamanio){
 		this.celdas = new Hashtable<Coordenada, Celda>();
-		this.ubicables = new Hashtable<IUbicable, Celda>();
+		this.consumibles = new Hashtable<Coordenada,Consumible>();
+		this.personajes = new ArrayList<Personaje>();
 		
-		if(pTamanio < 6){
+		if(tamanio < 6){
 			for(int i = 0; i < 6; i++){
 				for(int j = 0; j < 6; j++){
 					Coordenada coord = new Coordenada(i,j);
@@ -24,8 +26,8 @@ public class Tablero {
 			}
 		}else{
 			
-			for(int i = 0; i < pTamanio; i++){
-				for(int j = 0; j < pTamanio; j++){
+			for(int i = 0; i < tamanio; i++){
+				for(int j = 0; j < tamanio; j++){
 					Coordenada coord = new Coordenada(i,j);
 					this.celdas.put(coord, new Celda(coord));
 				}
@@ -33,18 +35,36 @@ public class Tablero {
 		}
 	}
 	
+	private Hashtable<Coordenada, Consumible> consumibles;
 	private Dictionary<Coordenada, Celda> celdas;
-	private Dictionary<IUbicable, Celda> ubicables;
+	private ArrayList<Personaje> personajes;
 	
-	public void agregarUbicable(IUbicable pUbicable){
+	public void agregarPersonaje(Personaje personaje){
 		// obtengo la celda en la cual se pondra el ubicable
-		Celda celda = celdas.get(pUbicable.obtenerUbicacion());
+		Celda celda = celdas.get(personaje.obtenerUbicacion());
 		// si la celda no existe lanzo la excepcion
 		// si esta ocupada lanzo otra excepcion
 		if(celda != null){
 			if(!celda.estaOcupada()){
-				celda.Ocupar();
-				ubicables.put(pUbicable, celda);
+				celda.ocupar();
+				personajes.add(personaje);
+			}else{
+				throw new CeldaOcupadaException();
+			}
+			
+		}else{
+			throw new CeldaNoExisteException();
+		}
+	}
+	
+	public void agregarConsumible(Consumible consumible, Coordenada coordenada){
+		// obtengo la celda en la cual se pondra el ubicable
+		Celda celda = celdas.get(coordenada);
+		// si la celda no existe lanzo la excepcion
+		// si esta ocupada lanzo otra excepcion
+		if(celda != null){
+			if(!celda.estaOcupada()){
+				consumibles.put(coordenada, consumible);
 			}else{
 				throw new CeldaOcupadaException();
 			}
@@ -54,12 +74,37 @@ public class Tablero {
 		}
 	}
 
-	public Coordenada obtenerUbicacion(IUbicable pUbicable) {
-		return ubicables.get(pUbicable).getCoordenada();
+	public void moverPersonaje(Personaje personaje, Coordenada nuevaCoordenada) {
+		Coordenada coordenadaPj = personaje.obtenerUbicacion();
+		if(personajes.contains(personaje)){
+			Celda celda = celdas.get(nuevaCoordenada);
+			// si la celda no existe lanzo la excepcion
+			// si esta ocupada por otro personaje lanzo otra excepcion
+			if(celda != null){
+				if(!celda.estaOcupada()){
+					celda.ocupar();
+					celdas.get(coordenadaPj).desocupar();
+					personajes.get(personajes.indexOf(personaje)).mover(nuevaCoordenada);
+					this.actualizarEstadoConsumibles(personaje);
+				}else{
+					throw new CeldaOcupadaException();
+				}
+				
+			}else{
+				throw new CeldaNoExisteException();
+			}
+		}else{
+			throw new PersonajeNoExisteException();
+		}
 	}
 	
-	public void actualizarPosiciones(){
+	private void actualizarEstadoConsumibles(Personaje personaje){
+		Coordenada coordenadaPj = personaje.obtenerUbicacion();
+		Consumible consumible = consumibles.get(coordenadaPj);
 		
+		if(consumible != null && consumible.estaConsumido() == false){
+			personaje.consumir(consumible);
+		}
 	}
 
 	

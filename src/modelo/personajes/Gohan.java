@@ -6,6 +6,7 @@ import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import modelo.personajes.estados.GohanEstado;
 import modelo.personajes.estados.GohanEstadoNormal;
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
@@ -73,6 +74,11 @@ public class Gohan extends Personaje implements IPersonajeEquipoZ{
 	@Override
 	public void terminoTurno() {
 		this.estado.terminoTurno();
+	}
+
+	@Override
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
 
 }

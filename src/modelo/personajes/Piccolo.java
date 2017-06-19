@@ -5,12 +5,13 @@ import modelo.personajes.estados.PiccoloEstadoNormal;
 import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.PiccoloEstado;
 import modelo.juego.interfaces.IJugadorEquipoZ;
+import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
-public class Piccolo extends Personaje implements IPersonajeEquipoVillano {
+public class Piccolo extends Personaje implements IPersonajeEquipoZ {
 
 	Estado estado;
 	
@@ -69,6 +70,17 @@ public class Piccolo extends Personaje implements IPersonajeEquipoVillano {
 	@Override
 	public void terminoTurno() {
 		this.estado.terminoTurno();
+	}
+
+	@Override
+	public void convertirEnChocolate() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
 
 }
