@@ -49,14 +49,6 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 	public boolean vidaMenor30porc(){
 		return this.estado.vidaMenor30porc();
 	}
-
-    public void absorber(IPersonajeEquipoZ personaje){
-    	this.estado.absorber(personaje);
-    }
-    
-    public void absorber(IPersonajeEquipoVillano personaje){
-        throw new AtaqueMismoEquipoException();
-    }
     
     public void transformar(){
     	CellEstado nuevoEstado = this.estado.transformar();
@@ -74,6 +66,14 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 	public boolean estaVivo(){
 		return this.estado.estaVivo();
 	}
+
+	public void ataqueEspecial(IPersonajeEquipoZ atacado) {
+		this.estado.absorber(atacado);
+	}
+	
+    public void ataqueEspecial(IPersonajeEquipoVillano personaje){
+        throw new AtaqueMismoEquipoException();
+    }
 	
 
 }

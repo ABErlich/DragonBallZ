@@ -12,7 +12,7 @@ import modelo.excepciones.JugadorNoPoseeEquipoException;
 public class Jugador {
 	
 	private String Nombre;
-	private Jugador rival;
+	public Jugador rival;
 	private IJugadorEquipo equipo;
 
 	public Jugador(String nombre){

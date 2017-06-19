@@ -4,19 +4,24 @@ import modelo.tablero.Coordenada;
 import modelo.tablero.Tablero;
 import modelo.excepciones.JugadorYaExisteException;
 import modelo.excepciones.JugadoresNoSeleccionadosException;
+import modelo.excepciones.YaRealizoAtaqueException;
+import modelo.excepciones.YaRealizoMovimientoException;
 import modelo.personajes.interfaces.IPersonaje;
+import modelo.personajes.interfaces.IPersonajeEquipoVillano;
+import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
 public class Juego {
 
-	public Juego(){
-		this.tablero = new Tablero(10);
+	public Juego(int tamanioTablero){
+		this.tablero = new Tablero(tamanioTablero);
 	}
 	
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private Jugador jugadorActual;
 	private Tablero tablero;
-	
+	private boolean realizoMovimiento;
+	private boolean realizoAtaque;
 	
 	public void agregarJugador1(Jugador jugador){
 		if(jugador1 == null){
@@ -50,20 +55,68 @@ public class Juego {
 		this.comenzarTurno();
 	}
 	
-	public void moverPersonaje(String nombrepersonaje, Coordenada coordenada){
-		IPersonaje personaje = jugadorActual.getPersonaje(nombrepersonaje);
-		tablero.moverPersonaje(personaje, coordenada);
+	private void comenzarTurno() {
+		realizoMovimiento = false;
+		realizoAtaque = false;
 	}
 	
-	private void comenzarTurno() {
-		
-		
+	public void moverPersonaje(IPersonaje personaje, Coordenada coordenada){
+		if(!realizoMovimiento){
+			tablero.moverPersonaje(personaje, coordenada);
+			realizoMovimiento = true;
+		}else{
+			throw new YaRealizoMovimientoException();
+		}
+	}
+	
+	public void atacarPersonaje(IPersonajeEquipoZ atacante , IPersonajeEquipoVillano atacado){
+		if(!realizoAtaque){
+			atacante.atacar(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
+	}
+	
+	public void atacarPersonaje(IPersonajeEquipoVillano atacante , IPersonajeEquipoZ atacado){
+		if(!realizoAtaque){
+			atacante.atacar(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
+	}
+	
+	public void ataqueEspecialPersonaje(IPersonajeEquipoZ atacante , IPersonajeEquipoVillano atacado){
+		if(!realizoAtaque){
+			atacante.ataqueEspecial(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
+	}
+	
+	public void ataqueEspecialPersonaje(IPersonajeEquipoVillano atacante , IPersonajeEquipoZ atacado){
+		if(!realizoAtaque){
+			atacante.ataqueEspecial(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
 	}
 
 	public void terminarTurno(){
 		jugadorActual = jugadorActual.terminarTurno();
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	public void asignarEquipoZ(Jugador jugador) {
 		jugador.asignarEquipoZ(this.tablero);
 		jugador.ubicarPersonajes(tablero);

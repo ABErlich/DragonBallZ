@@ -60,13 +60,13 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
     	estado = nuevoEstado;
 	}
     
-    public void makankosappo(IPersonajeEquipoZ personaje){
+    public void ataqueEspecial(IPersonajeEquipoZ atacado) {
     	throw new AtaqueMismoEquipoException();
-    }
-    
-    public void makankosappo(IPersonajeEquipoVillano personaje){
-    	((PiccoloEstado) this.estado).makankosappo(personaje);
+		
+	}
 
+    public void ataqueEspecial(IPersonajeEquipoVillano atacado){
+    	((PiccoloEstado) this.estado).makankosappo(atacado);
     }
 
 	public void terminoTurno() {

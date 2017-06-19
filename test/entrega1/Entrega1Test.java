@@ -88,7 +88,7 @@ public class Entrega1Test {
 	
 	@Test
 	public void test6CrearJuego(){
-		Juego juego = new Juego();
+		Juego juego = new Juego(10);
 		Jugador jugador1 = new Jugador("Jose");
 		Jugador jugador2 = new Jugador("Pepe");
 		

@@ -102,7 +102,7 @@ public class Entrega2Test {
 		for(int i = 0; i < 20; i ++){
 			cell.terminoTurno();
 		}
-		cell.absorber(goku);
+		cell.ataqueEspecial(goku);
 
 		org.junit.Assert.assertEquals(cell.getVida(), 520);
 		org.junit.Assert.assertEquals(goku.getVida(), 480);
@@ -120,10 +120,10 @@ public class Entrega2Test {
 			cell.terminoTurno();
 		}
 		
-		cell.absorber(goku);
-		cell.absorber(goku);
-		cell.absorber(goku);
-		cell.absorber(goku);
+		cell.ataqueEspecial(goku);
+		cell.ataqueEspecial(goku);
+		cell.ataqueEspecial(goku);
+		cell.ataqueEspecial(goku);
 		cell.transformar();
 		cell.atacar(gohan);
 
@@ -139,7 +139,7 @@ public class Entrega2Test {
 		for(int i = 0; i < 20; i ++){
 			majinBoo.terminoTurno();
 		}
-		majinBoo.convierteEnChocolate(goku);
+		majinBoo.ataqueEspecial(goku);
 
 		goku.atacar(majinBoo);
 		

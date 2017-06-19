@@ -5,7 +5,7 @@ import modelo.tablero.Coordenada;
 
 public interface IPersonaje {
 	
-    void atacar(IPersonajeEquipoZ personaje);
+    void atacar(IPersonajeEquipoZ personajeAtacado);
 	void atacar(IPersonajeEquipoVillano personaje);
 	void recibirAtaque(int poderBase,int danio);
 	void mover(Coordenada nuevaCoordenada);

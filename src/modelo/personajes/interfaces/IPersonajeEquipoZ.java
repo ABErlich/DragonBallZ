@@ -7,4 +7,6 @@ public interface IPersonajeEquipoZ extends IPersonaje {
 
 	void convertirEnChocolate();
 
+	void ataqueEspecial(IPersonajeEquipoVillano atacado);
+
 }

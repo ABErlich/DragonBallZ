@@ -54,13 +54,13 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 		return this.estado.vidaMenor30porc();
 	}
     
-    public void kamehameha(IPersonajeEquipoZ personaje){
+    public void ataqueEspecial(IPersonajeEquipoZ atacado) {
     	throw new AtaqueMismoEquipoException();
-    }
-    
-    public void kamehameha(IPersonajeEquipoVillano personaje){
-    	((GokuEstado) this.estado).kamehameha(personaje);
-    	
+		
+	}
+
+    public void ataqueEspecial(IPersonajeEquipoVillano atacado){
+    	((GokuEstado) this.estado).kamehameha(atacado);
     }
     
 	public void transformar(){

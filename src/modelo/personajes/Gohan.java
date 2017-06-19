@@ -55,12 +55,13 @@ public class Gohan implements IPersonajeEquipoZ, IUbicable{
 		return this.estado.vidaMenor30porc();
 	}
     
-    public void masenko(IPersonajeEquipoZ personaje){
+    public void ataqueEspecial(IPersonajeEquipoZ atacado) {
     	throw new AtaqueMismoEquipoException();
-    }
-    
-    public void masenko(IPersonajeEquipoVillano personaje){
-    	((GohanEstado) this.estado).masenko(personaje);
+		
+	}
+
+    public void ataqueEspecial(IPersonajeEquipoVillano atacado){
+    	((GohanEstado) this.estado).masenko(atacado);
     }
     
     public void transformar(IJugadorEquipoZ equipo){

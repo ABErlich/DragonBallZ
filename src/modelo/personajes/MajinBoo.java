@@ -49,13 +49,13 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 	public boolean vidaMenor30porc(){
 		return this.estado.vidaMenor30porc();
 	}
+    
+    public void ataqueEspecial(IPersonajeEquipoZ atacado) {
+    	this.estado.convierteEnChocolate(atacado);
+	}
 
-    public void convierteEnChocolate(IPersonajeEquipoZ personaje){
-        this.estado.convierteEnChocolate(personaje);
-    }
-
-    public void convierteEnChocolate(IPersonajeEquipoVillano personaje){
-        throw new AtaqueMismoEquipoException();
+    public void ataqueEspecial(IPersonajeEquipoVillano atacado){
+    	throw new AtaqueMismoEquipoException();
     }
     
     public void transformar(){

@@ -82,7 +82,7 @@ public class Entrega3Test {
 		for(int i = 0 ; i < 10; i++){
 			majinBoo.terminoTurno();
 		}
-		majinBoo.convierteEnChocolate(goku);
+		majinBoo.ataqueEspecial(goku);
 		
 		goku.terminoTurno();
 		goku.terminoTurno();

@@ -50,14 +50,6 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 		return this.estado.vidaMenor30porc();
 	}
 
-    public void rayoMortal(IPersonajeEquipoZ personaje){
-    	this.estado.rayoMortal(personaje);
-    }
-    
-    public void rayoMortal(IPersonajeEquipoVillano personaje){
-        throw new AtaqueMismoEquipoException();
-    }
-
     public void transformar(){
     	FreezerEstado nuevoEstado = this.estado.transformar();
         this.estado = nuevoEstado;
@@ -72,11 +64,17 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 		
 	}
 
-	@Override
 	public boolean estaVivo() {
 		return this.estado.estaVivo();
 	}
 
+	public void ataqueEspecial(IPersonajeEquipoZ atacado) {
+		this.estado.rayoMortal(atacado);
+	}
+
+    public void ataqueEspecial(IPersonajeEquipoVillano personaje){
+        throw new AtaqueMismoEquipoException();
+    }
     
 }
 
