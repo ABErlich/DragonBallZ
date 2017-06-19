@@ -15,7 +15,7 @@ public abstract class GohanEstado extends Estado {
 			throw new NoPuedeRealizarAtaqueException();
 		}else{
 			ki = ki - 10;
-			personaje.recibirAtaque((int) (poder*1.25));
+			personaje.recibirAtaque(poder, (int) (poder*1.25));
 		}
 	}
 

@@ -29,29 +29,24 @@ public class Coordenada {
 	        && this.CoordY == that.CoordY;
 	}
 	
-	public int getCoordX() {
+	private int getCoordX() {
 		return CoordX;
 	}
-	public int getCoordY() {
+	private int getCoordY() {
 		return CoordY;
 	}
 
 	public int calcularDistancia(Coordenada destino){
-
+		
 		int destinoX = destino.getCoordX();
 		int destinoY = destino.getCoordY();
-
+		
 		int distanciaX = Math.abs(CoordX - destinoX);
 		int distanciaY = Math.abs(CoordY - destinoY);
-
-		int distanciaTotal = 0;
-		if( distanciaX == distanciaY){
-			distanciaTotal = distanciaX;
-		}else{
-			distanciaTotal = distanciaX + distanciaY;
-		}
 		
-		return distanciaTotal;
+		int distanciatotal = Math.max(distanciaX, distanciaY);
+		
+		return distanciatotal;
 	}
 	
 }

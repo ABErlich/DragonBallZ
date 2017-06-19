@@ -24,7 +24,7 @@ public abstract class Estado {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(calcularDanio()); 
+			personaje.recibirAtaque(poder, calcularDanio()); 
 		}
 	}
 	
@@ -32,7 +32,7 @@ public abstract class Estado {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(calcularDanio()); 
+			personaje.recibirAtaque(poder, calcularDanio()); 
 		}
 	}
 	
@@ -44,8 +44,14 @@ public abstract class Estado {
 		}
 	}
 
-	public void recibirAtaque(int danio) {
-		vida = vida - danio;
+	public void recibirAtaque(int poderbase, int danio) {
+		// Si el personaje es atacado por uno de menor poder de pelea, el danio se reduce un 20%
+		if(poderbase >= this.poder){
+			vida = vida - danio;
+		}else{
+			vida = vida - (int)(danio*0.8);
+		}
+		
 	}
 
 	public void setUbicacion(Coordenada coordeanda) {

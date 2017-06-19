@@ -15,7 +15,7 @@ public abstract class FreezerEstado extends Estado {
 			throw new NoPuedeRealizarAtaqueException();
 		}else{
 			ki = ki - 20;
-			personaje.recibirAtaque((int) ((int)poder*1.5));
+			personaje.recibirAtaque(poder, (int) ((int)poder*1.5));
 		}
     
 	}

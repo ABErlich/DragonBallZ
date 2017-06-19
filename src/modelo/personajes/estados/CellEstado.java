@@ -20,7 +20,7 @@ public abstract class CellEstado extends Estado {
             this.cantAbsorciones += 1;
             ki = ki - 5;
             vida = vida + poder;
-            personaje.recibirAtaque(poder);
+            personaje.recibirAtaque(poder, poder);
         }
 	}
 

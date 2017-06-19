@@ -33,8 +33,8 @@ public class Piccolo extends Personaje implements IPersonajeEquipoZ {
 		//this.ubicacion = pDestino;
 	}
 
-	public void recibirAtaque(int danio){
-		this.estado.recibirAtaque(danio);
+	public void recibirAtaque(int poderBase, int danio){
+		this.estado.recibirAtaque(poderBase, danio);
 	}
 
 	public void ubicar(Coordenada coordenada){
