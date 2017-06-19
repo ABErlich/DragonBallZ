@@ -1,19 +1,22 @@
 package modelo.personajes;
 
-import modelo.personajes.Personaje;
 import modelo.personajes.estados.PiccoloEstadoNormal;
 import modelo.personajes.estados.Estado;
+import modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import modelo.personajes.estados.PiccoloEstado;
 import modelo.juego.interfaces.IJugadorEquipoZ;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.PersonajeYaEsChocolateException;
 
-public class Piccolo extends Personaje implements IPersonajeEquipoZ {
+public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 
 	Estado estado;
+	boolean convertidoEnChocolate;
 	
     public Piccolo (Coordenada coordenada){
     	this.estado = new PiccoloEstadoNormal();
@@ -30,7 +33,6 @@ public class Piccolo extends Personaje implements IPersonajeEquipoZ {
 
 	public void mover(Coordenada destino){
 		this.estado.mover(destino);
-		//this.ubicacion = pDestino;
 	}
 
 	public void recibirAtaque(int poderBase, int danio){
@@ -67,20 +69,28 @@ public class Piccolo extends Personaje implements IPersonajeEquipoZ {
 
     }
 
-	@Override
 	public void terminoTurno() {
-		this.estado.terminoTurno();
+		Estado estado = this.estado.terminoTurno();
+		if(estado != null){
+			this.estado = estado;
+			this.convertidoEnChocolate = false;
+		}
 	}
 
-	@Override
 	public void convertirEnChocolate() {
-		// TODO Auto-generated method stub
-		
+		if(convertidoEnChocolate){
+			throw new PersonajeYaEsChocolateException();
+		}
+		this.estado = (Estado) (new EstadoConvertidoEnChocolate(estado));
 	}
 
-	@Override
 	public void consumir(Consumible consumible) {
 		consumible.consumir(this.estado);
+	}
+
+	@Override
+	public boolean estaVivo() {
+		return this.estado.estaVivo();
 	}
 
 }

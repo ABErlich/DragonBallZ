@@ -1,15 +1,15 @@
 package modelo.personajes;
 
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.personajes.Personaje;
 import modelo.personajes.estados.MajinBooEstadoNormal;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.estados.MajinBooEstado;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
-public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
+public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 
 	MajinBooEstado estado;
 	
@@ -28,7 +28,6 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
 
 	public void mover(Coordenada destino){
 		this.estado.mover(destino);
-		//this.ubicacion = pDestino;
 	}
 
 	public void recibirAtaque(int poderBase, int danio){
@@ -68,9 +67,13 @@ public class MajinBoo extends Personaje implements IPersonajeEquipoVillano {
 		this.estado.terminoTurno();
 	}
 
-	@Override
 	public void consumir(Consumible consumible) {
 		consumible.consumir(this.estado);
+	}
+
+	@Override
+	public boolean estaVivo() {
+		return this.estado.estaVivo();
 	}
     
 }

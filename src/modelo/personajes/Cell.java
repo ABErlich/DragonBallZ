@@ -1,15 +1,15 @@
 package modelo.personajes;
 
-import modelo.personajes.Personaje;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.personajes.estados.CellEstado;
 import modelo.personajes.estados.CellEstadoNormal;
 import modelo.excepciones.AtaqueMismoEquipoException;
 
-public class Cell extends Personaje implements IPersonajeEquipoVillano{
+public class Cell implements IPersonajeEquipoVillano, IUbicable{
 	
 	private CellEstado estado;
 
@@ -28,7 +28,6 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
 
 	public void mover(Coordenada destino){
 		this.estado.mover(destino);
-		//this.ubicacion = pDestino;
 	}
 
 	public void recibirAtaque(int poderBase, int danio){
@@ -64,16 +63,17 @@ public class Cell extends Personaje implements IPersonajeEquipoVillano{
         this.estado = nuevoEstado;
     }
 
-	@Override
 	public void terminoTurno() {
 		this.estado.terminoTurno();
 	}
 
-	@Override
 	public void consumir(Consumible consumible) {
 		consumible.consumir(this.estado);
 	}
-
+	
+	public boolean estaVivo(){
+		return this.estado.estaVivo();
+	}
 	
 
 }

@@ -5,6 +5,7 @@ import modelo.tablero.Coordenada;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.MovimientoFueraRangoException;
+import modelo.excepciones.PersonajeFueraDeCombateException;
 import modelo.excepciones.AtaqueFueraDeRangoException;
 
 public abstract class Estado {
@@ -24,7 +25,11 @@ public abstract class Estado {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(poder, calcularDanio()); 
+			if(this.vida > 0){
+				personaje.recibirAtaque(poder, calcularDanio());
+			}else{
+				throw new PersonajeFueraDeCombateException();
+			}
 		}
 	}
 	
@@ -32,13 +37,23 @@ public abstract class Estado {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();
 		}else{
-			personaje.recibirAtaque(poder, calcularDanio()); 
+			if(this.vida > 0){
+				personaje.recibirAtaque(poder, calcularDanio());
+			}else{
+				throw new PersonajeFueraDeCombateException();
+			}
+			 
 		}
 	}
 	
 	public void mover(Coordenada destino){
 		if(ubicacion.calcularDistancia(destino) <= calcularVelocidadMov()){
-			ubicacion = destino;
+			if(this.vida > 0){
+				ubicacion = destino;
+			}else{
+				throw new PersonajeFueraDeCombateException();
+			}
+			
 		}else{
 			throw new MovimientoFueraRangoException();
 		}
@@ -73,10 +88,12 @@ public abstract class Estado {
 		return vida;
 	}
 	
-	public void terminoTurno(){
+	public Estado terminoTurno(){
 		ki = ki + 5;
 		turnosEsferaActiva--;
 		turnosNubeActiva--;
+		
+		return null;
 	}
 
 	public void consumir(Consumible consumible) {
@@ -109,6 +126,14 @@ public abstract class Estado {
 	}
 	public void setBonificacionNube(int turnosBonificacion) {
 		this.turnosNubeActiva = turnosBonificacion;
+	}
+	
+	public boolean estaVivo() {
+		if(this.vida > 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

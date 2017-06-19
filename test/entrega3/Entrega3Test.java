@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import modelo.personajes.Freezer;
 import modelo.personajes.Goku;
+import modelo.personajes.MajinBoo;
 import modelo.tablero.*;
 
 
@@ -73,6 +74,24 @@ public class Entrega3Test {
 		org.junit.Assert.assertEquals(goku.obtenerUbicacion(), new Coordenada(7,7));
 	}
 	
+	@Test
+	public void estadoConvertidoChocolateExpiraLuegoDe3turnos(){
+		MajinBoo majinBoo = new MajinBoo(new Coordenada(2,2));
+		Goku goku = new Goku(new Coordenada(1,1));
+		
+		for(int i = 0 ; i < 10; i++){
+			majinBoo.terminoTurno();
+		}
+		majinBoo.convierteEnChocolate(goku);
+		
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		
+		goku.atacar(majinBoo);
+		
+		org.junit.Assert.assertEquals(majinBoo.getVida(), 284);
+	}
 	
 	
 }

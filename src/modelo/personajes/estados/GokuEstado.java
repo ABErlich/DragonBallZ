@@ -3,6 +3,7 @@ package modelo.personajes.estados;
 import modelo.excepciones.AtaqueFueraDeRangoException;
 import modelo.excepciones.AtaqueMismoEquipoException;
 import modelo.excepciones.NoPuedeRealizarAtaqueException;
+import modelo.excepciones.PersonajeFueraDeCombateException;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
@@ -34,12 +35,21 @@ public abstract class GokuEstado extends Estado {
     	if(ki < 20){
     		throw new NoPuedeRealizarAtaqueException();
     	}else{
-    		ki = ki - 20;
-    		if(this.vidaMenor30porc()){
-    			personaje.recibirAtaque(poder, (int) ((calcularDanio()*1.5)*1.2));
+    		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
+    			throw new AtaqueFueraDeRangoException();
     		}else{
-    			personaje.recibirAtaque(poder, (int) (calcularDanio()*1.5));
+    			if(this.vida > 0){
+    				ki = ki - 20;
+    	    		if(this.vidaMenor30porc()){
+    	    			personaje.recibirAtaque(poder, (int) ((calcularDanio()*1.5)*1.2));
+    	    		}else{
+    	    			personaje.recibirAtaque(poder, (int) (calcularDanio()*1.5));
+    	    		}
+    			}else{
+    				throw new PersonajeFueraDeCombateException();
+    			}
     		}
+    		
     		
     	}
     }

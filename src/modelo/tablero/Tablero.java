@@ -3,7 +3,7 @@ package modelo.tablero;
 import modelo.excepciones.CeldaNoExisteException;
 import modelo.excepciones.CeldaOcupadaException;
 import modelo.excepciones.PersonajeNoExisteException;
-import modelo.personajes.Personaje;
+import modelo.personajes.interfaces.IPersonaje;
 import modelo.tablero.Celda;
 import modelo.tablero.Coordenada;
 import java.util.ArrayList;
@@ -12,10 +12,13 @@ import java.util.Hashtable;
 
 public class Tablero {
 
+	private int tamanio;
+	
 	public Tablero(int tamanio){
+		this.tamanio = tamanio;
 		this.celdas = new Hashtable<Coordenada, Celda>();
 		this.consumibles = new Hashtable<Coordenada,Consumible>();
-		this.personajes = new ArrayList<Personaje>();
+		this.personajes = new ArrayList<IPersonaje>();
 		
 		if(tamanio < 6){
 			for(int i = 0; i < 6; i++){
@@ -37,9 +40,9 @@ public class Tablero {
 	
 	private Hashtable<Coordenada, Consumible> consumibles;
 	private Dictionary<Coordenada, Celda> celdas;
-	private ArrayList<Personaje> personajes;
+	private ArrayList<IPersonaje> personajes;
 	
-	public void agregarPersonaje(Personaje personaje){
+	public void agregarPersonaje(IPersonaje personaje){
 		// obtengo la celda en la cual se pondra el ubicable
 		Celda celda = celdas.get(personaje.obtenerUbicacion());
 		// si la celda no existe lanzo la excepcion
@@ -74,7 +77,7 @@ public class Tablero {
 		}
 	}
 
-	public void moverPersonaje(Personaje personaje, Coordenada nuevaCoordenada) {
+	public void moverPersonaje(IPersonaje personaje, Coordenada nuevaCoordenada) {
 		Coordenada coordenadaPj = personaje.obtenerUbicacion();
 		if(personajes.contains(personaje)){
 			Celda celda = celdas.get(nuevaCoordenada);
@@ -98,13 +101,17 @@ public class Tablero {
 		}
 	}
 	
-	private void actualizarEstadoConsumibles(Personaje personaje){
+	private void actualizarEstadoConsumibles(IPersonaje personaje){
 		Coordenada coordenadaPj = personaje.obtenerUbicacion();
 		Consumible consumible = consumibles.get(coordenadaPj);
 		
 		if(consumible != null && consumible.estaConsumido() == false){
 			personaje.consumir(consumible);
 		}
+	}
+
+	public int getTamanio() {
+		return tamanio;
 	}
 
 	

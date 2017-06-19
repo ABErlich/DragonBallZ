@@ -12,8 +12,8 @@ public class EstadoConvertidoEnChocolate extends Estado {
     private Estado estadoAnterior;
     
     public EstadoConvertidoEnChocolate(Estado estadoAnterior) {
-		setEstadoAnterior(estadoAnterior);
-        setCantidadTurnos(3);
+		this.estadoAnterior = estadoAnterior;
+        this.cantidadTurnos = 3;
     }
 
     @Override
@@ -30,20 +30,15 @@ public class EstadoConvertidoEnChocolate extends Estado {
     public void mover(Coordenada destino){
 		throw new PersonajeInhabilitadoException();
 	}
+    
+    @Override
+    public Estado terminoTurno(){
+    	cantidadTurnos--;
+    	if(cantidadTurnos == 0){
+    		return estadoAnterior;
+    	}else{
+    		return null;
+    	}
+    }
 
-	public int getCantidadTurnos() {
-		return cantidadTurnos;
-	}
-
-	public void setCantidadTurnos(int cantidadTurnos) {
-		this.cantidadTurnos = cantidadTurnos;
-	}
-
-	public Estado getEstadoAnterior() {
-		return estadoAnterior;
-	}
-
-	public void setEstadoAnterior(Estado estadoAnterior) {
-		this.estadoAnterior = estadoAnterior;
-	}
 }

@@ -1,19 +1,21 @@
 package modelo.personajes;
 
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.personajes.Personaje;
+import modelo.excepciones.PersonajeYaEsChocolateException;
 import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import modelo.personajes.estados.GokuEstado;
 import modelo.personajes.estados.GokuEstadoNormal;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
-public class Goku extends Personaje implements IPersonajeEquipoZ {
+public class Goku implements IPersonajeEquipoZ, IUbicable {
 	
 	Estado estado;
+	boolean convertidoEnChocolate;
 	
     public Goku (Coordenada coordeanda){
     	this.estado = new GokuEstadoNormal();
@@ -66,21 +68,28 @@ public class Goku extends Personaje implements IPersonajeEquipoZ {
     	estado = nuevoEstado;
 	}
 
-	@Override
 	public void convertirEnChocolate() {
+		if(convertidoEnChocolate){
+			throw new PersonajeYaEsChocolateException();
+		}
 		this.estado = (Estado) (new EstadoConvertidoEnChocolate(estado));
-		
 	}
 
-	@Override
 	public void terminoTurno() {
-		this.estado.terminoTurno();
-		
+		Estado estado = this.estado.terminoTurno();
+		if(estado != null){
+			this.estado = estado;
+			this.convertidoEnChocolate = false;
+		}
 	}
 
-	@Override
 	public void consumir(Consumible consumible) {
 		consumible.consumir(this.estado);
+	}
+
+	@Override
+	public boolean estaVivo() {
+		return this.estado.estaVivo();
 	}
 }
 

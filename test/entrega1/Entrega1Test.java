@@ -94,12 +94,11 @@ public class Entrega1Test {
 		
 		juego.agregarJugador1(jugador1);
 		juego.agregarJugador2(jugador2);
+		juego.asignarEquipoZ(jugador1);
+		juego.asignarEquipoVillano(jugador2);
 		
-		jugador1.asignarEquipoZ();
-		jugador2.asignarEquipoVillano();
-		
-		org.junit.Assert.assertEquals(3, jugador1.cantidadPersonajesVivos());
-		org.junit.Assert.assertEquals(3, jugador2.cantidadPersonajesVivos());
+		org.junit.Assert.assertEquals(3, juego.cantidadPersonajesVivos(jugador1));
+		org.junit.Assert.assertEquals(3, juego.cantidadPersonajesVivos(jugador2));
 	}
 	
 	@Test(expected=AtaqueFueraDeRangoException.class)

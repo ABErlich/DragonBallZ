@@ -1,20 +1,22 @@
 package modelo.personajes;
 
 import modelo.juego.interfaces.IJugadorEquipoZ;
-import modelo.personajes.Personaje;
 import modelo.personajes.estados.Estado;
 import modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import modelo.personajes.estados.GohanEstado;
 import modelo.personajes.estados.GohanEstadoNormal;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 import modelo.excepciones.AtaqueMismoEquipoException;
+import modelo.excepciones.PersonajeYaEsChocolateException;
 
-public class Gohan extends Personaje implements IPersonajeEquipoZ{
+public class Gohan implements IPersonajeEquipoZ, IUbicable{
 
 	Estado estado;
+	boolean convertidoEnChocolate;
 	
     public Gohan (Coordenada coordeanda){
     	this.estado = new GohanEstadoNormal();
@@ -66,19 +68,28 @@ public class Gohan extends Personaje implements IPersonajeEquipoZ{
     	estado = nuevoEstado;
     }
 
-	@Override
 	public void convertirEnChocolate() {
+		if(convertidoEnChocolate){
+			throw new PersonajeYaEsChocolateException();
+		}
 		this.estado = (Estado) (new EstadoConvertidoEnChocolate(estado));
 	}
 
-	@Override
 	public void terminoTurno() {
-		this.estado.terminoTurno();
+		Estado estado = this.estado.terminoTurno();
+		if(estado != null){
+			this.estado = estado;
+			this.convertidoEnChocolate = false;
+		}
+	}
+
+	public void consumir(Consumible consumible) {
+		consumible.consumir(this.estado);
 	}
 
 	@Override
-	public void consumir(Consumible consumible) {
-		consumible.consumir(this.estado);
+	public boolean estaVivo() {
+		return this.estado.estaVivo();
 	}
 
 }

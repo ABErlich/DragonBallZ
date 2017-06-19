@@ -1,15 +1,15 @@
 package modelo.personajes;
 
 import modelo.excepciones.AtaqueMismoEquipoException;
-import modelo.personajes.Personaje;
 import modelo.personajes.estados.FreezerEstado;
 import modelo.personajes.estados.FreezerEstadoNormal;
 import modelo.tablero.Consumible;
 import modelo.tablero.Coordenada;
+import modelo.tablero.IUbicable;
 import modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import modelo.personajes.interfaces.IPersonajeEquipoZ;
 
-public class Freezer extends Personaje implements IPersonajeEquipoVillano {
+public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 
 	private FreezerEstado estado;
 	
@@ -63,15 +63,18 @@ public class Freezer extends Personaje implements IPersonajeEquipoVillano {
         this.estado = nuevoEstado;
     }
 
-	@Override
 	public void terminoTurno() {
 		this.estado.terminoTurno();
 	}
 
-	@Override
 	public void consumir(Consumible consumible) {
 		consumible.consumir(this.estado);
 		
+	}
+
+	@Override
+	public boolean estaVivo() {
+		return this.estado.estaVivo();
 	}
 
     

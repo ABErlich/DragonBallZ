@@ -3,7 +3,10 @@ package modelo.juego;
 import modelo.juego.JugadorEquipoVillano;
 import modelo.juego.JugadorEquipoZ;
 import modelo.juego.interfaces.IJugadorEquipo;
+import modelo.personajes.interfaces.IPersonaje;
+import modelo.tablero.Tablero;
 import modelo.excepciones.JugadorPoseeEquipoException;
+import modelo.excepciones.PersonajeEquipoContrarioException;
 import modelo.excepciones.JugadorNoPoseeEquipoException;
 
 public class Jugador {
@@ -12,8 +15,8 @@ public class Jugador {
 	private Jugador rival;
 	private IJugadorEquipo equipo;
 
-	public Jugador(String pNombre){
-		this.Nombre = pNombre;
+	public Jugador(String nombre){
+		this.Nombre = nombre;
 	}
 
 	public String getNombre() {
@@ -24,20 +27,28 @@ public class Jugador {
 		Nombre = nombre;
 	}
 
-	public void asignarEquipoZ(){
+	public void asignarEquipoZ(Tablero tablero){
 		if(this.equipo == null){
-			this.equipo = new JugadorEquipoZ();
+			this.equipo = new JugadorEquipoZ(tablero);
 		}else{
 			throw new JugadorPoseeEquipoException();
 		}
-		
 	}
 
-	public void asignarEquipoVillano(){
+	public void asignarEquipoVillano(Tablero tablero){
 		if(this.equipo == null){
-			this.equipo = new JugadorEquipoVillano();
+			this.equipo = new JugadorEquipoVillano(tablero);
 		}else{
 			throw new JugadorPoseeEquipoException();
+		}
+	}
+	
+	public IPersonaje getPersonaje(String nombrePersonaje){
+		IPersonaje personaje = equipo.getPersonaje(nombrePersonaje);
+		if(personaje != null){
+			return personaje;
+		}else{
+			throw new PersonajeEquipoContrarioException();
 		}
 	}
 
@@ -54,12 +65,17 @@ public class Jugador {
 		this.rival = rival;
 	}
 	
-	public void comenzarTurno() {
-		this.equipo.terminoTurno();
-	}
 
 	public Jugador terminarTurno() {
+		this.equipo.terminoTurno();
 		return rival;
+	}
+
+	public void ubicarPersonajes(Tablero tablero) {
+		if(this.equipo == null){
+			throw new JugadorNoPoseeEquipoException();
+		}
+		this.equipo.ubicarPersonajes(tablero);
 	}
 
 	
