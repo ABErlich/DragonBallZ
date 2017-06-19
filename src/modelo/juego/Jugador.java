@@ -30,6 +30,7 @@ public class Jugador {
 	public void asignarEquipoZ(Tablero tablero){
 		if(this.equipo == null){
 			this.equipo = new JugadorEquipoZ(tablero);
+			this.equipo.ubicarPersonajes(tablero);
 		}else{
 			throw new JugadorPoseeEquipoException();
 		}
@@ -38,6 +39,7 @@ public class Jugador {
 	public void asignarEquipoVillano(Tablero tablero){
 		if(this.equipo == null){
 			this.equipo = new JugadorEquipoVillano(tablero);
+			this.equipo.ubicarPersonajes(tablero);
 		}else{
 			throw new JugadorPoseeEquipoException();
 		}
@@ -71,11 +73,12 @@ public class Jugador {
 		return rival;
 	}
 
-	public void ubicarPersonajes(Tablero tablero) {
+	public boolean tieneEquipo() {
 		if(this.equipo == null){
-			throw new JugadorNoPoseeEquipoException();
+			return false;
+		}else{
+			return true;
 		}
-		this.equipo.ubicarPersonajes(tablero);
 	}
 
 	

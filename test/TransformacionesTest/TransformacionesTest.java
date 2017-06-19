@@ -1,21 +1,55 @@
-package entrega2;
+package TransformacionesTest;
 
 import org.junit.Test;
 
-import modelo.personajes.*;
-import modelo.excepciones.*;
+import modelo.excepciones.NoPuedeTransformarException;
+import modelo.juego.JugadorEquipoVillano;
+import modelo.juego.JugadorEquipoZ;
 import modelo.juego.interfaces.IJugadorEquipo;
 import modelo.juego.interfaces.IJugadorEquipoZ;
-import modelo.juego.JugadorEquipoZ;
-import modelo.juego.JugadorEquipoVillano;
+import modelo.personajes.Cell;
+import modelo.personajes.Gohan;
+import modelo.personajes.Goku;
+import modelo.personajes.Piccolo;
 import modelo.tablero.Coordenada;
 import modelo.tablero.Tablero;
 
+public class TransformacionesTest {
+	@Test
+	public void transformaAGokuAKaioKenYAtacaCon40Danio(){
+		Goku goku = new Goku(new Coordenada(1,1));
+		Cell cell = new Cell(new Coordenada(2,2));
+		
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.transformar();
+		
+		goku.atacar(cell);
+		org.junit.Assert.assertEquals(cell.getVida(), 460);
 
-public class Entrega2Test {
-
+	}
+	@Test
+	public void transformaAGokuYLoMueveVerificandoRango(){
+		Tablero tablero = new Tablero(10);
+		Goku goku = new Goku(new Coordenada(1,1));
+		
+		tablero.agregarPersonaje(goku);
+		
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.terminoTurno();
+		goku.transformar();
+		tablero.moverPersonaje(goku, new Coordenada(4,4));
+		
+		org.junit.Assert.assertEquals(new Coordenada(4,4), goku.obtenerUbicacion());;
+		
+	}
+	
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test1TransformarGohanFalla() {
+	public void transformarGohanLanzaExcepcion() {
 		Tablero tablero = new Tablero(10); 
 		IJugadorEquipoZ equipo = new JugadorEquipoZ(tablero);
 		Gohan gohan = (Gohan) equipo.getPersonaje("Gohan");
@@ -24,7 +58,7 @@ public class Entrega2Test {
 	}
 
 	@Test
-	public void test1TransformarGohanASayajin2(){
+	public void transformarGohanASayajin2YAtaca100Danio(){
 		Tablero tablero = new Tablero(10); 
 		IJugadorEquipoZ equipo = new JugadorEquipoZ(tablero);
 
@@ -53,7 +87,7 @@ public class Entrega2Test {
 	}
 
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test2TransformarPiccoloFalla() {
+	public void transformarPiccoloLanzaExcepcion() {
 		Tablero tablero = new Tablero(10);
 		IJugadorEquipoZ equipo = new JugadorEquipoZ(tablero);
 		Piccolo piccolo = (Piccolo) equipo.getPersonaje("Piccolo");
@@ -61,7 +95,7 @@ public class Entrega2Test {
 	}
 	
 	@Test
-	public void test2TransformarPiccolo(){
+	public void transformarPiccoloAProtectorYAtaca60Danio(){
 		Tablero tablero = new Tablero(10);
 		IJugadorEquipoZ equipo = new JugadorEquipoZ(tablero);
 
@@ -85,7 +119,7 @@ public class Entrega2Test {
 	}
 	
 	@Test(expected=NoPuedeTransformarException.class)
-	public void test3TransformarCellFalla() {
+	public void transformarCellLanzaExcepcion() {
 		Tablero tablero = new Tablero(10);
 		IJugadorEquipo equipo = new JugadorEquipoVillano(tablero);
 		Cell cell = (Cell) equipo.getPersonaje("Cell");
@@ -94,23 +128,7 @@ public class Entrega2Test {
 	}
 	
 	@Test
-	public void test3CellAbsorberVida() {
-
-		Cell cell = new Cell(new Coordenada(1,1));
-		Goku goku = new Goku(new Coordenada(2,1));
-
-		for(int i = 0; i < 20; i ++){
-			cell.terminoTurno();
-		}
-		cell.ataqueEspecial(goku);
-
-		org.junit.Assert.assertEquals(cell.getVida(), 520);
-		org.junit.Assert.assertEquals(goku.getVida(), 480);
-		
-	}
-	
-	@Test
-	public void test3TransformarCell() {
+	public void transformarCellASemiPerfecto() {
 
 		Cell cell = new Cell(new Coordenada(3,4));
 		Goku goku = new Goku(new Coordenada(3,3));
@@ -129,37 +147,4 @@ public class Entrega2Test {
 
 		org.junit.Assert.assertEquals(gohan.getVida(), 260);
 	}
-	
-	@Test(expected=PersonajeInhabilitadoException.class)
-	public void test4MajinBooChocolate() {
-
-		MajinBoo majinBoo = new MajinBoo(new Coordenada(4,4));
-		Goku goku = new Goku(new Coordenada(5,5));
-		
-		for(int i = 0; i < 20; i ++){
-			majinBoo.terminoTurno();
-		}
-		majinBoo.ataqueEspecial(goku);
-
-		goku.atacar(majinBoo);
-		
-	}
-
-	public void test5EspecialGoku() {
-		Tablero tablero = new Tablero(10);
-		IJugadorEquipo equipoV = new JugadorEquipoVillano(tablero);
-		IJugadorEquipo equipoZ= new JugadorEquipoZ(tablero);
-		MajinBoo majinBoo = (MajinBoo) equipoV.getPersonaje("MajinBoo");
-		Goku goku = (Goku) equipoZ.getPersonaje("Goku");
-
-		for(int i = 0; i < 15; i ++){
-			majinBoo.atacar(goku);
-		}
-
-		goku.atacar(majinBoo);
-
-		org.junit.Assert.assertEquals(majinBoo.getVida(), 276);
-	}
-	
-
 }

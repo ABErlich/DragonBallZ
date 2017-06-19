@@ -1,16 +1,16 @@
-package entrega3;
+package ConsumiblesTest;
 
 import org.junit.Test;
 
 import modelo.personajes.Freezer;
 import modelo.personajes.Goku;
-import modelo.personajes.MajinBoo;
-import modelo.tablero.*;
+import modelo.tablero.Coordenada;
+import modelo.tablero.EsferaDelDragon;
+import modelo.tablero.NubeVoladora;
+import modelo.tablero.SemilladelHermitano;
+import modelo.tablero.Tablero;
 
-
-public class Entrega3Test {
-
-	
+public class ConsumibleTest {
 	@Test
 	public void semillaAlPisarEntrega100Vida(){
 		Tablero tablero = new Tablero(10);
@@ -73,25 +73,4 @@ public class Entrega3Test {
 
 		org.junit.Assert.assertEquals(goku.obtenerUbicacion(), new Coordenada(7,7));
 	}
-	
-	@Test
-	public void estadoConvertidoChocolateExpiraLuegoDe3turnos(){
-		MajinBoo majinBoo = new MajinBoo(new Coordenada(2,2));
-		Goku goku = new Goku(new Coordenada(1,1));
-		
-		for(int i = 0 ; i < 10; i++){
-			majinBoo.terminoTurno();
-		}
-		majinBoo.ataqueEspecial(goku);
-		
-		goku.terminoTurno();
-		goku.terminoTurno();
-		goku.terminoTurno();
-		
-		goku.atacar(majinBoo);
-		
-		org.junit.Assert.assertEquals(majinBoo.getVida(), 284);
-	}
-	
-	
 }
