@@ -12,6 +12,8 @@ import modelo.personajes.MajinBoo;
 import modelo.tablero.Coordenada;
 import modelo.tablero.Tablero;
 
+import static org.junit.Assert.assertEquals;
+
 public class AtaquesEspecialesTest {
 	@Test
 	public void cellAbsorberVidaVerificaDanioYCuracion() {
@@ -24,8 +26,8 @@ public class AtaquesEspecialesTest {
 		}
 		cell.ataqueEspecial(goku);
 
-		org.junit.Assert.assertEquals(cell.getVida(), 520);
-		org.junit.Assert.assertEquals(goku.getVida(), 480);
+		assertEquals(cell.getVida(), 520);
+		assertEquals(goku.getVida(), 480);
 		
 	}
 	
@@ -55,7 +57,7 @@ public class AtaquesEspecialesTest {
 
 		goku.atacar(majinBoo);
 
-		org.junit.Assert.assertEquals(majinBoo.getVida(), 281);
+		assertEquals(majinBoo.getVida(), 281);
 	}
 	
 	@Test
@@ -74,6 +76,6 @@ public class AtaquesEspecialesTest {
 		
 		goku.atacar(majinBoo);
 		
-		org.junit.Assert.assertEquals(majinBoo.getVida(), 284);
+		assertEquals(majinBoo.getVida(), 284);
 	}
 }

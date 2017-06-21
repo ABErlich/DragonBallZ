@@ -8,3 +8,6 @@ tmp/
 bin/
 build.xml.old
 *.jar
+.idea/
+idea/DragonBallZ.iml
+idea/workspace.xml
