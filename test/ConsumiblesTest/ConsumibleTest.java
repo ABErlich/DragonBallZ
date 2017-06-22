@@ -73,4 +73,5 @@ public class ConsumibleTest {
 
 		org.junit.Assert.assertEquals(goku.obtenerUbicacion(), new Coordenada(7,7));
 	}
+
 }
