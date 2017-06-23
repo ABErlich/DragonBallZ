@@ -1,5 +1,7 @@
 package MovimientosTest;
 
+import modelo.personajes.Freezer;
+import modelo.tablero.Tablero;
 import org.junit.Test;
 
 import modelo.excepciones.MovimientoFueraRangoException;
@@ -37,4 +39,20 @@ public class MovimientosTest {
 		
 		org.junit.Assert.assertEquals(new Coordenada(3, 3), goku.obtenerUbicacion());
 	}
+
+	@Test
+	public void FreezerPasaPorArribaDeGokuYLoAtaca(){
+		Tablero tablero = new Tablero(3);
+		Goku goku = new Goku(new Coordenada(1,2));
+		Freezer freezer = new Freezer(new Coordenada(1,1));
+
+		tablero.agregarPersonaje(goku);
+		tablero.agregarPersonaje(freezer);
+
+		tablero.moverPersonaje(freezer, new Coordenada(1,3));
+		freezer.atacar(goku);
+
+		org.junit.Assert.assertEquals(goku.getVida(), 480);
+	}
+
 }
