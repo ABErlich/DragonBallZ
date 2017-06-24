@@ -1,0 +1,14 @@
+*.sw*
+build/
+libs/
+tmp/
+.classpath
+.project
+.settings/
+bin/
+build.xml.old
+*.jar
+.idea/
+idea/DragonBallZ.iml
+idea/workspace.xml
+out/

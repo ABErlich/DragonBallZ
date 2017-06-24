@@ -1,0 +1,13 @@
+git clone <link>
+
+git status (para ver los cambios en el repo local)
+
+git add . (agrega todos los cambios)
+
+git commit -m "Mensaje de commit"
+
+git push (para subir al github)
+
+puedde tirar error
+
+git pull (baja los ultimos cambios de github)
