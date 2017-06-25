@@ -1,4 +1,4 @@
-package vista;
+package modelo.vista;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,8 +12,8 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import controladores.BotonStartGame;
-import controladores.BotonExit;
+import modelo.controladores.BotonStartGame;
+import modelo.controladores.BotonExit;
 
 public class PantallaDeBienvenida extends VBox{
 	Stage stage;

@@ -1,5 +1,4 @@
-package vista;
-
+package modelo.vista;
 
 
 

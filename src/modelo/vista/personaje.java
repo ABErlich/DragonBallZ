@@ -1,9 +1,8 @@
-package vista;
-
+package modelo.vista;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-
+import modelo.vista.personajeTipo;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
 

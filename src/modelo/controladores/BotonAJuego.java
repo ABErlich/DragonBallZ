@@ -1,4 +1,4 @@
-package controladores;
+package modelo.controladores;
 
 
 import javafx.event.ActionEvent;

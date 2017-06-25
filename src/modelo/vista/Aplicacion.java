@@ -1,5 +1,5 @@
-package vista;
-	
+package modelo.vista;
+
 
 
 import javafx.application.Application;

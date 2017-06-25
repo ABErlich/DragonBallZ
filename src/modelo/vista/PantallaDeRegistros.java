@@ -1,5 +1,6 @@
-package vista;
-import controladores.BotonAJuego;
+package modelo.vista;
+
+import modelo.controladores.BotonAJuego;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
