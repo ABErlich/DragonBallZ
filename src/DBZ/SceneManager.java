@@ -6,6 +6,9 @@ import DBZ.view.VistaInicialController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SceneManager {
@@ -52,5 +55,16 @@ public class SceneManager {
     	this.stage.setScene(escena);
     	this.stage.show();
     }
+
+	public void show(String message) {
+		final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(this.stage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text(message));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+	}
 
 }

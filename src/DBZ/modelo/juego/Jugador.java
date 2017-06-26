@@ -3,6 +3,7 @@ package DBZ.modelo.juego;
 import DBZ.modelo.juego.JugadorEquipoVillano;
 import DBZ.modelo.juego.JugadorEquipoZ;
 import DBZ.modelo.juego.interfaces.IJugadorEquipo;
+import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.interfaces.IPersonaje;
 import DBZ.modelo.tablero.Tablero;
 import DBZ.modelo.excepciones.JugadorPoseeEquipoException;
@@ -79,6 +80,10 @@ public class Jugador {
 		}else{
 			return true;
 		}
+	}
+
+	public IJugadorEquipoZ getEquipo() {
+		return (IJugadorEquipoZ) this.equipo;
 	}
 
 

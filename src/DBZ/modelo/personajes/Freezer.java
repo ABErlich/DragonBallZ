@@ -1,6 +1,7 @@
 package DBZ.modelo.personajes;
 
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.estados.FreezerEstado;
 import DBZ.modelo.personajes.estados.FreezerEstadoNormal;
 import DBZ.modelo.tablero.Consumible;
@@ -88,6 +89,10 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 
 	public int getKi() {
 		return this.estado.getKi();
+	}
+
+	public void transformar(IJugadorEquipoZ equipo) {
+
 	}
 
 

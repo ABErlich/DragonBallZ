@@ -140,5 +140,6 @@
       <Label fx:id="cellKi" layoutX="944.0" layoutY="293.0" text="Label" />
       <Label fx:id="majinbooKi" layoutX="950.0" layoutY="439.0" text="Label" />
       <Pane layoutX="133.0" layoutY="-8.0" onMouseClicked="#handleLimpiarSeleccion" prefHeight="90.0" prefWidth="716.0" />
+      <Button layoutX="163.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#handleTransformar" text="Transformar" />
    </children>
 </AnchorPane>

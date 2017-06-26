@@ -91,6 +91,7 @@ public class VistaJuegoController {
 
     @FXML
     GridPane tablero;
+	private SceneManager sceneManager;
 
     public VistaJuegoController() {
     }
@@ -105,6 +106,7 @@ public class VistaJuegoController {
     }
 
 	public void setSceneManager(SceneManager sceneManager) {
+		this.sceneManager = sceneManager;
 	}
 
 	public void setUpJuego(Juego juego) {
@@ -146,6 +148,8 @@ public class VistaJuegoController {
 
 		lblJugadorZ.setText(juego.jugadorEquipoZ.getNombre());
 		lblJugadorVillano.setText(juego.jugadorEquipoVillano.getNombre());
+
+		juego.comenzarJuego();
 	}
 
     @FXML
@@ -153,6 +157,7 @@ public class VistaJuegoController {
     	Node elemento = (Node) event.getTarget();
 
     	if(PanelPersonajeSeleccionado == null){
+    		// si se clickeo un persojae lo seleccioino
     		if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer || elemento == pCell || elemento == pMajinboo){
     			elemento.getStyleClass().add("seleccionado");
     			this.PanelPersonajeSeleccionado = (Pane) elemento;
@@ -174,68 +179,73 @@ public class VistaJuegoController {
     			this.PanelPersonajeSeleccionado = null;
     		}
     	}else{
-    		if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer
-    				|| elemento == pCell || elemento == pMajinboo){
-    			IPersonaje objetivo = null;
-    			//ataco
-    			String pj = elemento.getStyleClass().get(0);
-    			if(pj == "gokuNormal"){
-    				objetivo = (Goku) goku;
-    	    	}else if(pj == "gohanNormal"){
-    	    		objetivo = (Gohan) gohan;
-    	    	}else if (pj == "piccoloNormal"){
-    	    		objetivo = (Piccolo) piccolo;
-    	    	}else if (pj == "freezerNormal"){
-    	    		objetivo = (Freezer) freezer;
-    	    	}else if (pj == "cellNormal"){
-    	    		objetivo = (Cell) cell;
-    	    	}else if (pj == "majinbooNormal"){
-    	    		objetivo = (MajinBoo) majinboo;
-    	    	}
-    			try{
-    				juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
-    			}catch(Exception ex){
-
-    			}
-
-    		}else{
-    			//muevo
-    			Pane origen = this.PanelPersonajeSeleccionado;
-    			Pane destino = (Pane) elemento;
-    			Integer origenY = tablero.getColumnIndex(origen);
-    		    Integer origenX = tablero.getRowIndex(origen);
-    		    Integer destinoY = tablero.getColumnIndex(destino);
-    		    Integer destinoX = tablero.getRowIndex(destino);
-
-    		    if(origenX == null){
-    		    	origenX = 0;
-    		    }
-    		    if(origenY == null){
-    		    	origenY = 0;
-    		    }
-    		    if(destinoX == null){
-    		    	destinoX = 0;
-    		    }
-    		    if(destinoY == null){
-    		    	destinoY = 0;
-    		    }
-
-    		    try{
-    		    	juego.moverPersonaje(personajeSeleccionado, new Coordenada(destinoX, destinoY));
-
-    		    	tablero.getChildren().remove(destino);
-        			tablero.getChildren().remove(origen);
-
-        			tablero.add(origen, destinoY, destinoX);
-        			tablero.add(destino, origenY, origenX);
-    		    }catch(Exception ex){
-
-    		    }
-
-    		}
-
+    		this.ejecutarAccion(event);
     	}
 
+    }
+
+    private void ejecutarAccion(MouseEvent event){
+    	Node elemento = (Node) event.getTarget();
+
+    	if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer
+				|| elemento == pCell || elemento == pMajinboo){
+    		// Ataco
+			IPersonaje objetivo = null;
+			String pj = elemento.getStyleClass().get(0);
+			if(pj == "gokuNormal"){
+				objetivo = (Goku) goku;
+	    	}else if(pj == "gohanNormal"){
+	    		objetivo = (Gohan) gohan;
+	    	}else if (pj == "piccoloNormal"){
+	    		objetivo = (Piccolo) piccolo;
+	    	}else if (pj == "freezerNormal"){
+	    		objetivo = (Freezer) freezer;
+	    	}else if (pj == "cellNormal"){
+	    		objetivo = (Cell) cell;
+	    	}else if (pj == "majinbooNormal"){
+	    		objetivo = (MajinBoo) majinboo;
+	    	}
+			try{
+				juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
+			}catch(Exception ex){
+				sceneManager.show(ex.getMessage());
+			}
+
+		}else{
+			//muevo
+			Pane origen = this.PanelPersonajeSeleccionado;
+			Pane destino = (Pane) elemento;
+			Integer origenY = tablero.getColumnIndex(origen);
+		    Integer origenX = tablero.getRowIndex(origen);
+		    Integer destinoY = tablero.getColumnIndex(destino);
+		    Integer destinoX = tablero.getRowIndex(destino);
+
+		    if(origenX == null){
+		    	origenX = 0;
+		    }
+		    if(origenY == null){
+		    	origenY = 0;
+		    }
+		    if(destinoX == null){
+		    	destinoX = 0;
+		    }
+		    if(destinoY == null){
+		    	destinoY = 0;
+		    }
+
+		    try{
+		    	juego.moverPersonaje(personajeSeleccionado, new Coordenada(destinoX, destinoY));
+
+		    	tablero.getChildren().remove(destino);
+    			tablero.getChildren().remove(origen);
+
+    			tablero.add(origen, destinoY, destinoX);
+    			tablero.add(destino, origenY, origenX);
+		    }catch(Exception ex){
+		    	sceneManager.show(ex.getMessage());
+		    }
+
+		}
     }
 
     @FXML
@@ -249,7 +259,37 @@ public class VistaJuegoController {
 
     @FXML
     private void handleTerminarTurno(){
-    	juego.terminarTurno();
+    	try{
+    		juego.terminarTurno();
+    	}catch(Exception ex){
+    		sceneManager.show(ex.getMessage());
+    	}
+    	this.Actualizar();
     }
+
+    @FXML
+    private void handleTransformar(){
+    	try{
+	    	if(this.personajeSeleccionado == gohan || this.personajeSeleccionado == piccolo){
+	    		this.personajeSeleccionado.transformar(juego.jugadorEquipoZ.getEquipo());
+	    	}else{
+	    		this.personajeSeleccionado.transformar();
+	    	}
+	    	sceneManager.show("El personaje se transformo correctamente");
+    	}catch(Exception ex){
+    		sceneManager.show(ex.getMessage());
+    	}
+
+    }
+
+    private void Actualizar(){
+		gokuKi.setText(Integer.toString(goku.getKi()));
+		gohanKi.setText(Integer.toString(gohan.getKi()));
+		piccoloKi.setText(Integer.toString(piccolo.getKi()));
+		freezerKi.setText(Integer.toString(freezer.getKi()));
+		cellKi.setText(Integer.toString(cell.getKi()));
+		majinbooKi.setText(Integer.toString(majinboo.getKi()));
+    }
+
 
 }

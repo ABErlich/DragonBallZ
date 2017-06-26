@@ -107,6 +107,11 @@ public class Gohan implements IPersonajeEquipoZ, IUbicable{
 		return this.estado.getKi();
 	}
 
+	@Override
+	public void transformar() {
+
+	}
+
 
 
 }

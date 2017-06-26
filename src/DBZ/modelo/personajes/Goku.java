@@ -2,6 +2,7 @@ package DBZ.modelo.personajes;
 
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
 import DBZ.modelo.excepciones.PersonajeYaEsChocolateException;
+import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.estados.Estado;
 import DBZ.modelo.personajes.estados.EstadoConvertidoEnChocolate;
 import DBZ.modelo.personajes.estados.GokuEstado;
@@ -104,6 +105,10 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 
 	public int getKi() {
 		return this.estado.getKi();
+	}
+
+	public void transformar(IJugadorEquipoZ equipo) {
+
 	}
 
 

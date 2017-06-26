@@ -68,6 +68,7 @@ public class Juego {
 		}else{
 			jugadorActual = jugadorEquipoVillano;
 		}
+
 		this.comenzarTurno();
 		return jugadorActual;
 	}

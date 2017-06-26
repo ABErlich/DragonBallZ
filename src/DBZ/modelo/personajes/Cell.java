@@ -9,6 +9,7 @@ import DBZ.modelo.personajes.interfaces.IPersonajeEquipoZ;
 import DBZ.modelo.personajes.estados.CellEstado;
 import DBZ.modelo.personajes.estados.CellEstadoNormal;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 
 public class Cell implements IPersonajeEquipoVillano, IUbicable{
 
@@ -87,6 +88,11 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 
 	public int getKi() {
 		return this.estado.getKi();
+	}
+
+	@Override
+	public void transformar(IJugadorEquipoZ equipo) {
+
 	}
 
 

@@ -107,6 +107,12 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 		return this.estado.getKi();
 	}
 
+	@Override
+	public void transformar() {
+		// TODO Auto-generated method stub
+
+	}
+
 
 
 }

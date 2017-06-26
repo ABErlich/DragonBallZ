@@ -1,5 +1,6 @@
 package DBZ.modelo.personajes.interfaces;
 
+import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.tablero.Consumible;
 import DBZ.modelo.tablero.Coordenada;
 
@@ -16,5 +17,7 @@ public interface IPersonaje {
 	void terminoTurno();
 	void consumir(Consumible consumible);
 	boolean estaVivo();
+	void transformar();
+	void transformar(IJugadorEquipoZ equipo);
 
 }
