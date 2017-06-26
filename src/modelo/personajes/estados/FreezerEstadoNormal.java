@@ -11,7 +11,7 @@ public class FreezerEstadoNormal extends FreezerEstado {
 		distanciaAtaque = 2;
 		velocidadMov = 4;
 		ki = 0;
-
+		vidaMaxima = 400;
     }
 
 	@Override

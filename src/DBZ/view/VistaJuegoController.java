@@ -207,6 +207,7 @@ public class VistaJuegoController {
 	    	}
 			try{
 				juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
+				this.Actualizar();
 			}catch(Exception ex){
 				sceneManager.show(ex.getMessage());
 			}
@@ -289,6 +290,13 @@ public class VistaJuegoController {
 		freezerKi.setText(Integer.toString(freezer.getKi()));
 		cellKi.setText(Integer.toString(cell.getKi()));
 		majinbooKi.setText(Integer.toString(majinboo.getKi()));
+
+		gokuVida.setText(Integer.toString(goku.getVida()));
+		gohanVida.setText(Integer.toString(gohan.getVida()));
+		piccoloVida.setText(Integer.toString(piccolo.getVida()));
+		freezerVida.setText(Integer.toString(freezer.getVida()));
+		cellVida.setText(Integer.toString(cell.getVida()));
+		majinbooVida.setText(Integer.toString(majinboo.getVida()));
     }
 
 

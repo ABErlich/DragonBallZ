@@ -8,7 +8,7 @@ import modelo.personajes.interfaces.IPersonajeEquipoZ;
 public abstract class FreezerEstado extends Estado {
 
 	public FreezerEstado() {
-    	vidaMaxima = 500;
+		vidaMaxima = 400;
 	}
 		
 	

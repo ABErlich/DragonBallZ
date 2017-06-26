@@ -26,7 +26,7 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar(atacado);
+    	this.estado.atacar((IPersonajeEquipoZ) atacado);
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
