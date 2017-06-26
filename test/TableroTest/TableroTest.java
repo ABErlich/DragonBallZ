@@ -1,10 +1,9 @@
 package TableroTest;
 
-import modelo.excepciones.CeldaOcupadaException;
-import modelo.personajes.Cell;
-import modelo.personajes.Freezer;
-import modelo.personajes.Goku;
-import modelo.tablero.*;
+import DBZ.modelo.excepciones.CeldaOcupadaException;
+import DBZ.modelo.personajes.Cell;
+import DBZ.modelo.personajes.Goku;
+import DBZ.modelo.tablero.*;
 import org.junit.Test;
 
 public class TableroTest {

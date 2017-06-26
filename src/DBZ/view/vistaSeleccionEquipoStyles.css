@@ -1,0 +1,19 @@
+
+
+.equipoZ {
+    -fx-background-image: url("../../../resources/imagenes/equipoZ.png");
+    -fx-background-size: cover ;
+    -fx-background-repeat: stretch;
+}
+
+.equipoVillano {
+    -fx-background-image: url("../../../resources/imagenes/equipoVillano.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.seleccionado {
+	-fx-border-style:solid;
+	-fx-border-color:green;
+	-fx-border-width:3px;
+}

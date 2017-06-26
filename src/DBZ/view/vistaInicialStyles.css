@@ -1,0 +1,7 @@
+
+
+.vistaInicial {
+    -fx-background-image: url("../../../resources/imagenes/imagenInicio.png");
+    -fx-background-size: cover ;
+    -fx-background-repeat: no-repeat ;
+}
