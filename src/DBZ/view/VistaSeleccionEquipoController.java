@@ -36,7 +36,7 @@ public class VistaSeleccionEquipoController {
 	TextField txtApodo;
 
 	public VistaSeleccionEquipoController() {
-		this.juego = new Juego(10);
+		this.juego = new Juego(6);
     }
 
     @FXML
