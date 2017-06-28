@@ -116,10 +116,6 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 		consumible.consumir(this.estado);
 	}
 
-	@Override
-	public boolean estaVivo() {
-		return this.estado.estaVivo();
-	}
 
 	public int getVidaMax() {
 		return estado.getVidaMax();
@@ -136,6 +132,10 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 	@Override
 	public String getNombreEstado() {
 		return this.estado.getClass().getSimpleName();
+	}
+
+	public boolean personajeVivo(){
+		return this.estado.personajeVivo();
 	}
 
 }

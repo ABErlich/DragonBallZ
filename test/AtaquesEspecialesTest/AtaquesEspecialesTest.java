@@ -21,7 +21,7 @@ public class AtaquesEspecialesTest {
 		}
 		cell.ataqueEspecial(goku);
 
-		assertEquals(cell.getVida(), 520);
+		assertEquals(cell.getVida(), 500);
 		assertEquals(goku.getVida(), 480);
 
 	}

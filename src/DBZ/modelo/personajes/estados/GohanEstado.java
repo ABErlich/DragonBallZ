@@ -10,6 +10,7 @@ public abstract class GohanEstado extends Estado {
 
 	public GohanEstado(){
 		vidaMaxima = 300;
+		vivo = true;
 	}
 
 	public void masenko(IPersonajeEquipoVillano personaje){

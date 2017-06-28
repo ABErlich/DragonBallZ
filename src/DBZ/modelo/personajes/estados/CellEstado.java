@@ -12,6 +12,7 @@ public abstract class CellEstado extends Estado {
 	public CellEstado(){
 		cantAbsorciones = 0;
 		vidaMaxima = 500;
+		vivo = true;
 	}
 
 	public void atacar(IPersonajeEquipoZ personaje){
@@ -36,6 +37,9 @@ public abstract class CellEstado extends Estado {
     				this.cantAbsorciones += 1;
     	            ki = ki - 5;
     	            vida = vida + poder;
+    	            if(vida > vidaMaxima){
+    	            	vida = vidaMaxima;
+    	            }
     	            personaje.recibirAtaque(poder, poder);
     			}else{
     				throw new PersonajeFueraDeCombateException();

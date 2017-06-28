@@ -21,6 +21,7 @@ public abstract class Estado {
 	protected double bonificacionEsfera;
 	protected int turnosEsferaActiva;
 	protected int turnosNubeActiva;
+	protected boolean vivo;
 
 	public void atacar(IPersonaje atacado){
 		if(ubicacion.calcularDistancia(atacado.obtenerUbicacion()) > distanciaAtaque){
@@ -78,6 +79,10 @@ public abstract class Estado {
 			vida = vida - danio;
 		}else{
 			vida = vida - (int)(danio*0.8);
+		}
+		if(vida <= 0){
+			vida = 0;
+			vivo = false;
 		}
 
 	}
@@ -157,6 +162,8 @@ public abstract class Estado {
 		return this.ki;
 	}
 
-
+	public boolean personajeVivo(){
+		return vivo;
+	}
 
 }

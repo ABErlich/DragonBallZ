@@ -11,6 +11,7 @@ public abstract class GokuEstado extends Estado {
 
     public GokuEstado() {
     	vidaMaxima = 500;
+    	vivo = true;
 	}
 
 	@Override

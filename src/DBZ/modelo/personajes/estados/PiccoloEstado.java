@@ -10,6 +10,7 @@ public abstract class PiccoloEstado extends Estado {
 
 	public PiccoloEstado() {
 		vidaMaxima = 500;
+		vivo = true;
 	}
 
 	public void makankosappo(IPersonajeEquipoVillano personaje){

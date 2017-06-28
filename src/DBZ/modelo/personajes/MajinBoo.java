@@ -100,10 +100,6 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 		consumible.consumir(this.estado);
 	}
 
-	@Override
-	public boolean estaVivo() {
-		return this.estado.estaVivo();
-	}
 
 	public int getVidaMax() {
 		return this.estado.getVidaMax();
@@ -119,6 +115,10 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 	@Override
 	public String getNombreEstado() {
 		return this.estado.getClass().getSimpleName();
+	}
+
+	public boolean personajeVivo(){
+		return this.estado.personajeVivo();
 	}
 
 }

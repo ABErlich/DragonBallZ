@@ -86,6 +86,10 @@ public class Jugador {
 		return (IJugadorEquipoZ) this.equipo;
 	}
 
+	public boolean puedeUsarPersonaje(IPersonaje personaje) {
+		return this.equipo.puedeUsarPersonaje(personaje);
+	}
+
 
 
 }

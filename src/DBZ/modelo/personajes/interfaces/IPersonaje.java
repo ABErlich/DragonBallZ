@@ -16,10 +16,9 @@ public interface IPersonaje {
 	boolean vidaMenor30porc();
 	void terminoTurno();
 	void consumir(Consumible consumible);
-	boolean estaVivo();
 	void transformar();
 	void transformar(IJugadorEquipoZ equipo);
 	void ataqueEspecial(IPersonaje atacado);
 	String getNombreEstado();
-
+	boolean personajeVivo();
 }

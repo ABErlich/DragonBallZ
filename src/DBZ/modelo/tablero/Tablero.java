@@ -84,14 +84,14 @@ public class Tablero {
 			// si la celda no existe lanzo la excepcion
 			// si esta ocupada por otro personaje lanzo otra excepcion
 			if(celda != null){
-				if(!celda.estaOcupada()){
+				//if(!celda.estaOcupada()){
 					celda.ocupar();
 					celdas.get(coordenadaPj).desocupar();
 					personajes.get(personajes.indexOf(personaje)).mover(nuevaCoordenada);
 					this.actualizarEstadoConsumibles(personaje);
-				}else{
-					throw new CeldaOcupadaException();
-				}
+				//}else{
+				//	throw new CeldaOcupadaException();
+				//}
 
 			}else{
 				throw new CeldaNoExisteException();

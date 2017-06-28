@@ -1,12 +1,16 @@
 package DBZ.modelo.juego;
 
 import DBZ.modelo.juego.interfaces.IJugadorEquipoVillano;
+
+import java.util.Enumeration;
+
 import DBZ.modelo.juego.JugadorEquipo;
 import DBZ.modelo.tablero.Coordenada;
 import DBZ.modelo.tablero.Tablero;
 import DBZ.modelo.personajes.Cell;
 import DBZ.modelo.personajes.Freezer;
 import DBZ.modelo.personajes.MajinBoo;
+import DBZ.modelo.personajes.interfaces.IPersonaje;
 
 public class JugadorEquipoVillano extends JugadorEquipo implements IJugadorEquipoVillano {
 
@@ -18,6 +22,8 @@ public class JugadorEquipoVillano extends JugadorEquipo implements IJugadorEquip
         this.personajes.put("Freezer", new Freezer(new Coordenada(tamaniotablero-2,tamaniotablero-1)));
         this.personajes.put("MajinBoo", new MajinBoo(new Coordenada(tamaniotablero-1,tamaniotablero-1)));
     }
+
+
 
 
 }

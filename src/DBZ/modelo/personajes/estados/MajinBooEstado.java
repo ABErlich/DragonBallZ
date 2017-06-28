@@ -9,10 +9,11 @@ public abstract class MajinBooEstado extends Estado {
 
 	public MajinBooEstado() {
 		vidaMaxima = 300;
+		vivo = true;
 	}
 
-	
-	
+
+
 	public void convierteEnChocolate(IPersonajeEquipoZ personaje){
         if(ki < 30){
             throw new NoPuedeRealizarAtaqueException();

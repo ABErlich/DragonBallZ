@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import DBZ.SceneManager;
 import DBZ.modelo.juego.Juego;
+import DBZ.modelo.juego.Jugador;
 import DBZ.modelo.personajes.Cell;
 import DBZ.modelo.personajes.Freezer;
 import DBZ.modelo.personajes.Gohan;
@@ -29,12 +30,13 @@ import DBZ.modelo.tablero.Coordenada;
 public class VistaJuegoController {
 
 	Juego juego;
+	Jugador jugadorActual;
+
 	@FXML
 	Label lblJugadorZ;
 	@FXML
 	Label lblJugadorVillano;
 
-	String nombrePersonajeSeleccionado;
     Pane PanelPersonajeSeleccionado;
     IPersonaje personajeSeleccionado;
 
@@ -104,15 +106,6 @@ public class VistaJuegoController {
     public VistaJuegoController() {
     }
 
-    public VistaJuegoController(Juego juego) {
-    	this.juego = juego;
-    }
-
-    @FXML
-    private void initialize() {
-
-    }
-
 	public void setSceneManager(SceneManager sceneManager) {
 		this.sceneManager = sceneManager;
 	}
@@ -157,7 +150,9 @@ public class VistaJuegoController {
 		lblJugadorZ.setText(juego.jugadorEquipoZ.getNombre());
 		lblJugadorVillano.setText(juego.jugadorEquipoVillano.getNombre());
 
-		juego.comenzarJuego();
+		jugadorActual = juego.comenzarJuego();
+
+
 	}
 
     @FXML
@@ -185,9 +180,15 @@ public class VistaJuegoController {
 	    	    		this.personajeSeleccionado = majinboo;
 	    	    	}
 	    		}else{
-
 	    			this.PanelPersonajeSeleccionado = null;
-
+	    		}
+	    		if(!jugadorActual.puedeUsarPersonaje(this.personajeSeleccionado)){
+	    			this.personajeSeleccionado = null;
+	    			String estilo = this.PanelPersonajeSeleccionado.getStyleClass().get(0);
+	        		PanelPersonajeSeleccionado.getStyleClass().clear();
+	        		PanelPersonajeSeleccionado.getStyleClass().add(estilo);
+	        		this.PanelPersonajeSeleccionado = null;
+	        		sceneManager.show("No puede utilizar este personaje");
 	    		}
 	    	}else{
 	    		this.ejecutarAccion(event);
@@ -232,11 +233,26 @@ public class VistaJuegoController {
 				Optional<ButtonType> result = alert.showAndWait();
 
 				if(result.get() == botonAtaqueNormal){
-					juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
+					juego.atacarPersonaje(this.personajeSeleccionado, objetivo, jugadorActual);
 				}else if(result.get() == botonAtaqueEspecial){
-					juego.ataqueEspecialPersonaje(this.personajeSeleccionado, objetivo);
+					juego.ataqueEspecialPersonaje(this.personajeSeleccionado, objetivo, jugadorActual);
 				}else if (result.get() == buttonTypeCancel){
 
+				}
+				if(!objetivo.personajeVivo()){
+					// borro el panel del personaje
+					Pane panel = this.getPanelde(objetivo);
+					Integer panelX = tablero.getRowIndex(panel);
+					Integer panelY = tablero.getColumnIndex(panel);
+					if(panelX == null){
+						panelX = 0;
+					}
+					if(panelY == null){
+						panelY = 0;
+					}
+					tablero.getChildren().remove(panel);
+					//inserto un panel nuevo y vacio
+					tablero.add(new Pane(), panelY, panelX);
 				}
 
 				this.Actualizar();
@@ -268,7 +284,7 @@ public class VistaJuegoController {
 		    }
 
 		    try{
-		    	juego.moverPersonaje(personajeSeleccionado, new Coordenada(destinoX, destinoY));
+		    	juego.moverPersonaje(personajeSeleccionado, new Coordenada(destinoX, destinoY), jugadorActual);
 
 		    	tablero.getChildren().remove(destino);
     			tablero.getChildren().remove(origen);
@@ -297,7 +313,15 @@ public class VistaJuegoController {
     @FXML
     private void handleTerminarTurno(){
     	try{
-    		juego.terminarTurno();
+    		jugadorActual = juego.terminarTurno();
+    		this.personajeSeleccionado = null;
+    		if(this.PanelPersonajeSeleccionado != null){
+    			String estilo = this.PanelPersonajeSeleccionado.getStyleClass().get(0);
+        		PanelPersonajeSeleccionado.getStyleClass().clear();
+        		PanelPersonajeSeleccionado.getStyleClass().add(estilo);
+            	this.PanelPersonajeSeleccionado = null;
+    		}
+
     	}catch(Exception ex){
     		sceneManager.show(ex.getMessage());
     	}
@@ -344,5 +368,20 @@ public class VistaJuegoController {
 		majinbooVida.setText(Integer.toString(majinboo.getVida()));
     }
 
+    private Pane getPanelde(IPersonaje personaje){
+    	if(personaje == goku){
+    		return pGoku;
+    	}else if(personaje == gohan){
+    		return pGohan;
+    	}else if(personaje == piccolo){
+    		return pPiccolo;
+    	}else if(personaje == cell){
+    		return pCell;
+    	}else if(personaje == freezer){
+    		return pFreezer;
+    	}else{
+    		return pMajinboo;
+    	}
+    }
 
 }

@@ -8,4 +8,5 @@ public interface IJugadorEquipo {
 	IPersonaje getPersonaje(String pNombrePersonaje);
 	void terminoTurno();
 	void ubicarPersonajes(Tablero tablero);
+	boolean puedeUsarPersonaje(IPersonaje personaje);
 }

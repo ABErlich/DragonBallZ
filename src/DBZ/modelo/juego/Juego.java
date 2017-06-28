@@ -2,6 +2,7 @@ package DBZ.modelo.juego;
 
 import DBZ.modelo.excepciones.JugadorYaExisteException;
 import DBZ.modelo.excepciones.JugadoresNoSeleccionadosException;
+import DBZ.modelo.excepciones.NoPuedeUsarEsePersonajeException;
 import DBZ.modelo.excepciones.YaRealizoAtaqueException;
 import DBZ.modelo.excepciones.YaRealizoMovimientoException;
 import DBZ.modelo.personajes.Cell;
@@ -76,62 +77,87 @@ public class Juego {
 		realizoMovimiento = false;
 		realizoAtaque = false;
 	}
-	public void moverPersonaje(IPersonaje personaje, Coordenada coordenada){
-		if(!realizoMovimiento){
-			tablero.moverPersonaje(personaje, coordenada);
-			realizoMovimiento = true;
+	public void moverPersonaje(IPersonaje personaje, Coordenada coordenada, Jugador jugador){
+		if(jugador.puedeUsarPersonaje(personaje)){
+			if(!realizoMovimiento){
+				tablero.moverPersonaje(personaje, coordenada);
+				realizoMovimiento = true;
+			}else{
+				throw new YaRealizoMovimientoException();
+			}
 		}else{
-			throw new YaRealizoMovimientoException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
-	public void atacarPersonaje(IPersonaje atacante , IPersonaje atacado){
-		if(!realizoAtaque){
-			atacante.atacar(atacado);
-			realizoAtaque = true;
+	public void atacarPersonaje(IPersonaje atacante , IPersonaje atacado, Jugador jugador){
+		if(jugador.puedeUsarPersonaje(atacante)){
+			if(!realizoAtaque){
+				atacante.atacar(atacado);
+				realizoAtaque = true;
+			}else{
+				throw new YaRealizoAtaqueException();
+			}
 		}else{
-			throw new YaRealizoAtaqueException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
-	public void atacarPersonaje(IPersonajeEquipoVillano atacante , IPersonaje atacado){
-		if(!realizoAtaque){
-			atacante.atacar(atacado);
-			realizoAtaque = true;
+	public void atacarPersonaje(IPersonajeEquipoVillano atacante , IPersonaje atacado, Jugador jugador){
+		if(jugador.puedeUsarPersonaje(atacante)){
+			if(!realizoAtaque){
+				atacante.atacar(atacado);
+				realizoAtaque = true;
+			}else{
+				throw new YaRealizoAtaqueException();
+			}
 		}else{
-			throw new YaRealizoAtaqueException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
 
-	public void ataqueEspecialPersonaje(IPersonaje atacante, IPersonaje atacado) {
-		if(!realizoAtaque){
-			atacante.ataqueEspecial(atacado);
-			realizoAtaque = true;
+	public void ataqueEspecialPersonaje(IPersonaje atacante, IPersonaje atacado, Jugador jugador) {
+		if(jugador.puedeUsarPersonaje(atacante)){
+			if(!realizoAtaque){
+				atacante.ataqueEspecial(atacado);
+				realizoAtaque = true;
+			}else{
+				throw new YaRealizoAtaqueException();
+			}
 		}else{
-			throw new YaRealizoAtaqueException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
 
-	public void ataqueEspecialPersonaje(IPersonajeEquipoZ atacante , IPersonajeEquipoVillano atacado){
-		if(!realizoAtaque){
-			atacante.ataqueEspecial(atacado);
-			realizoAtaque = true;
+	public void ataqueEspecialPersonaje(IPersonajeEquipoZ atacante , IPersonajeEquipoVillano atacado, Jugador jugador){
+		if(jugador.puedeUsarPersonaje(atacante)){
+			if(!realizoAtaque){
+				atacante.ataqueEspecial(atacado);
+				realizoAtaque = true;
+			}else{
+				throw new YaRealizoAtaqueException();
+			}
 		}else{
-			throw new YaRealizoAtaqueException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
-	public void ataqueEspecialPersonaje(IPersonajeEquipoVillano atacante , IPersonajeEquipoZ atacado){
-		if(!realizoAtaque){
-			atacante.ataqueEspecial(atacado);
-			realizoAtaque = true;
+	public void ataqueEspecialPersonaje(IPersonajeEquipoVillano atacante , IPersonajeEquipoZ atacado, Jugador jugador){
+		if(jugador.puedeUsarPersonaje(atacante)){
+			if(!realizoAtaque){
+				atacante.ataqueEspecial(atacado);
+				realizoAtaque = true;
+			}else{
+				throw new YaRealizoAtaqueException();
+			}
 		}else{
-			throw new YaRealizoAtaqueException();
+			throw new NoPuedeUsarEsePersonajeException();
 		}
 	}
-	public void terminarTurno(){
+	public Jugador terminarTurno(){
 		jugadorActual = jugadorActual.terminarTurno();
 		this.comenzarTurno();
+		return jugadorActual;
 	}
 
-	public Object cantidadPersonajesVivos(Jugador jugador) {
+	public int cantidadPersonajesVivos(Jugador jugador) {
 		return jugador.cantidadPersonajesVivos();
 	}
 
@@ -158,7 +184,5 @@ public class Juego {
 	public MajinBoo getMajinBoo(){
 		return (MajinBoo) jugadorEquipoVillano.getPersonaje("MajinBoo");
 	}
-
-
 
 }

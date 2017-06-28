@@ -45,12 +45,12 @@ public class JuegoTest {
 		IPersonaje pj;
 		if(jugadorActual == jugador1){
 			pj = jugadorActual.getPersonaje("Goku");
-			juego.moverPersonaje(pj, new Coordenada(2,2));
+			juego.moverPersonaje(pj, new Coordenada(2,2), jugadorActual);
 			juego.terminarTurno();
 			org.junit.Assert.assertEquals(pj.obtenerUbicacion(), new Coordenada(2,2));
 		}else{
 			pj = jugadorActual.getPersonaje("Cell");
-			juego.moverPersonaje(pj, new Coordenada(8,8));
+			juego.moverPersonaje(pj, new Coordenada(8,8), jugadorActual);
 			juego.terminarTurno();
 			org.junit.Assert.assertEquals(pj.obtenerUbicacion(), new Coordenada(8,8));
 		}

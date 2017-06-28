@@ -79,9 +79,6 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 
 	}
 
-	public boolean estaVivo() {
-		return this.estado.estaVivo();
-	}
 
 	public void ataqueEspecial(IPersonajeEquipoZ atacado) {
 		this.estado.rayoMortal(atacado);
@@ -119,6 +116,10 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 	@Override
 	public String getNombreEstado() {
 		return this.estado.getClass().getSimpleName();
+	}
+
+	public boolean personajeVivo(){
+		return this.estado.personajeVivo();
 	}
 
 }

@@ -9,6 +9,7 @@ public abstract class FreezerEstado extends Estado {
 
 	public FreezerEstado() {
     	vidaMaxima = 400;
+    	vivo = true;
 	}
 
 

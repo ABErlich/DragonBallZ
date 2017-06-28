@@ -9,7 +9,7 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-public class JugadorEquipo implements IJugadorEquipo{
+public abstract class JugadorEquipo implements IJugadorEquipo{
 
 	protected Dictionary<String, IPersonaje> personajes;
 
@@ -22,7 +22,7 @@ public class JugadorEquipo implements IJugadorEquipo{
 		int cantpjvivos = 0;
 		while(enumKey.hasMoreElements()) {
 		    String key = enumKey.nextElement();
-		    if(personajes.get(key).estaVivo()){
+		    if(personajes.get(key).personajeVivo()){
 		    	cantpjvivos++;
 		    };
 		}
@@ -54,4 +54,19 @@ public class JugadorEquipo implements IJugadorEquipo{
 		    tablero.agregarPersonaje(personajes.get(key));
 		}
 	}
+
+	@Override
+	public boolean puedeUsarPersonaje(IPersonaje personaje) {
+		boolean tienePersonaje = false;
+		Enumeration<String> enumKey = personajes.keys();
+
+		while(enumKey.hasMoreElements()) {
+		    String key = enumKey.nextElement();
+		    if(personajes.get(key) == personaje){
+		    	tienePersonaje = true;
+		    };
+		}
+		return tienePersonaje;
+	}
+
 }

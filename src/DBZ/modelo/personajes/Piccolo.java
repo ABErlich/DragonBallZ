@@ -115,11 +115,6 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 		consumible.consumir(this.estado);
 	}
 
-	@Override
-	public boolean estaVivo() {
-		return this.estado.estaVivo();
-	}
-
 	public int getVidaMax() {
 		return this.estado.getVidaMax();
 	}
@@ -139,7 +134,9 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 		return this.estado.getClass().getSimpleName();
 	}
 
-
+	public boolean personajeVivo(){
+		return this.estado.personajeVivo();
+	}
 
 }
 

@@ -14,6 +14,7 @@ public class EstadoConvertidoEnChocolate extends Estado {
     public EstadoConvertidoEnChocolate(Estado estadoAnterior) {
 		this.estadoAnterior = estadoAnterior;
         this.cantidadTurnos = 3;
+        vivo = true;
     }
 
     @Override

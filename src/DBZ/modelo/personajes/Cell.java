@@ -79,9 +79,6 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 		consumible.consumir(this.estado);
 	}
 
-	public boolean estaVivo(){
-		return this.estado.estaVivo();
-	}
 
 	public void ataqueEspecial(IPersonajeEquipoZ atacado) {
 		this.estado.absorber(atacado);
@@ -122,7 +119,9 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 		return this.estado.getClass().getSimpleName();
 	}
 
-
+	public boolean personajeVivo(){
+		return this.estado.personajeVivo();
+	}
 
 
 
