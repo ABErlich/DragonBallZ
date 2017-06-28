@@ -11,7 +11,9 @@ import DBZ.modelo.tablero.IUbicable;
 import DBZ.modelo.personajes.interfaces.IPersonaje;
 import DBZ.modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import DBZ.modelo.personajes.interfaces.IPersonajeEquipoZ;
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.excepciones.PersonajeYaEsChocolateException;
 
 public class Piccolo implements IPersonajeEquipoZ, IUbicable {
@@ -26,7 +28,13 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoVillano)atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -74,6 +82,19 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
     public void ataqueEspecial(IPersonajeEquipoVillano atacado){
     	((PiccoloEstado) this.estado).makankosappo(atacado);
     }
+    @Override
+	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		((PiccoloEstado) this.estado).makankosappo((IPersonajeEquipoVillano) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
+	}
 
 	public void terminoTurno() {
 		Estado estado = this.estado.terminoTurno();
@@ -111,6 +132,11 @@ public class Piccolo implements IPersonajeEquipoZ, IUbicable {
 	public void transformar() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
 	}
 
 

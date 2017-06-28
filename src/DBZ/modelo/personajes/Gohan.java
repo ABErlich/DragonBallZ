@@ -11,7 +11,9 @@ import DBZ.modelo.tablero.IUbicable;
 import DBZ.modelo.personajes.interfaces.IPersonaje;
 import DBZ.modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import DBZ.modelo.personajes.interfaces.IPersonajeEquipoZ;
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.excepciones.PersonajeYaEsChocolateException;
 
 public class Gohan implements IPersonajeEquipoZ, IUbicable{
@@ -26,7 +28,13 @@ public class Gohan implements IPersonajeEquipoZ, IUbicable{
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoVillano) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -69,6 +77,19 @@ public class Gohan implements IPersonajeEquipoZ, IUbicable{
     public void ataqueEspecial(IPersonajeEquipoVillano atacado){
     	((GohanEstado) this.estado).masenko(atacado);
     }
+    @Override
+	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		((GohanEstado) this.estado).masenko((IPersonajeEquipoVillano) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
+	}
 
     public void transformar(IJugadorEquipoZ equipo){
     	GohanEstado nuevoEstado = ((GohanEstado) this.estado).transformar(equipo);
@@ -110,6 +131,11 @@ public class Gohan implements IPersonajeEquipoZ, IUbicable{
 	@Override
 	public void transformar() {
 
+	}
+
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
 	}
 
 

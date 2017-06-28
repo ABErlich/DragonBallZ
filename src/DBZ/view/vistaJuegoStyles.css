@@ -8,9 +8,25 @@
 	-fx-background-image: url("../../../resources/imagenes/gokuNormal.png");
 	-fx-background-size: cover ;
 }
+.GokuEstadoKaioKen{
+	-fx-background-image: url("../../../resources/imagenes/gokuKaioKen.png");
+	-fx-background-size: cover ;
+}
+.GokuEstadoSuperSayajin{
+	-fx-background-image: url("../../../resources/imagenes/gokuSsj.png");
+	-fx-background-size: cover ;
+}
 
 .gohanNormal{
 	-fx-background-image: url("../../../resources/imagenes/gohanNormal.png");
+	-fx-background-size: cover ;
+}
+.GohanEstadoSuperSayajinFase1{
+	-fx-background-image: url("../../../resources/imagenes/gohanSsj1.png");
+	-fx-background-size: cover ;
+}
+.GohanEstadoSuperSayajinFase2{
+	-fx-background-image: url("../../../resources/imagenes/gohanSsj2.png");
 	-fx-background-size: cover ;
 }
 
@@ -18,9 +34,25 @@
 	-fx-background-image: url("../../../resources/imagenes/piccoloNormal.png");
 	-fx-background-size: cover ;
 }
+.PiccoloEstadoFortalecido{
+	-fx-background-image: url("../../../resources/imagenes/piccoloFortalecido.png");
+	-fx-background-size: cover ;
+}
+.PiccoloEstadoProtector{
+	-fx-background-image: url("../../../resources/imagenes/piccoloProtector.png");
+	-fx-background-size: cover ;
+}
 
 .freezerNormal{
 	-fx-background-image: url("../../../resources/imagenes/freezerNormal.png");
+	-fx-background-size: cover ;
+}
+.FreezerEstadoSegundaForma{
+	-fx-background-image: url("../../../resources/imagenes/freezerSegundaForma.png");
+	-fx-background-size: cover ;
+}
+.FreezerEstadoDefinitivo{
+	-fx-background-image: url("../../../resources/imagenes/freezerDefinitivo.png");
 	-fx-background-size: cover ;
 }
 
@@ -28,9 +60,25 @@
 	-fx-background-image: url("../../../resources/imagenes/cellNormal.png");
 	-fx-background-size: cover ;
 }
+.CellEstadoSemiPerfecto{
+	-fx-background-image: url("../../../resources/imagenes/cellSemiPerfecto.png");
+	-fx-background-size: cover ;
+}
+.CellEstadoPerfecto{
+	-fx-background-image: url("../../../resources/imagenes/cellPerfecto.png");
+	-fx-background-size: cover ;
+}
 
 .majinbooNormal{
 	-fx-background-image: url("../../../resources/imagenes/majinBooNormal.png");
+	-fx-background-size: cover ;
+}
+.MajinBooEstadoBooMalo{
+	-fx-background-image: url("../../../resources/imagenes/majinBooMalo.png");
+	-fx-background-size: cover ;
+}
+.MajinBooEstadoBooOriginal{
+	-fx-background-image: url("../../../resources/imagenes/majinBooOriginal.png");
 	-fx-background-size: cover ;
 }
 

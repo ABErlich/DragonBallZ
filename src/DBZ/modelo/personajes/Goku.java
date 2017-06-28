@@ -1,6 +1,8 @@
 package DBZ.modelo.personajes;
 
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.excepciones.PersonajeYaEsChocolateException;
 import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.estados.Estado;
@@ -26,7 +28,13 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoVillano) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -70,6 +78,20 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
     	((GokuEstado) this.estado).kamehameha(atacado);
     }
 
+    @Override
+	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		((GokuEstado) this.estado).kamehameha((IPersonajeEquipoVillano) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
+	}
+
+
 	public void transformar(){
 		GokuEstado nuevoEstado = ((GokuEstado) this.estado).transformar();
     	estado = nuevoEstado;
@@ -111,6 +133,10 @@ public class Goku implements IPersonajeEquipoZ, IUbicable {
 
 	}
 
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
+	}
 
 }
 

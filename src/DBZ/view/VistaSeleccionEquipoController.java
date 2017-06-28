@@ -107,35 +107,32 @@ public class VistaSeleccionEquipoController {
 
     @FXML
     private void handleSeleccionEquipo(){
-    	if(this.equipoSeleccionado != null) {
-			this.equipoJugador1 = this.equipoSeleccionado;
+    	this.equipoJugador1 = this.equipoSeleccionado;
 
-			Jugador jugador = new Jugador(txtApodo.getText());
+    	Jugador jugador = new Jugador(txtApodo.getText());
 
-			txtApodo.setText("");
+    	txtApodo.setText("");
 
-			if (equipoSeleccionado.equals("equipoZ")) {
-				this.juego.agregarJugadorZ(jugador);
-				this.equipoJugador2 = "equipoVillano";
-				equipoVillano.getStyleClass().add("seleccionado");
-				equipoZ.getStyleClass().clear();
-			} else {
-				this.juego.agregarJugadorVillano(jugador);
-				this.equipoJugador2 = "equipoZ";
-				equipoZ.getStyleClass().add("seleccionado");
-				equipoVillano.getStyleClass().clear();
-			}
-			Label titulo = (Label) sceneManager.getStage().getScene().lookup("#lblTitulo");
-			titulo.setText("Ingrese apodo para el jugador 2:");
-
-			btnSeleccionar.setVisible(false);
-			btnSeleccionar.setManaged(false);
-
-			btnComenzar.setVisible(true);
-			btnComenzar.setManaged(true);
+		if(equipoSeleccionado.equals("equipoZ")){
+			this.juego.agregarJugadorZ(jugador);
+			this.equipoJugador2 = "equipoVillano";
+			equipoVillano.getStyleClass().add("seleccionado");
+			equipoZ.getStyleClass().clear();
 		}else{
-    		sceneManager.show("Seleccione un equipo.");
+			this.juego.agregarJugadorVillano(jugador);
+			this.equipoJugador2 = "equipoZ";
+			equipoZ.getStyleClass().add("seleccionado");
+			equipoVillano.getStyleClass().clear();
 		}
+		Label titulo = (Label) sceneManager.getStage().getScene().lookup("#lblTitulo");
+		titulo.setText("Ingrese apodo para el jugador 2:");
+
+		btnSeleccionar.setVisible(false);
+		btnSeleccionar.setManaged(false);
+
+		btnComenzar.setVisible(true);
+		btnComenzar.setManaged(true);
+
     }
 
 	public void setSceneManager(SceneManager sceneManager) {

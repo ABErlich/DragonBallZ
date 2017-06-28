@@ -2,10 +2,18 @@ package DBZ.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import java.util.Optional;
 
 import DBZ.SceneManager;
 import DBZ.modelo.juego.Juego;
@@ -154,37 +162,42 @@ public class VistaJuegoController {
 
     @FXML
     private void handleSeleccionPersonaje(MouseEvent event){
-    	Node elemento = (Node) event.getTarget();
+    	if(event.getButton() == MouseButton.PRIMARY){
+	    	Node elemento = (Node) event.getTarget();
 
-    	if(PanelPersonajeSeleccionado == null){
-    		// si se clickeo un persojae lo seleccioino
-    		if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer || elemento == pCell || elemento == pMajinboo){
-    			elemento.getStyleClass().add("seleccionado");
-    			this.PanelPersonajeSeleccionado = (Pane) elemento;
-    			String pj = elemento.getStyleClass().get(0);
-    			if(pj == "gokuNormal"){
-    	    		this.personajeSeleccionado = goku;
-    	    	}else if(pj == "gohanNormal"){
-    	    		this.personajeSeleccionado = gohan;
-    	    	}else if (pj == "piccoloNormal"){
-    	    		this.personajeSeleccionado = piccolo;
-    	    	}else if (pj == "freezerNormal"){
-    	    		this.personajeSeleccionado = freezer;
-    	    	}else if (pj == "cellNormal"){
-    	    		this.personajeSeleccionado = cell;
-    	    	}else if (pj == "majinbooNormal"){
-    	    		this.personajeSeleccionado = majinboo;
-    	    	}
-    		}else{
-    			this.PanelPersonajeSeleccionado = null;
-    		}
-    	}else{
-    		this.ejecutarAccion(event);
+	    	if(PanelPersonajeSeleccionado == null){
+	    		// si se clickeo un persojae lo seleccioino
+	    		if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer || elemento == pCell || elemento == pMajinboo){
+	    			elemento.getStyleClass().add("seleccionado");
+	    			this.PanelPersonajeSeleccionado =  (Pane) elemento;
+	    			String pj = elemento.getStyleClass().get(0);
+	    			if(pj == "gokuNormal" || pj.equals("GokuEstadoKaioKen")  || pj.equals("GokuEstadoSuperSayajin") ){
+	    	    		this.personajeSeleccionado = goku;
+	    	    	}else if(pj.equals("gohanNormal") || pj.equals("GohanEstadoSuperSayajinFase1")|| pj.equals("GohanEstadoSuperSayajinFase2")){
+	    	    		this.personajeSeleccionado = gohan;
+	    	    	}else if (pj.equals("piccoloNormal") || pj.equals("PiccoloEstadoFortalecido" )|| pj.equals("PiccoloEstadoProtector")){
+	    	    		this.personajeSeleccionado = piccolo;
+	    	    	}else if (pj.equals("freezerNormal") || pj.equals("FreezerEstadoSegundaForma")  || pj.equals("FreezerEstadoDefinitivo")){
+	    	    		this.personajeSeleccionado = freezer;
+	    	    	}else if (pj.equals("cellNormal") || pj.equals("CellEstadoSemiPerfecto") || pj.equals("CellEstadoPerfecto")){
+	    	    		this.personajeSeleccionado = cell;
+	    	    	}else if (pj.equals("majinbooNormal") || pj.equals("MajinBooEstadoBooMalo") || pj.equals("MajinBooEstadoBooOriginal")){
+	    	    		this.personajeSeleccionado = majinboo;
+	    	    	}
+	    		}else{
+
+	    			this.PanelPersonajeSeleccionado = null;
+
+	    		}
+	    	}else{
+	    		this.ejecutarAccion(event);
+	    	}
     	}
 
     }
 
-    private void ejecutarAccion(MouseEvent event){
+    @SuppressWarnings("static-access")
+	private void ejecutarAccion(MouseEvent event){
     	Node elemento = (Node) event.getTarget();
 
     	if(elemento == pGoku || elemento == pGohan || elemento == pPiccolo || elemento == pFreezer
@@ -192,24 +205,44 @@ public class VistaJuegoController {
     		// Ataco
 			IPersonaje objetivo = null;
 			String pj = elemento.getStyleClass().get(0);
-			if(pj == "gokuNormal"){
-				objetivo = (Goku) goku;
-	    	}else if(pj == "gohanNormal"){
-	    		objetivo = (Gohan) gohan;
-	    	}else if (pj == "piccoloNormal"){
-	    		objetivo = (Piccolo) piccolo;
-	    	}else if (pj == "freezerNormal"){
-	    		objetivo = (Freezer) freezer;
-	    	}else if (pj == "cellNormal"){
-	    		objetivo = (Cell) cell;
-	    	}else if (pj == "majinbooNormal"){
-	    		objetivo = (MajinBoo) majinboo;
+			if(pj == "gokuNormal" || pj.equals("GokuEstadoKaioKen")  || pj.equals("GokuEstadoSuperSayajin") ){
+	    		objetivo = goku;
+	    	}else if(pj.equals("gohanNormal") || pj.equals("GohanEstadoSuperSayajinFase1")|| pj.equals("GohanEstadoSuperSayajinFase2")){
+	    		objetivo = gohan;
+	    	}else if (pj.equals("piccoloNormal") || pj.equals("PiccoloEstadoFortalecido" )|| pj.equals("PiccoloEstadoProtector")){
+	    		objetivo = piccolo;
+	    	}else if (pj.equals("freezerNormal") || pj.equals("FreezerEstadoSegundaForma")  || pj.equals("FreezerEstadoDefinitivo")){
+	    		objetivo = freezer;
+	    	}else if (pj.equals("cellNormal") || pj.equals("CellEstadoSemiPerfecto") || pj.equals("CellEstadoPerfecto")){
+	    		objetivo = cell;
+	    	}else if (pj.equals("majinbooNormal") || pj.equals("MajinBooEstadoBooMalo") || pj.equals("MajinBooEstadoBooOriginal")){
+	    		objetivo = majinboo;
 	    	}
 			try{
-				juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Elija una opcion de ataque");
+				alert.setContentText("Seleccione:");
+
+				ButtonType botonAtaqueNormal = new ButtonType("ataqueNormal");
+				ButtonType botonAtaqueEspecial = new ButtonType("ataqueEspecial");
+				ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+				alert.getButtonTypes().setAll(botonAtaqueNormal, botonAtaqueEspecial, buttonTypeCancel);
+
+				Optional<ButtonType> result = alert.showAndWait();
+
+				if(result.get() == botonAtaqueNormal){
+					juego.atacarPersonaje(this.personajeSeleccionado, objetivo);
+				}else if(result.get() == botonAtaqueEspecial){
+					juego.ataqueEspecialPersonaje(this.personajeSeleccionado, objetivo);
+				}else if (result.get() == buttonTypeCancel){
+
+				}
+
 				this.Actualizar();
 			}catch(Exception ex){
 				sceneManager.show(ex.getMessage());
+
 			}
 
 		}else{
@@ -250,12 +283,15 @@ public class VistaJuegoController {
     }
 
     @FXML
-    private void handleLimpiarSeleccion(){
-    	// limpio la seleccion del personaje anterior
-		String estilo = this.PanelPersonajeSeleccionado.getStyleClass().get(0);
-		PanelPersonajeSeleccionado.getStyleClass().clear();
-		PanelPersonajeSeleccionado.getStyleClass().add(estilo);
-    	this.PanelPersonajeSeleccionado = null;
+    private void handleLimpiarSeleccion(MouseEvent e){
+    	if(e.getButton() == MouseButton.SECONDARY){
+    		// limpio la seleccion del personaje anterior
+    		String estilo = this.PanelPersonajeSeleccionado.getStyleClass().get(0);
+    		PanelPersonajeSeleccionado.getStyleClass().clear();
+    		PanelPersonajeSeleccionado.getStyleClass().add(estilo);
+        	this.PanelPersonajeSeleccionado = null;
+    	}
+
     }
 
     @FXML
@@ -273,10 +309,19 @@ public class VistaJuegoController {
     	try{
 	    	if(this.personajeSeleccionado == gohan || this.personajeSeleccionado == piccolo){
 	    		this.personajeSeleccionado.transformar(juego.jugadorEquipoZ.getEquipo());
+	    		String estilo = this.personajeSeleccionado.getNombreEstado();
+	    		PanelPersonajeSeleccionado.getStyleClass().clear();
+	    		PanelPersonajeSeleccionado.getStyleClass().addAll(estilo,"seleccionado");
+	    		this.Actualizar();
 	    	}else{
 	    		this.personajeSeleccionado.transformar();
+	    		String estilo = this.personajeSeleccionado.getNombreEstado();
+	    		PanelPersonajeSeleccionado.getStyleClass().clear();
+	    		PanelPersonajeSeleccionado.getStyleClass().addAll(estilo, "seleccionado");
+
+	    		this.Actualizar();
 	    	}
-	    	sceneManager.show("El personaje se transformo correctamente");
+
     	}catch(Exception ex){
     		sceneManager.show(ex.getMessage());
     	}

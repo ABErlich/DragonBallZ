@@ -8,7 +8,9 @@ import DBZ.modelo.personajes.interfaces.IPersonajeEquipoVillano;
 import DBZ.modelo.personajes.interfaces.IPersonajeEquipoZ;
 import DBZ.modelo.personajes.estados.CellEstado;
 import DBZ.modelo.personajes.estados.CellEstadoNormal;
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 
 public class Cell implements IPersonajeEquipoVillano, IUbicable{
@@ -22,7 +24,14 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -81,7 +90,20 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
     public void ataqueEspecial(IPersonajeEquipoVillano personaje){
         throw new AtaqueMismoEquipoException();
     }
+    @Override
+	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		this.estado.absorber((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 
+	}
 	public int getVidaMax() {
 		return this.estado.getVidaMax();
 	}
@@ -94,6 +116,13 @@ public class Cell implements IPersonajeEquipoVillano, IUbicable{
 	public void transformar(IJugadorEquipoZ equipo) {
 
 	}
+
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
+	}
+
+
 
 
 

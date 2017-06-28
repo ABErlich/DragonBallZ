@@ -22,6 +22,18 @@ public abstract class Estado {
 	protected int turnosEsferaActiva;
 	protected int turnosNubeActiva;
 
+	public void atacar(IPersonaje atacado){
+		if(ubicacion.calcularDistancia(atacado.obtenerUbicacion()) > distanciaAtaque){
+			throw new AtaqueFueraDeRangoException();
+		}else{
+			if(this.vida > 0){
+				atacado.recibirAtaque(poder, calcularDanio());
+			}else{
+				throw new PersonajeFueraDeCombateException();
+			}
+		}
+	}
+
 	public void atacar(IPersonajeEquipoZ personaje) {
 		if(ubicacion.calcularDistancia(personaje.obtenerUbicacion()) > distanciaAtaque){
 			throw new AtaqueFueraDeRangoException();

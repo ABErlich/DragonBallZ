@@ -1,6 +1,8 @@
 package DBZ.modelo.personajes;
 
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.estados.MajinBooEstadoNormal;
 import DBZ.modelo.tablero.Consumible;
@@ -22,7 +24,14 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -64,6 +73,19 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
     public void ataqueEspecial(IPersonajeEquipoVillano atacado){
     	throw new AtaqueMismoEquipoException();
     }
+    @Override
+   	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		this.estado.convierteEnChocolate((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
+   	}
 
     public void transformar(){
     	MajinBooEstado nuevoEstado = this.estado.transformar();
@@ -94,7 +116,10 @@ public class MajinBoo implements IPersonajeEquipoVillano, IUbicable {
 	public void transformar(IJugadorEquipoZ equipo) {
 
 	}
-
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
+	}
 
 }
 

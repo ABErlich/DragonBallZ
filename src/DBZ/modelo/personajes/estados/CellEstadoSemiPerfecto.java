@@ -14,7 +14,7 @@ public class CellEstadoSemiPerfecto extends CellEstado {
 
 	@Override
 	public CellEstado transformar() {
-		if(this.cantAbsorciones >= 8){
+		if(this.cantAbsorciones >= 4){
 			CellEstado nuevoestado = new CellEstadoPerfecto();
 			nuevoestado.vida = vida;
 			nuevoestado.ki = ki;

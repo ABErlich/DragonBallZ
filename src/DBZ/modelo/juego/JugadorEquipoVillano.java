@@ -14,9 +14,9 @@ public class JugadorEquipoVillano extends JugadorEquipo implements IJugadorEquip
 
     	int tamaniotablero = tablero.getTamanio();
 
-        this.personajes.put("Cell", new Cell(new Coordenada(tamaniotablero-1,tamaniotablero-1)));
+        this.personajes.put("Cell", new Cell(new Coordenada(tamaniotablero-3,tamaniotablero-1)));
         this.personajes.put("Freezer", new Freezer(new Coordenada(tamaniotablero-2,tamaniotablero-1)));
-        this.personajes.put("MajinBoo", new MajinBoo(new Coordenada(tamaniotablero-3,tamaniotablero-1)));
+        this.personajes.put("MajinBoo", new MajinBoo(new Coordenada(tamaniotablero-1,tamaniotablero-1)));
     }
 
 

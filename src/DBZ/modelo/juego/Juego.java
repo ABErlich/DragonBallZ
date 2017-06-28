@@ -92,7 +92,23 @@ public class Juego {
 			throw new YaRealizoAtaqueException();
 		}
 	}
+	public void atacarPersonaje(IPersonajeEquipoVillano atacante , IPersonaje atacado){
+		if(!realizoAtaque){
+			atacante.atacar(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
+	}
 
+	public void ataqueEspecialPersonaje(IPersonaje atacante, IPersonaje atacado) {
+		if(!realizoAtaque){
+			atacante.ataqueEspecial(atacado);
+			realizoAtaque = true;
+		}else{
+			throw new YaRealizoAtaqueException();
+		}
+	}
 
 	public void ataqueEspecialPersonaje(IPersonajeEquipoZ atacante , IPersonajeEquipoVillano atacado){
 		if(!realizoAtaque){
@@ -110,8 +126,6 @@ public class Juego {
 			throw new YaRealizoAtaqueException();
 		}
 	}
-
-
 	public void terminarTurno(){
 		jugadorActual = jugadorActual.terminarTurno();
 		this.comenzarTurno();
@@ -144,5 +158,7 @@ public class Juego {
 	public MajinBoo getMajinBoo(){
 		return (MajinBoo) jugadorEquipoVillano.getPersonaje("MajinBoo");
 	}
+
+
 
 }

@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@vistaJuegoStyles.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBZ.view.VistaJuegoController">
+<AnchorPane onMouseClicked="#handleLimpiarSeleccion" prefHeight="700.0" prefWidth="1000.0" stylesheets="@vistaJuegoStyles.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBZ.view.VistaJuegoController">
    <children>
       <GridPane fx:id="tablero" gridLinesVisible="true" layoutX="76.0" layoutY="56.0" onMouseClicked="#handleSeleccionPersonaje" prefHeight="339.0" prefWidth="524.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
@@ -68,13 +67,50 @@
             <Pane fx:id="pMajinboo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button layoutX="453.0" layoutY="661.0" mnemonicParsing="false" onMouseClicked="#handleTerminarTurno" text="TerminarTurno" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="453.0" AnchorPane.rightAnchor="452.0" />
-      <Label layoutX="14.0" layoutY="89.0" text="Goku:" />
-      <Label layoutX="13.0" layoutY="203.0" text="Gohan:" />
-      <Label layoutX="16.0" layoutY="344.0" text="Piccolo:" />
-      <Label layoutX="920.0" layoutY="89.0" text="Freezer:" />
-      <Label layoutX="917.0" layoutY="202.0" text="Cell:" />
-      <Label layoutX="921.0" layoutY="342.0" text="MajinBoo:" />
+      <Pane layoutX="2.0" layoutY="140.0" AnchorPane.leftAnchor="2.0">
+         <children>
+            <Label layoutX="13.0" text="Goku:" />
+            <Label layoutX="12.0" layoutY="114.0" text="Gohan:" />
+            <Label layoutX="15.0" layoutY="255.0" text="Piccolo:" />
+            <Label fx:id="gokuVida" layoutX="36.0" layoutY="41.0" text="Label" />
+            <Label fx:id="gokuVidaMax" layoutX="35.0" layoutY="58.0" styleClass="vidaMax" text="Label" />
+            <Label fx:id="gohanVida" layoutX="26.0" layoutY="160.0" text="Label" />
+            <Label fx:id="gohanVidaMax" layoutX="25.0" layoutY="178.0" styleClass="vidaMax" text="Label" />
+            <Label fx:id="piccoloVida" layoutX="30.0" layoutY="305.0" text="Label" />
+            <Label fx:id="piccoloVidaMax" layoutX="29.0" layoutY="322.0" styleClass="vidaMax" text="Label" />
+            <Label layoutX="2.0" layoutY="41.0" text="vida:" />
+            <Label layoutY="161.0" text="vida:" />
+            <Label layoutX="4.0" layoutY="305.0" text="vida:" />
+            <Label layoutX="7.0" layoutY="76.0" text="Ki:" />
+            <Label layoutX="9.0" layoutY="204.0" text="Ki:" />
+            <Label layoutX="8.0" layoutY="349.0" text="Ki:" />
+            <Label fx:id="gokuKi" layoutX="25.0" layoutY="76.0" text="Label" />
+            <Label fx:id="gohanKi" layoutX="29.0" layoutY="204.0" text="Label" />
+            <Label fx:id="piccoloKi" layoutX="26.0" layoutY="349.0" text="Label" />
+         </children>
+      </Pane>
+      <Pane layoutX="921.0" layoutY="139.0" AnchorPane.rightAnchor="8.0">
+         <children>
+            <Label layoutX="4.0" text="Freezer:" />
+            <Label layoutX="1.0" layoutY="113.0" text="Cell:" />
+            <Label layoutX="5.0" layoutY="253.0" text="MajinBoo:" />
+            <Label fx:id="freezerVida" layoutX="34.0" layoutY="42.0" text="Label" />
+            <Label fx:id="freezerVidaMax" layoutX="33.0" layoutY="58.0" styleClass="vidaMax" text="Label" />
+            <Label fx:id="cellVida" layoutX="30.0" layoutY="160.0" text="Label" />
+            <Label fx:id="cellVidaMax" layoutX="29.0" layoutY="178.0" styleClass="vidaMax" text="Label" />
+            <Label fx:id="majinbooVida" layoutX="42.0" layoutY="286.0" text="Label" />
+            <Label fx:id="majinbooVidaMax" layoutX="41.0" layoutY="304.0" styleClass="vidaMax" text="Label" />
+            <Label layoutX="4.0" layoutY="42.0" text="vida:" />
+            <Label layoutY="160.0" text="vida:" />
+            <Label layoutX="11.0" layoutY="294.0" text="vida:" />
+            <Label layoutX="8.0" layoutY="76.0" text="Ki:" />
+            <Label layoutX="8.0" layoutY="204.0" text="Ki:" />
+            <Label layoutX="16.0" layoutY="349.0" prefHeight="17.0" prefWidth="13.0" text="Ki:" />
+            <Label fx:id="freezerKi" layoutX="30.0" layoutY="76.0" text="Label" />
+            <Label fx:id="cellKi" layoutX="28.0" layoutY="204.0" text="Label" />
+            <Label fx:id="majinbooKi" layoutX="34.0" layoutY="350.0" text="Label" />
+         </children>
+      </Pane>
       <Label fx:id="lblJugadorZ" layoutX="34.0" layoutY="18.0" text="Jugador 1">
          <font>
             <Font size="18.0" />
@@ -85,61 +121,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox layoutX="40.0" layoutY="120.0">
-         <children>
-            <Label fx:id="gokuVida" text="Label" />
-            <Label fx:id="gokuVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <VBox layoutX="38.0" layoutY="240.0">
-         <children>
-            <Label fx:id="gohanVida" text="Label" />
-            <Label fx:id="gohanVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <VBox layoutX="42.0" layoutY="384.0">
-         <children>
-            <Label fx:id="piccoloVida" text="Label" />
-            <Label fx:id="piccoloVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <VBox layoutX="960.0" layoutY="121.0">
-         <children>
-            <Label fx:id="freezerVida" text="Label" />
-            <Label fx:id="freezerVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <VBox layoutX="955.0" layoutY="239.0">
-         <children>
-            <Label fx:id="cellVida" text="Label" />
-            <Label fx:id="cellVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <VBox layoutX="966.0" layoutY="369.0">
-         <children>
-            <Label fx:id="majinbooVida" text="Label" />
-            <Label fx:id="majinbooVidaMax" styleClass="vidaMax" text="Label" />
-         </children>
-      </VBox>
-      <Label layoutX="3.0" layoutY="130.0" text="vida:" />
-      <Label layoutX="1.0" layoutY="250.0" text="vida:" />
-      <Label layoutX="5.0" layoutY="394.0" text="vida:" />
-      <Label layoutX="922.0" layoutY="131.0" text="vida:" />
-      <Label layoutX="916.0" layoutY="249.0" text="vida:" />
-      <Label layoutX="927.0" layoutY="383.0" text="vida:" />
-      <Label layoutX="8.0" layoutY="165.0" text="Ki:" />
-      <Label layoutX="10.0" layoutY="293.0" text="Ki:" />
-      <Label layoutX="9.0" layoutY="438.0" text="Ki:" />
-      <Label layoutX="924.0" layoutY="165.0" text="Ki:" />
-      <Label layoutX="924.0" layoutY="293.0" text="Ki:" />
-      <Label layoutX="932.0" layoutY="438.0" prefHeight="17.0" prefWidth="13.0" text="Ki:" />
-      <Label fx:id="gokuKi" layoutX="26.0" layoutY="165.0" text="Label" />
-      <Label fx:id="gohanKi" layoutX="30.0" layoutY="293.0" text="Label" />
-      <Label fx:id="piccoloKi" layoutX="27.0" layoutY="438.0" text="Label" />
-      <Label fx:id="freezerKi" layoutX="946.0" layoutY="165.0" text="Label" />
-      <Label fx:id="cellKi" layoutX="944.0" layoutY="293.0" text="Label" />
-      <Label fx:id="majinbooKi" layoutX="950.0" layoutY="439.0" text="Label" />
-      <Pane layoutX="133.0" layoutY="-8.0" onMouseClicked="#handleLimpiarSeleccion" prefHeight="90.0" prefWidth="716.0" />
-      <Button layoutX="163.0" layoutY="649.0" mnemonicParsing="false" onMouseClicked="#handleTransformar" text="Transformar" />
+      <Button layoutX="100.0" layoutY="661.0" mnemonicParsing="false" onMouseClicked="#handleTerminarTurno" text="TerminarTurno" AnchorPane.bottomAnchor="14.0" />
+      <Button layoutX="819.0" layoutY="661.0" mnemonicParsing="false" onMouseClicked="#handleTransformar" text="Transformar" AnchorPane.bottomAnchor="14.0" />
    </children>
 </AnchorPane>

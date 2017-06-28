@@ -19,5 +19,7 @@ public interface IPersonaje {
 	boolean estaVivo();
 	void transformar();
 	void transformar(IJugadorEquipoZ equipo);
+	void ataqueEspecial(IPersonaje atacado);
+	String getNombreEstado();
 
 }

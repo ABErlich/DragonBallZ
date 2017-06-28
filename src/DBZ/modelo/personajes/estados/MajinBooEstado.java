@@ -11,6 +11,8 @@ public abstract class MajinBooEstado extends Estado {
 		vidaMaxima = 300;
 	}
 
+	
+	
 	public void convierteEnChocolate(IPersonajeEquipoZ personaje){
         if(ki < 30){
             throw new NoPuedeRealizarAtaqueException();

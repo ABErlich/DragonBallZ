@@ -1,6 +1,8 @@
 package DBZ.modelo.personajes;
 
+import DBZ.modelo.excepciones.AtaqueFueraDeRangoException;
 import DBZ.modelo.excepciones.AtaqueMismoEquipoException;
+import DBZ.modelo.excepciones.NoPuedeRealizarAtaqueException;
 import DBZ.modelo.juego.interfaces.IJugadorEquipoZ;
 import DBZ.modelo.personajes.estados.FreezerEstado;
 import DBZ.modelo.personajes.estados.FreezerEstadoNormal;
@@ -22,7 +24,13 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 
     @Override
 	public void atacar(IPersonaje atacado) {
-    	this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	try{
+    		this.estado.atacar((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
 	}
 
     public void atacar(IPersonajeEquipoZ personaje){
@@ -82,6 +90,19 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
     public void ataqueEspecial(IPersonajeEquipoVillano personaje){
         throw new AtaqueMismoEquipoException();
     }
+    @Override
+	public void ataqueEspecial(IPersonaje atacado) {
+    	try{
+    		this.estado.rayoMortal((IPersonajeEquipoZ) atacado);
+    	}catch(AtaqueFueraDeRangoException ex){
+    		throw new AtaqueFueraDeRangoException();
+    	}catch(NoPuedeRealizarAtaqueException ex){
+    		throw new NoPuedeRealizarAtaqueException();
+    	}
+    	catch(Exception ex){
+    		throw new AtaqueMismoEquipoException();
+    	}
+	}
 
 	public int getVidaMax() {
 		return this.estado.getVidaMax();
@@ -95,7 +116,10 @@ public class Freezer implements IPersonajeEquipoVillano, IUbicable {
 
 	}
 
-
+	@Override
+	public String getNombreEstado() {
+		return this.estado.getClass().getSimpleName();
+	}
 
 }
 
