@@ -9,6 +9,6 @@ public class PersonajeYaEsChocolateException extends RuntimeException {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	public String message = "Este personaje esta convertido en chocolate";
+	public String message = "Este personaje ya esta convertido en chocolate";
 
 }

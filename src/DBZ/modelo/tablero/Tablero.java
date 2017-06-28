@@ -86,7 +86,7 @@ public class Tablero {
 			if(celda != null){
 				//if(!celda.estaOcupada()){
 					celda.ocupar();
-					celdas.get(coordenadaPj).desocupar();
+					//celdas.get(coordenadaPj).desocupar();
 					personajes.get(personajes.indexOf(personaje)).mover(nuevaCoordenada);
 					this.actualizarEstadoConsumibles(personaje);
 				//}else{

@@ -36,6 +36,8 @@ public class VistaJuegoController {
 	Label lblJugadorZ;
 	@FXML
 	Label lblJugadorVillano;
+	@FXML
+	Pane PanelFlecha;
 
     Pane PanelPersonajeSeleccionado;
     IPersonaje personajeSeleccionado;
@@ -151,7 +153,11 @@ public class VistaJuegoController {
 		lblJugadorVillano.setText(juego.jugadorEquipoVillano.getNombre());
 
 		jugadorActual = juego.comenzarJuego();
-
+		if(jugadorActual == juego.jugadorEquipoZ){
+			PanelFlecha.getStyleClass().add("leftArrow");
+		}else{
+			PanelFlecha.getStyleClass().add("rightArrow");
+		}
 
 	}
 
@@ -320,8 +326,15 @@ public class VistaJuegoController {
         		PanelPersonajeSeleccionado.getStyleClass().clear();
         		PanelPersonajeSeleccionado.getStyleClass().add(estilo);
             	this.PanelPersonajeSeleccionado = null;
-    		}
 
+    		}
+    		if(this.PanelFlecha.getStyleClass().get(0) == "rightArrow"){
+        		this.PanelFlecha.getStyleClass().clear();
+        		this.PanelFlecha.getStyleClass().add("leftArrow");
+        	}else{
+        		this.PanelFlecha.getStyleClass().clear();
+        		this.PanelFlecha.getStyleClass().add("rightArrow");
+        	}
     	}catch(Exception ex){
     		sceneManager.show(ex.getMessage());
     	}

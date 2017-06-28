@@ -9,5 +9,5 @@ public class AtaqueMismoEquipoException extends RuntimeException {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	public String message = "No puede atacar un personaje del mismo equipo";
+	public String message = "No puede atacar un personaje del mismo equipo o inhabilitado";
 }

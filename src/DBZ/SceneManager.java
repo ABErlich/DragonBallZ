@@ -62,7 +62,7 @@ public class SceneManager {
         dialog.initOwner(this.stage);
         VBox dialogVbox = new VBox(20);
         dialogVbox.getChildren().add(new Text(message));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        Scene dialogScene = new Scene(dialogVbox, 500, 100);
         dialog.setScene(dialogScene);
         dialog.show();
 	}

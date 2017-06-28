@@ -2,15 +2,12 @@ package DBZ.modelo.juego;
 
 import DBZ.modelo.juego.interfaces.IJugadorEquipoVillano;
 
-import java.util.Enumeration;
-
 import DBZ.modelo.juego.JugadorEquipo;
 import DBZ.modelo.tablero.Coordenada;
 import DBZ.modelo.tablero.Tablero;
 import DBZ.modelo.personajes.Cell;
 import DBZ.modelo.personajes.Freezer;
 import DBZ.modelo.personajes.MajinBoo;
-import DBZ.modelo.personajes.interfaces.IPersonaje;
 
 public class JugadorEquipoVillano extends JugadorEquipo implements IJugadorEquipoVillano {
 
