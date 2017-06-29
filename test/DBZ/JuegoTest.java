@@ -1,4 +1,4 @@
-package JuegoTest;
+package DBZ;
 
 import org.junit.Test;
 import DBZ.modelo.excepciones.HayJugadoresSinEquipoException;

@@ -1,4 +1,4 @@
-package AtaquesTest;
+package DBZ;
 
 import org.junit.Test;
 

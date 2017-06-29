@@ -1,4 +1,4 @@
-package TableroTest;
+package DBZ;
 
 import DBZ.modelo.excepciones.CeldaOcupadaException;
 import DBZ.modelo.personajes.Cell;

@@ -1,4 +1,4 @@
-package ConsumiblesTest;
+package DBZ;
 
 import org.junit.Test;
 

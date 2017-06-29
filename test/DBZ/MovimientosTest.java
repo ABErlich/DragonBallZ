@@ -1,4 +1,4 @@
-package MovimientosTest;
+package DBZ;
 
 import DBZ.modelo.personajes.Freezer;
 import DBZ.modelo.tablero.Tablero;
