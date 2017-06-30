@@ -77,7 +77,7 @@ public class Tablero {
 		}
 	}
 
-	public void moverPersonaje(IPersonaje personaje, Coordenada nuevaCoordenada) {
+		public void moverPersonaje(IPersonaje personaje, Coordenada nuevaCoordenada) {
 		Coordenada coordenadaPj = personaje.obtenerUbicacion();
 		if(personajes.contains(personaje)){
 			Celda celda = celdas.get(nuevaCoordenada);
